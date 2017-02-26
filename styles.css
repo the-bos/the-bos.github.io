@@ -1,11 +1,17 @@
-h1, h2, h3, p
+h1, h2, h3
 {
     font-family: Arial, Helvetica, sans-serif;
     text-align: center;
 }
 
+.bio {
+    text-align: justify;
+    margin-left:20em;
+    margin-right:20em;
+}
+
 a {
-    color: black;
+    color: grey;
     text-decoration: none;
 }
 
