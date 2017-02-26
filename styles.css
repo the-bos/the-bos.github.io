@@ -1,5 +1,14 @@
-.centeredImage {
-    position: absolute;
-    top: 50%;
-    left: 50%;
+h1, h2, h3, p
+{
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+}
+
+a {
+    color: black;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
 }
