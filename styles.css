@@ -4,12 +4,18 @@ html {
 
 h1, h2, h3
 {
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: Geneva, Arial, Helvetica, sans-serif;
     text-align: center;
 }
 
 p {
     text-align: justify;
+    font-family: Geneva, Arial, Helvetica, sans-serif;
+    margin-top: 8px;
+}
+
+#text {
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 td, th {
@@ -17,7 +23,7 @@ td, th {
 }
 
 .bio {
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: Geneva, Arial, Helvetica, sans-serif;
     text-align: justify;
     margin-left:25%;
     margin-right:25%;
@@ -34,3 +40,23 @@ a {
 a:hover {
     text-decoration: underline;
 }
+
+#page {
+    margin-left:10%;
+    margin-right:10%;
+    margin-top:5%;
+}
+
+#maincontent {
+    float: right;
+    width:45%;
+}
+
+#panel {
+    float: left;
+    width: 45%;
+}
+
+#image {
+}
+
