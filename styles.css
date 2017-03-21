@@ -43,19 +43,18 @@ a:hover {
 }
 
 #page {
-    margin-left:10%;
-    margin-right:10%;
-    margin-top:5%;
+    margin-left:2%;
+    margin-right:2%;
+    margin-top:2%;
 }
 
 #maincontent {
     float: right;
-    width:45%;
+    width:50%;
 }
 
 #panel {
     float: left;
-    width: 55%;
 }
 
 #image {
