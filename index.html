@@ -3,67 +3,15 @@
     <head>
         <link href="styles.css" rel="stylesheet" type="text/css"/>
         <title>Branden Olson's Homepage</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js">
+    </script>
+    <script>
+        $(function(){
+            $("#panel").load("sidebar.html");
+        });
+    </script>
     </head>
     <body>
-        <div id="page">
-            <div id="panel">
-                <table>
-                    <tr>
-                        <td>
-                            <img src="Images/Boulder.jpg" width=210px id="image" align="right">
-                        </td>
-                        <td>
-                            <font size="5" face="Geneva, Arial, Helvetica, san-serif" color="#7A4C1D">
-                                Branden Olson</font> <br><br>
-                            <font size="3" face="Geneva, Arial, Helvetica, san-serif">
-                            Research Associate<br>
-                            Department of Statistics<br>
-                            University of Washington<br>
-                            Seattle, WA
-                            <br><br>
-                            Office: PDL A-314<br>
-                            Phone: 970.390.6129<br>
-                            Email: 
-                            <font face="Monaco">
-                            brando6@uw.edu
-                            <br><br>
-                            </font>
-                            </font>
-                        </td>
-                    </tr>
-                </table>
-                <br>
-                <table>
-                    <tr>
-                        <td>
-                            <font size="4" face="Geneva, Arial, Helvetica, san-serif">
-                                <a href="index.html">Home</a> |<br>
-                        </td>
-                        <td>
-                            <font size="4" face="Geneva, Arial, Helvetica, san-serif">
-                                <a href="bio.html">Bio</a> |<br>
-                        </td>
-                        <td>
-                            <font size="4" face="Geneva, Arial, Helvetica, san-serif">
-                                <a href="research.html">Research</a> |<br>
-                        </td>
-                        <td>
-                            <font size="4" face="Geneva, Arial, Helvetica, san-serif">
-                                <a href="BrandenOlsonCV.pdf">CV</a>
-                        </td>
-                    </tr>
-                </table>
-            </div>
-            <div id="maincontent">
-                <p>
-                Welcome!
-                <br><br>
-                I am a Ph.D. student and research associate in statistics who enjoys
-                <a href="Images/BeaverCreek.jpg">snowboarding</a> and 
-                strong coffee.
-                <br><br>
-                Click on the links to the left to learn more about my background and research interests.
-            </div>
-        </div>
+        <div id="panel"></div>
     </body>
 </html>
