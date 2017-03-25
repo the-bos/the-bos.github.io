@@ -31,9 +31,6 @@ td, th {
     margin-right:25%;
 }
 
-.links {
-}
-
 a {
     color: steelblue;
     text-decoration: none;
@@ -62,6 +59,10 @@ a:hover {
     float: bottom;
     text-align: center;
     clear: both;
+}
+
+.links {
+    text-align: center;
 }
 
 img {
