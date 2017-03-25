@@ -2,7 +2,12 @@
                 <table>
                     <tr>
                         <td>
-                            <img src="Images/Lake.jpg" width=310px id="image" align="right">
+                            <img src="Images/Lake.jpg" id="image" align="right">
+                            <script>
+$(document).ready(function(){
+    $("img").attr("width", $(window).width()/4);
+});
+                            </script>
                         </td>
                         <td>
                             <font size="5" face="Geneva, Arial, Helvetica, san-serif">
