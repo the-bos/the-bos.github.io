@@ -61,7 +61,7 @@ a:hover {
 #foot {
     float: bottom;
     text-align: center;
-    clear: all;
+    clear: both;
 }
 
 img {
