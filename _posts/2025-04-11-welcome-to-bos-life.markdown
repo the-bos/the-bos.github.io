@@ -6,14 +6,14 @@ date:   2025-04-11 11:24:26 -0600
 
 ### 👋 Hello, world!
 
-#### I'm Branden Olson Steele (BOS) -- AI engineer by day, new dad by night, and running entirely on espresso.
-After working for over a decade at the frontier between research, data science, and AI engineering, I’m finally starting the blog I’ve been meaning to write for... a decade 😅.
+#### I'm Branden Olson Steele (BOS) -- AI engineer by day, new dad by night, and caffeine addict by necessity.
+After working for over a decade at the frontier between research, data science, and AI engineering, I’m finally starting the blog I’ve been meaning to write for... well, a decade.
 
 #### Elevator pitch
 
-- I'm an **AI generalist** drawn to hard, ambiguous problems in diverse domains, from architecting fintech agents, to trailblazing HR content creation, to devising new methods in the statistical sciences.
-- I _love_ building production-grade AI / ML systems, with a recent obsession with agents, GenAI, and LLMs. Though, I'll never lose my soft spot for classical statistical models!
-- I'm lucky to have learned from world-class engineers, scientists, and mentors, who have showed me why pressure is a privilege.
+- I'm an **AI generalist** drawn to hard, ambiguous problems in diverse domains, from architecting fintech agents, to trailblazing HR content creation, to devising new methods in the statistical sciences
+- I _love_ building production-grade AI / ML systems, with a recent obsession with agents, GenAI, and LLMs, and a fundamental appreciation of classical statistical models
+- I'm lucky to have learned from world-class engineers, scientists, and mentors, who have showed me why pressure is a privilege
 - I’m very humbled every day by how deep this rabbit hole goes!
 
 
@@ -41,9 +41,9 @@ This blog is NOT:
 
 ### 🖊️ Why I'm writing
 
-#### Reason \#1: To share my learnings with anyone else wanting to learn
+#### Reason \#1: To share my learnings with other learners
 
-I'm extremely fortunate to work in a field at the forefront of human innovation, using cutting-edge technology every day, and even contributing to the state of the art.
+I'm extremely fortunate to work in a field at the forefront of human innovation, using cutting-edge technology every day, and contributing to the state of the art.
 It's heartwarming to see the crescendo of mass excitement and curiosity around AI as it progressively influences our lives.
 
 And while there are no shortages of learning resources out there, especially about a tech-friendly field like AI, I am hoping my particular career trajectory might offer unique perspectives, and maybe even meaningful insights.
@@ -63,7 +63,7 @@ Where does anyone find the time?
 
 But here’s the thing: writing forces clarity.
 It’s structured, disciplined thinking—the antidote to passive scrolling and context collapse.
-So instead of just trying to drink from the AI firehose through nightly cram sessions, I’d rather carve out time to process it thoughtfully.
+So instead of trying to drink from the AI firehose through nightly cram sessions, I’d rather carve out time to process it thoughtfully.
 Writing helps slow things down just enough to actually learn.
 
 
@@ -102,7 +102,7 @@ Let’s build. 🛠️
 ### Appendix: About the name
 
 My birth surname was Olson, and I changed it to Olson Steele when I got married (my wife's maiden name was Steele, and her new surname is now also Olson Steele).
-Thus, I am now B.O.S., which is some forced serendipity: "B.O. Life" just doesn't have the same ring to it. 😜
+Thus, I am now B.O.S., which is some forced serendipity: "B.O. Life" just doesn't have the same ring to it... 😜
 
 
 
