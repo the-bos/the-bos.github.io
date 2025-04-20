@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.4.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2025-04-19T18:23:17-06:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">BOS Life</title><subtitle>Thoughts and musings from the friendly AI engineer next door.</subtitle><entry><title type="html">Welcome to BOS Life: a journal of building, breaking, and reflecting on intelligent systems</title><link href="http://localhost:4000/jekyll/update/2025/04/11/welcome-to-jekyll.html" rel="alternate" type="text/html" title="Welcome to BOS Life: a journal of building, breaking, and reflecting on intelligent systems" /><published>2025-04-11T11:24:26-06:00</published><updated>2025-04-11T11:24:26-06:00</updated><id>http://localhost:4000/jekyll/update/2025/04/11/welcome-to-jekyll</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2025/04/11/welcome-to-jekyll.html"><![CDATA[<h3 id="-hello-world">👋 Hello, world!</h3>
+
+<h4 id="im-branden-olson-steele-bos--ai-engineer-new-parent-and-coffee-addict">I’m Branden Olson Steele (BOS) – AI engineer, new parent, and coffee addict.</h4>
+<p>After working for over a decade at the frontier between research, data science, and AI engineering, I’m finally starting the blog I’ve been meaning to write for, well… over a decade.</p>
+
+<h4 id="elevator-pitch">Elevator pitch</h4>
+
+<ul>
+  <li>I’m an <strong>AI generalist</strong> drawn to hard, ambiguous problems in diverse domains. My track record includes architecting fintech agents, trailblazing HR content creation, and publishing new methods in immunology and geostatistics.</li>
+  <li>I build <strong>production-grade AI / ML systems</strong>, with a recent obsession with agents, GenAI, and LLMs, though I’ll never lose my soft spot for classical statistical models.</li>
+  <li>I’m <strong>lucky</strong> to have learned from world-class engineers, scientists, and mentors, who have showed me that pressure is a privilege.</li>
+  <li>I’m <strong>humbled</strong> every day by how deep this rabbit hole goes!</li>
+</ul>
+
+<h4 id="time-to-write">Time to write</h4>
+
+<p>For years I’ve wanted to seriously write about topics in AI Engineering, but never quite found the time.
+However, over the last year, I shipped my biggest career project to date (more on that later), I welcomed my first child to the world (Ada, named after you-know-the-one), and left a Fortune 500 company for a start-up.
+In other words, time is now my most precious, vanishing resource.
+So naturally, I figured—<em>what better moment to launch a blog?</em></p>
+
+<h3 id="-goals-of-the-blog">🥅 Goals of the blog</h3>
+
+<p>This blog is:</p>
+<ul>
+  <li>a forum for my thoughts, experiences, and lessons learned in the world of AI Engineering</li>
+  <li>a builder’s journal: scrappy, honest, occasionally messy, and always curious</li>
+  <li>a reflection of my own experiences and viewpoints. I can be and often am wrong, so don’t quote me 😉</li>
+</ul>
+
+<p>This blog is NOT:</p>
+<ul>
+  <li>a research blog with journal-tier contributions, though I try my best to apply a research-oriented mindset to AI Engineering</li>
+  <li>a plug or product pitch, though I will unabashedly rave about any tools that make me a happy engineer</li>
+  <li>a guarantee of novel ideas - I’ll write about what’s on my mind, and while I’m not claiming all my ideas are original, they’re always hard-won</li>
+</ul>
+
+<h3 id="️-why-im-writing">🖊️ Why I’m writing</h3>
+
+<h4 id="reason-1-to-share-my-learnings-with-anyone-else-wanting-to-learn">Reason #1: To share my learnings with anyone else wanting to learn</h4>
+
+<p>I’m extremely fortunate to work in a field at the forefront of human innovation, using cutting-edge technology every day, and sometimes contributing to the state of the art.
+It’s heartwarming to see the crescendo of mass excitement and curiosity around AI as it progressively influences our lives.
+And while there are no shortages of learning resources out there, especially about a tech-friendly field like AI, I am hoping my particular career trajectory might offer unique perspectives, and maybe even meaningful insights.</p>
+
+<h4 id="reason--2-to-keep-track-of-things">Reason # 2: To keep track of things</h4>
+
+<p>This field moves FAST.
+Paradigm shifts happen in the span of weeks, even days.
+I’ll return to my desk after a short PTO and feel like I’ve stepped into an alternate timeline.
+It’s wild.</p>
+
+<p>Because of this, I sometimes get dizzy trying to track of all of the recent AI trends and tech.
+Friends or colleagues will ask if I’ve played around with the morning’s release of ThatGPT v-42, and I’ll sheepishly admit I haven’t even skimmed the changelog.
+Where does anyone find the time?</p>
+
+<p>But here’s the thing: writing forces clarity.
+It’s structured, disciplined thinking—the antidote to passive scrolling and context collapse.
+So instead of just trying to absorb the AI firehose through nightly cram sessions, I’d rather carve out time to process it thoughtfully.
+Writing helps slow things down just enough to actually learn.</p>
+
+<h4 id="reason--3-i-love-to-write">Reason # 3: I love to write</h4>
+
+<p>This is the biggest, most honest reason I’m doing this - I genuinely love writing.
+I always have.</p>
+
+<p>Even at five, I was the kid lugging around a pen and a spiral notebook like it was mission-critical equipment—writing, doodling, documenting the grand drama of snack time.</p>
+
+<p>Many folks think I went to grad school because I love STEM, but secretly, it’s because I love writing – <em>especially</em> about STEM.</p>
+
+<p>And if I’m being <em>perfectly</em> honest, I do worry that as AI continues to improve and integrate into our lives, I along with most everyone else will write less and less.
+I’m hoping that committing to a blog will keep my writing skills sharp, and keep me writing.</p>
+
+<h3 id="-so-whats-ahead">👀 So, what’s ahead?</h3>
+
+<p>What’s on the immediate agenda, you ask?
+Probably some thoughts on agent architecture, streaming UI headaches, the future of custom model building in a world with increasingly amazing off-the-shelf models, and how it feels to hand control to a system that talks back.</p>
+
+<h3 id="-lets-go">🚀 Let’s go!</h3>
+
+<p>I’m genuinely excited to dive in, share what I’m learning, and hopefully spark a few conversations along the way.
+I’ll figure out the whole comments-or-no-comments thing soon, but in the meantime—if anything resonates, surprises, or mildly offends your LLM sensibilities, feel free to reach out.
+Always happy to chat!</p>
+
+<p>So, here’s to writing code that thinks, systems that surprise, and posts that live rent-free in your brain – no tidy conclusion required.</p>
+
+<p>Let’s build. 🛠️</p>
+
+<h3 id="appendix-about-the-name">Appendix: About the name</h3>
+
+<p>My birth surname was Olson, and I changed it to Olson Steele when I got married (my wife’s maiden name was Steele, and her new surname is now also Olson Steele).
+Thus, I am now B.O.S., which is some forced serendipity - “B.O. Life” just doesn’t have the same ring to it… 😜</p>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[👋 Hello, world!]]></summary></entry></feed>
