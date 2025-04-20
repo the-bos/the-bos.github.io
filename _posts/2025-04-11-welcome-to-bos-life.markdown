@@ -21,7 +21,9 @@ After working for over a decade at the frontier between research, data science, 
 
 For years I've wanted to write seriously about AI / ML Engineering, but never quite found the time.
 However, over the last year, I shipped my biggest career project to date (more on that later), I welcomed my first child to the world (Ada, named after you-know-the-one), and left a Fortune 500 company for a start-up.
+
 In other words, time is now my most precious, vanishing resource.
+
 So naturally, I figured—_what better moment to launch a blog?_
 
 
@@ -35,7 +37,7 @@ This blog is:
 This blog is NOT:
 * a research blog with journal-tier contributions, though I try my best to apply a research-oriented mindset to AI Engineering
 * a plug or product pitch, though I will unabashedly rave about any tools that make me a happy engineer
-* a guarantee of novel ideas - I'll write about what's on my mind, and while I’m not claiming all my ideas are original, my opinions are always hard-won
+* a guarantee of novel ideas. I'll write about what's on my mind, and while I’m not claiming all my ideas are original, my opinions are always hard-won
 
 ### 🖊️ Why I'm writing
 
@@ -43,6 +45,7 @@ This blog is NOT:
 
 I'm extremely fortunate to work in a field at the forefront of human innovation, using cutting-edge technology every day, and even contributing to the state of the art.
 It's heartwarming to see the crescendo of mass excitement and curiosity around AI as it progressively influences our lives.
+
 And while there are no shortages of learning resources out there, especially about a tech-friendly field like AI, I am hoping my particular career trajectory might offer unique perspectives, and maybe even meaningful insights.
 
 
@@ -60,21 +63,21 @@ Where does anyone find the time?
 
 But here’s the thing: writing forces clarity.
 It’s structured, disciplined thinking—the antidote to passive scrolling and context collapse.
-So instead of just trying to absorb the AI firehose through nightly cram sessions, I’d rather carve out time to process it thoughtfully.
+So instead of just trying to drink from the AI firehose through nightly cram sessions, I’d rather carve out time to process it thoughtfully.
 Writing helps slow things down just enough to actually learn.
 
 
 
 #### Reason \# 3: I love to write
 
-This is the biggest, most honest reason I'm doing this - I genuinely love writing.
+This is the biggest, most honest reason I'm doing this: I genuinely love writing.
 I always have.
 
-Picture me at 5, lugging around a pen and a spiral notebook like it was mission-critical equipment—writing, doodling, documenting the grand drama of snack time.
+Picture me at 5, lugging around a pen and a spiral notebook like it was mission-critical equipment--drafting, doodling, and documenting the grand drama of snack time.
 
-Many folks think I went to grad school because I love STEM, but secretly, it's because I love writing -- _especially_ about STEM.
+Many folks think I went to grad school because I love STEM, but secretly, it's because I love writing, _especially_ about STEM.
 
-And if I'm being _perfectly_ honest, I do worry that as AI continues integrating deeply into our lives, I along with most everyone else will write less and less.
+And if I'm being perfectly honest, I do worry that as AI continues integrating deeply into our lives, I along with most everyone else will write less and less.
 I'm hoping that committing to a blog will keep my writing skills sharp, and really just keep me writing.
 
 
@@ -88,7 +91,7 @@ Probably some thoughts on agent architecture, streaming UI headaches, the future
 
 
 I’m genuinely excited to dive in, share what I’m learning, and hopefully spark a few conversations along the way.
-I’ll figure out the whole comments-or-no-comments thing soon, but in the meantime—if anything resonates, surprises, or mildly offends your LLM sensibilities, feel free to reach out.
+I’ll figure out the whole comments-or-no-comments thing soon, but in the meantime: if anything resonates, surprises, or mildly offends your AI sensibilities, feel free to reach out.
 Always happy to chat!
 
 So, here's to writing code that thinks, systems that surprise, and posts that live rent-free in your brain -- no tidy conclusion required.
@@ -99,7 +102,7 @@ Let’s build. 🛠️
 ### Appendix: About the name
 
 My birth surname was Olson, and I changed it to Olson Steele when I got married (my wife's maiden name was Steele, and her new surname is now also Olson Steele).
-Thus, I am now B.O.S., which is some forced serendipity - "B.O. Life" just doesn't have the same ring to it... 😜
+Thus, I am now B.O.S., which is some forced serendipity: "B.O. Life" just doesn't have the same ring to it. 😜
 
 
 
