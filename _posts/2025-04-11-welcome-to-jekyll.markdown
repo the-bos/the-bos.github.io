@@ -2,7 +2,6 @@
 layout: post
 title:  "Welcome to BOS Life: a journal of building, breaking, and reflecting on intelligent systems"
 date:   2025-04-11 11:24:26 -0600
-categories: []
 ---
 
 ### 👋 Hello, world!
