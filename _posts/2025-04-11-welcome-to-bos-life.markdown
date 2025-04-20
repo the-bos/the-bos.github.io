@@ -6,20 +6,20 @@ date:   2025-04-11 11:24:26 -0600
 
 ### 👋 Hello, world!
 
-#### I'm Branden Olson Steele (BOS) -- AI engineer, new parent, and coffee addict.
-After working for over a decade at the frontier between research, data science, and AI engineering, I’m finally starting the blog I’ve been meaning to write for, well... over a decade.
+#### I'm Branden Olson Steele (BOS) -- AI engineer by day, new dad by night, and running entirely on espresso.
+After working for over a decade at the frontier between research, data science, and AI engineering, I’m finally starting the blog I’ve been meaning to write for... a decade 😅.
 
 #### Elevator pitch
 
-- I'm an **AI generalist** drawn to hard, ambiguous problems in diverse domains. My track record includes architecting fintech agents, trailblazing HR content creation, and publishing new methods in immunology and geostatistics.
-- I build **production-grade AI / ML systems**, with a recent obsession with agents, GenAI, and LLMs, though I'll never lose my soft spot for classical statistical models.
-- I'm **lucky** to have learned from world-class engineers, scientists, and mentors, who have showed me that pressure is a privilege.
-- I’m **humbled** every day by how deep this rabbit hole goes!
+- I'm an **AI generalist** drawn to hard, ambiguous problems in diverse domains, from architecting fintech agents, to trailblazing HR content creation, to devising new methods in the statistical sciences.
+- I _love_ building production-grade AI / ML systems, with a recent obsession with agents, GenAI, and LLMs. Though, I'll never lose my soft spot for classical statistical models!
+- I'm lucky to have learned from world-class engineers, scientists, and mentors, who have showed me why pressure is a privilege.
+- I’m very humbled every day by how deep this rabbit hole goes!
 
 
 #### Time to write
 
-For years I've wanted to seriously write about topics in AI Engineering, but never quite found the time.
+For years I've wanted to write seriously about AI / ML Engineering, but never quite found the time.
 However, over the last year, I shipped my biggest career project to date (more on that later), I welcomed my first child to the world (Ada, named after you-know-the-one), and left a Fortune 500 company for a start-up.
 In other words, time is now my most precious, vanishing resource.
 So naturally, I figured—_what better moment to launch a blog?_
@@ -35,13 +35,13 @@ This blog is:
 This blog is NOT:
 * a research blog with journal-tier contributions, though I try my best to apply a research-oriented mindset to AI Engineering
 * a plug or product pitch, though I will unabashedly rave about any tools that make me a happy engineer
-* a guarantee of novel ideas - I'll write about what's on my mind, and while I’m not claiming all my ideas are original, they’re always hard-won
+* a guarantee of novel ideas - I'll write about what's on my mind, and while I’m not claiming all my ideas are original, my opinions are always hard-won
 
 ### 🖊️ Why I'm writing
 
 #### Reason \#1: To share my learnings with anyone else wanting to learn
 
-I'm extremely fortunate to work in a field at the forefront of human innovation, using cutting-edge technology every day, and sometimes contributing to the state of the art.
+I'm extremely fortunate to work in a field at the forefront of human innovation, using cutting-edge technology every day, and even contributing to the state of the art.
 It's heartwarming to see the crescendo of mass excitement and curiosity around AI as it progressively influences our lives.
 And while there are no shortages of learning resources out there, especially about a tech-friendly field like AI, I am hoping my particular career trajectory might offer unique perspectives, and maybe even meaningful insights.
 
@@ -70,17 +70,17 @@ Writing helps slow things down just enough to actually learn.
 This is the biggest, most honest reason I'm doing this - I genuinely love writing.
 I always have.
 
-Even at five, I was the kid lugging around a pen and a spiral notebook like it was mission-critical equipment—writing, doodling, documenting the grand drama of snack time.
+Picture me at 5, lugging around a pen and a spiral notebook like it was mission-critical equipment—writing, doodling, documenting the grand drama of snack time.
 
 Many folks think I went to grad school because I love STEM, but secretly, it's because I love writing -- _especially_ about STEM.
 
-And if I'm being _perfectly_ honest, I do worry that as AI continues to improve and integrate into our lives, I along with most everyone else will write less and less.
-I'm hoping that committing to a blog will keep my writing skills sharp, and keep me writing.
+And if I'm being _perfectly_ honest, I do worry that as AI continues integrating deeply into our lives, I along with most everyone else will write less and less.
+I'm hoping that committing to a blog will keep my writing skills sharp, and really just keep me writing.
 
 
 ### 👀 So, what's ahead?
 
-What's on the immediate agenda, you ask?
+What sort of posts are in store, you ask?
 Probably some thoughts on agent architecture, streaming UI headaches, the future of custom model building in a world with increasingly amazing off-the-shelf models, and how it feels to hand control to a system that talks back.
 
 
