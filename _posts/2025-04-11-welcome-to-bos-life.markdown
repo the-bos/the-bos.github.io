@@ -6,21 +6,21 @@ date:   2025-04-11 11:24:26 -0600
 
 ### 👋 Hello, world!
 
-#### I'm Branden Olson Steele (BOS) -- AI engineer by day, new dad by night, and caffeine addict by necessity.
-After working for over a decade at the frontier between research, data science, and AI engineering, I’m finally starting the blog I’ve been meaning to write for... well, a decade.
+#### I'm Branden Olson Steele (BOS) -- AI engineer by day, new dad by night, and espresso-fueled throughout.
+After working for over a decade at the frontier between research, data science, and AI engineering, I’m finally starting the blog I’ve been meaning to write for... well, a decade!
 
 #### Elevator pitch
 
-- I'm an **AI generalist** drawn to hard, ambiguous problems in diverse domains, from architecting fintech agents, to trailblazing HR content creation, to devising new methods in the statistical sciences
-- I _love_ building production-grade AI / ML systems, with a recent obsession with agents, GenAI, and LLMs, and a fundamental appreciation of classical statistical models
+- I’m a **generalist** driven by a track record of delivering AI / ML systems that solve complex, high-impact problems across domains, with a recent and growing fintech obsession
+- I _love_ building for production, especially systems powered by agents, GenAI, and LLMs that are ready to meet the real world
 - I'm lucky to have learned from world-class engineers, scientists, and mentors, who have showed me why pressure is a privilege
-- I’m very humbled every day by how deep this rabbit hole goes!
+- And every day, I’m humbled by how deep this rabbit hole goes!
 
 
 #### Time to write
 
 For years I've wanted to write seriously about AI / ML Engineering, but never quite found the time.
-However, over the last year, I shipped my biggest career project to date (more on that later), I welcomed my first child to the world (Ada, named after you-know-the-one), and left a Fortune 500 company for a start-up.
+However, over the last year, I shipped my biggest career project to date (more on that later, but [here](https://medium.com/workday-engineering/customer-aware-job-description-generation-8201cb045b46) is a great post about it), I welcomed my first child to the world (Ada, named after you-know-the-one), and left a Fortune 500 company for a start-up.
 
 In other words, time is now my most precious, vanishing resource.
 
@@ -44,18 +44,18 @@ This blog is NOT:
 #### Reason \#1: To share my learnings with other learners
 
 I'm extremely fortunate to work in a field at the forefront of human innovation, using cutting-edge technology every day, and contributing to the state of the art.
-It's heartwarming to see the crescendo of mass excitement and curiosity around AI as it progressively influences our lives.
+It's heartwarming to see the crescendo of mass excitement and curiosity around AI as it progressively transforms our lives.
 
 And while there are no shortages of learning resources out there, especially about a tech-friendly field like AI, I am hoping my particular career trajectory might offer unique perspectives, and maybe even meaningful insights.
 
 
 
-#### Reason \# 2: To keep track of things
+#### Reason \#2: To keep track of things
 
 This field moves FAST.
 Paradigm shifts happen in the span of weeks, even days.
 I’ll return to my desk after a short PTO and feel like I’ve stepped into an alternate timeline.
-It’s wild.
+It’s _wild_.
 
 Because of this, I sometimes get dizzy trying to track of all of the recent AI trends and tech.
 Friends or colleagues will ask if I've played around with the morning's release of ThatGPT v-42, and I’ll sheepishly admit I haven’t even skimmed the changelog.
@@ -68,7 +68,7 @@ Writing helps slow things down just enough to actually learn.
 
 
 
-#### Reason \# 3: I love to write
+#### Reason \#3: I love to write
 
 This is the biggest, most honest reason I'm doing this: I genuinely love writing.
 I always have.
