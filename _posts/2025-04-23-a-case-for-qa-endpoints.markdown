@@ -4,7 +4,7 @@ title:  "A Case for QA Endpoints"
 date:   2025-04-23 8:00:00 -0600
 ---
 
-### Has this ever happened to you?
+### 📢 Has this ever happened to you? 📢
 
 
 * You build a wonderful ML model in some ML-friendly environment
@@ -67,7 +67,7 @@ There are some things to note here:
 1. Multiple-choice exams have a very particular format: Numbered lists, with sub-lists, correct answers, and plenty of newlines.
 2. Exams can be quite long, and might take a while to generate.
 
-Because of (2), you opt for an async flow: the client calls your endpoint, providing the relevant model inputs as well as a callback URL:
+Because of (2), you opt for an **async flow**: the client calls your endpoint, providing the relevant model inputs as well as a callback URL:
 
 ```
 > curl -X POST \
@@ -88,9 +88,13 @@ No timeouts. No dropped connections. Just pure async magic.
 
 Awesome!
 
-You go to deploy your model to a staging env, send your example curl w/ a dummy callback, wait 20 seconds, and get your response with `"callback-id": "def-456".
+You go to deploy your model to `staging`, send your example curl w/ a dummy callback endpoint, wait 20 seconds, and get your response with `"callback-id": "def-456"`.
 
-Cool... guess we'll check the service logs?
+Cool!
+
+But what does the exam actually look like?
+
+... Guess we'll check the service logs?
 
 ```
 some-service-controller get logs > logs.txt
@@ -110,12 +114,9 @@ Correct Answer: Fungal and bacterial cells.
 ```
 
 Gah!
-This doesn't look like a good exam.
-We're giving away the correct answers!
+This doesn't look like a good multiple choice exam if there aren't any choices!
 
-So we enter our dev flow: make changes to the model in staging, and send test curls, save log file to text, open file, ctrl+f, ...
-
-t
+So we enter our dev flow: make changes to the model in `staging`, and send test curls, save log file to text, open file, ctrl+f, ...
 
 Wait. There has to be a better way to do this.
 
@@ -328,24 +329,45 @@ The examples above illustrate what we mean by QA endpoints, and why they make an
 
 But, I would be _remiss_ if you didn't ask:
 
-#### Is adding and maintaining extra endpoints just for QA _really_ worth the engineering cost?
+#### ❓ Is adding and maintaining extra endpoints just for QA _really_ worth the engineering cost?
 
 I argue: absolutely.
 
-Especially if you set up your QA endpoints "correctly" in that they invoke the same core logic as your Prod endpoints.
+Especially if you set up your QA endpoints "correctly" in that they invoke 95%+ of the same logic as your Prod endpoints.
 This can mean inheriting from the Prod endpoint class, abstracting core functionality into defs, you name it.
 
 In fact, the secret reason that I push these so hard is that they force you to think through what the _meat_ of your endpoint is, and then add whatever prod bells and whistles you need to make things Prod-ready.
-
 And then, your QA endpoint is just whatever it needs to be to let you easily and quickly verify AI or ML results, and establish parity with your data science experiments or intuition.
+They're a minor footprint with high leverage.
 
+Once this is all established, I promise you will admire the beauty of how this all looks in your API code.
+And you'd be surprised by how often having 2 entryways into your core logic with separate end goals will help you catch bugs or issues that would otherwise fly under the radar.
 
 _In production, APIs optimize for real-world constraints; in QA, we optimize for truth._
 Separate QA endpoints let us be rigorous about these considerations.
 
 
+#### ❓ Why not just write tests?
 
-#### What about security? Aren't these extra QA endpoints by design missing the bells and whistles that make them production-safe?
+QA endpoints are _not_ a replacement for tests. 
+
+A QA endpoint is a real path through production logic, testing real integration, not just unit concerns.
+It lives in and interacts with the same environment that exposes your model.
+Plus, you avoid the headaches and gotchas of dependency mocking.
+
+They are a tool to increase velocity, and ideally make your API logic more robust.
+
+But... it also depends on what you mean by tests.
+
+I mentioned evals above.
+But what about CI smoke tests that automatically ensure basic model quality is still there?
+Seems like a great fit for your QA endpoint(s).
+
+(And please, PLEASE still write tests.)
+
+
+
+#### ❓ What about security? Aren't these extra QA endpoints by design missing the bells and whistles that make them production-safe?
 
 That is a _great_ point.
 
@@ -354,29 +376,41 @@ I mean, you are already strict about which endpoints you expose in Prod, right?
 (If not, you really should be.)
 
 
-#### Why not just write tests?
+#### ❓ Okay, I'm on board with endpoints. Why not just add a something like a `qa` flag to your actual endpoints?
 
-Please, please, PLEASE write tests. 
-QA endpoints are _not_ a replacement for tests. 
-They are a tool to make development easier and more robust.
 
-But... it also depends on what you mean by tests.
+Great questions!
 
-I mentioned evals above.
-But what about CI smoke tests that automatically ensure basic model quality is still there?
-Seems like a great fit for your QA endpoint(s).
+I have two reasons for ya:
 
-#### Why not just add a something like a `qa` flag to your actual endpoints?
+**Reason #1**: Security
 
-Two reasons:
+Concerning our discussion about security above, grouping your QA code into your Prod endpoints removes the ability to cleanly toggle QA code off in Prod.
+It's much more straightforward to disallow an endpoint name rather than a payload flag or HTTP header, and keeps intent intact.
 
-1. Concerning our discussion about security above, grouping your QA code into your Prod endpoints removes the ability to toggle QA code off in Prod
+Also, it increases the risk that new or unfamiliar devs accidentally switch QA on, and when your user starts seeing HTTP error payloads in the UI, we all lose.
 
-2. The shapes of your outputs are most likely very different.
+**Reason #2**: Response Validation
+
+The shapes of your Prod vs QA endpoints outputs are most likely very different: QA output is often just direct model results, whereas Prod output can be anything, really.
 
 In both of our examples, the QA endpoints returned very different outputs compared to their Prod counterparts, whether it's an async job ID, streaming events, or whatever else.
 
 And if you're using data validators for your endpoint payloads (you should be), things can get very tricky trying to support very different structures within the same endpoint.
 
 Formalizing QA endpoints gives you freedom to define the shapes you need for productive QA.
+
+#### ‼️  I get it now. All is clear. Thanks, BOS!
+
+You got it, pal! 🤘
+
+And just for the record, I really am not claiming that QA endpoints are a panacea to your ML engineering woes.
+
+They certainly have their drawbacks -- the main one being the contrived friction to keep endpoints with different purposes / outputs / etc. in sync with each other.
+
+And maybe this is just not worth it for your pipeline -- and that's totally fine.
+
+But in a world where bugs can drive us crazy for days, or -- God forbid -- multiple sprints, any tools that might help us keep our sanity, and keep us shipping fast, are worth a shot.
+
+Happy QA-ing!
 
