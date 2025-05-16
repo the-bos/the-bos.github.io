@@ -1,15 +1,18 @@
 ---
 layout: post
-title:  "A Case for QA Endpoints"
+title:  "The Case for QA Endpoints: A Faster Way to Debug Production Models"
 date:   2025-04-23 8:00:00 -0600
 ---
 
-### 📢 Has this ever happened to you? 📢
+> **TL;DR**: In this post, I make the case for building dedicated QA endpoints — simplified, synchronous wrappers around your production logic — to dramatically speed up debugging and evaluation of AI/ML systems. I motivate / illustrate with two examples and explore when, why, and how to use them effectively.
+
+
+## 📢 Has this ever happened to you? 📢
 
 
 * You build a wonderful ML model in some ML-friendly environment
-* You deploy that model to some other environment (Staging, Prod, etc)
-* You go to sanity check the deployed model, and...
+* You deploy that model to a new environment (Staging, Prod, etc)
+* You go to sanity check the deployed model is producing expected results, and...
 
 #### ...the results look... kinda _sus_? 👀
 
@@ -23,7 +26,7 @@ I won't get into why this happens or how to achieve this consistency in _this_ p
 **We need a way to iterate quickly in order to get a model that performs well where it matters most: Prod.**
 
 
-### Case study: The `examgenerator` service
+## Case study: The `examgenerator` service
 
 Let's say you're building a product to generate academic exam content given some relevant context.
 
@@ -147,7 +150,7 @@ And we have a much quicker, easier iteration loop to keep going until parity is 
 
 
 
-### Case Study: A real-time study assistant
+## Case Study: A real-time study assistant
 
 Your `examgenerator` service was wildly successful!
 
@@ -270,7 +273,7 @@ data: ices.
 ...
 ```
 
-This works great in the UI -- the words just appear magically.
+This looks brillaint in the UI as the words appear in near real-time.
 
 BUT, you realize that it's really hard to determine during development when the agent cannot produce an adequate response due to missing course materials:
 
@@ -316,16 +319,117 @@ You decide to revive your old `/chat` endpoint to iterate on agent responses.
 Hm, so the agent can't find the right materials... oh, you realize you forgot to index past exams for this course.
 Easy fix.
 
-Anyways, the vanilla `/chat` lets you look for your "sorry tokens" (`sorry`, `apologize`, etc.) _much_ faster than `/chat/stream` would allow.
-So you continue to rely on the vanilla `/chat` endpoint during development, at some point rebranding it `/chat/qa`, and also realize pretty quickly that you can use it to **power your evals** as well.
+Anyways, the vanilla `/chat` lets you look for your "sorry tokens" (`sorry`, `apologize`, etc.) as well as other text content _much_ faster than `/chat/stream` would allow.
+
+So you continue to rely on the vanilla `/chat` endpoint during development, at some point rebranding it `/chat/qa`, and also realize pretty quickly that you can use it to _power evals_, too.
+
 I mean, as fun as it sounds to replicate your front-end stream chunk parser to your eval pipeline running in a separate CI pipeline, why not just keep outputs simple?
+
 It's not like CI needs the same UI magic as your users, anyway.
 
 
-### QA endpoints are your friend!
+## Why QA endpoints are your friends!
 
 The examples above illustrate what we mean by QA endpoints, and why they make an AI Engineer's life easy.
 
+More formally, a **QA endpoint** is a simplified, synchronous version of a production endpoint, exposing the core logic without the delivery complexity (async, streaming, side effects).
+
+They exist to improve development and evaluation velocity, not to serve real users.
+
+It’s a test harness that speaks HTTP, or whatever language is used to communicate with your models or services.
+
+What might this look like in code?
+
+Let's take our `examgenerator` use case.
+
+Our core exam generator logic might look something like:
+
+```python
+EXAM_GENERATOR_PROMPT = """
+Generate {n} multiple-choice exam questions given the following course title and topic.
+Course title: {title}
+Course topic: {topic}
+"""
+
+class ExamGeneratorCore:
+    def __init__(self, model_client):
+        self.model_client = model_client
+
+    def _postprocess_output(self, text: str) -> str:
+        # normalize formatting, scrub PII, content moderation, etc.
+	...
+
+    def generate_exam(self, course_title: str, topic: str, num_questions: int = 15) -> str:
+        prompt = EXAM_GENERATOR_PROMPT.format(title=course_title, topic=topic, n=num_questions)
+        raw_output = self.model_client.generate(prompt)
+        return self._postprocess_output(raw_output)
+```
+
+Then our endpoints might look like:
+
+```python
+from fastapi import APIRouter, BackgroundTasks, Depends
+from pydantic import BaseModel
+from uuid import UUID, uuid4
+from core import ExamGeneratorCore
+from your_model_client import ModelClient
+
+router = APIRouter()
+
+class GenerateExamRequest(BaseModel):
+    course_title: str
+    course_topic: str
+    num_questions: int = 15
+
+class GenerateExamAsyncResponse(BaseModel):
+    success: bool
+    callback_id: UUID
+
+class GenerateExamQaResponse(BaseModel):
+    text: str
+
+def get_exam_generator() -> ExamGeneratorCore:
+    return ExamGeneratorCore(model_client=ModelClient())
+
+def run_exam_generation(
+    req: GenerateExamRequest,
+    core: ExamGeneratorCore
+) -> str:
+    return core.generate_exam(
+        course_title=req.course_title,
+        topic=req.course_topic,
+        num_questions=req.num_questions,
+    )
+
+@router.post("/examgenerator/create", response_model=GenerateExamAsyncResponse)
+async def generate_exam_async(
+    req: GenerateExamRequest,
+    background_tasks: BackgroundTasks,
+    core: ExamGeneratorCore = Depends(get_exam_generator)
+) -> GenerateExamAsyncResponse:
+    callback_id = uuid4()
+
+    def send_callback():
+        result = run_exam_generation(req, core)
+        # Send result to callback URL...
+
+    background_tasks.add_task(send_callback)
+    return GenerateExamAsyncResponse(success=True, callback_id=callback_id)
+
+@router.post("/examgenerator/create/qa", response_model=GenerateExamQaResponse)
+async def generate_exam_qa(
+    req: GenerateExamRequest,
+    core: ExamGeneratorCore = Depends(get_exam_generator)
+) -> GenerateExamQaResponse:
+    result = run_exam_generation(req, core)
+    return GenerateExamQaResponse(text=result)
+```
+
+This structure keeps the vast majority of the logic shared, while letting each endpoint optimize for its delivery context.
+
+And while I've been using LLM-powered systems as examples (since they are my home-field advantage), the QA endpoint pattern is just as useful for any complex API where the real response is delayed, streamed, or transformed before delivery, from batch scoring pipelines to analytics exporters.
+
+**So, QA endpoints are your friends, regardless of the systems you're building!**
 
 But, I would be _remiss_ if you didn't ask:
 
@@ -333,18 +437,31 @@ But, I would be _remiss_ if you didn't ask:
 
 I argue: absolutely.
 
-Especially if you set up your QA endpoints "correctly" in that they invoke 95%+ of the same logic as your Prod endpoints.
-This can mean inheriting from the Prod endpoint class, abstracting core functionality into defs, you name it.
+Especially if you set up your QA endpoints "correctly" in that they invoke 95%+ of the same logic as your Prod endpoints, as I illustrated with the code example above.
 
-In fact, the secret reason that I push these so hard is that they force you to think through what the _meat_ of your endpoint is, and then add whatever prod bells and whistles you need to make things Prod-ready.
-And then, your QA endpoint is just whatever it needs to be to let you easily and quickly verify AI or ML results, and establish parity with your data science experiments or intuition.
+In fact, the secret reason that I push these so hard is that they force you to think through what the _meat_ of your endpoint is, then add only the necessary bells and whistles you need to make things Prod-ready.
+
+And then, your QA endpoint can be exactly what it needs to be to let you easily and quickly verify AI or ML results, and establish parity with your data science experiments or intuition.
 They're a minor footprint with high leverage.
+
+A well-factored system makes QA endpoints cheap to add.
+They’re a side effect of good separation between core logic and production scaffolding — not a hack layered on top.
 
 Once this is all established, I promise you will admire the beauty of how this all looks in your API code.
 And you'd be surprised by how often having 2 entryways into your core logic with separate end goals will help you catch bugs or issues that would otherwise fly under the radar.
 
 _In production, APIs optimize for real-world constraints; in QA, we optimize for truth._
 Separate QA endpoints let us be rigorous about these considerations.
+
+#### ❓ What if the core logic can’t be easily reused?
+
+So far I've assumed that the core logic is easily extractable, but in many situations, this isn’t true.
+State management, middleware, side effects, auth, retries, etc. are often interwoven into business logic, sometimes for the worse.
+
+_If your core logic is hard to expose via a QA endpoint, that’s a smell._
+
+QA endpoints don’t just help test better — they expose where your code could be cleaner.
+
 
 
 #### ❓ Why not just write tests?
@@ -357,7 +474,7 @@ Plus, you avoid the headaches and gotchas of dependency mocking.
 
 They are a tool to increase velocity, and ideally make your API logic more robust.
 
-But... it also depends on what you mean by tests.
+But -- it also depends on what you mean by tests.
 
 I mentioned evals above.
 But what about CI smoke tests that automatically ensure basic model quality is still there?
@@ -366,17 +483,103 @@ Seems like a great fit for your QA endpoint(s).
 (And please, PLEASE still write tests.)
 
 
+#### ❓ As your org or product grows, does the QA endpoint model break down?
 
-#### ❓ What about security? Aren't these extra QA endpoints by design missing the bells and whistles that make them production-safe?
+_Who owns the QA endpoints?_
 
-That is a _great_ point.
+_Are they formally tested themselves?_
 
-But, there is an easy solution: Just disable them in Prod.
-I mean, you are already strict about which endpoints you expose in Prod, right?
-(If not, you really should be.)
+_How do you avoid them going stale?_
+
+These are all great questions.
+Here is my take:
+
+QA endpoints scale well when you treat them jointly as:
+
+* another test harness: lightweight, composable, and easy to refactor alongside the systems they wrap
+* testable features in their own right: equipped with smoke, integration, and e2e tests to ensure they continue serving their correct purpose
+
+You should have observability for them in terms of dashboards, logging, and even alerts for good measure.
+
+You should test both happy and unhappy paths to ensure your error handling is sensible and consistent with your Prod endpoints.
+
+All in all, like any dev tool, they work best when used intentionally, and pruned when no longer needed.
+(Though in my experience, my colleagues and I have found good utility in keeping them around.)
+
+In other words, cross that bridge when you need to.
+It's a good problem to have if the QA endpoints that got you from 0 to 1 ultimately need to be left behind as your rocket takes off. 🚀
 
 
-#### ❓ Okay, I'm on board with endpoints. Why not just add a something like a `qa` flag to your actual endpoints?
+
+#### ❓ What about security and customer data privacy?
+
+This is one of the trickiest parts of QA endpoints, and where a simple “just disable in prod” argument falls apart.
+
+There’s a real tension here:
+
+* On one hand, you need production-like access to customer-trained models to understand their behavior and debug issues effectively.
+* On the other, these models often handle sensitive customer data, and QA endpoints -- by design -- may lack the full scaffolding of your production safety mechanisms.
+
+The goal, then, is not to avoid QA endpoints in prod-tier environments, but to build a layered, controlled access model that lets the right people debug the right things, without opening the door to data leaks, security holes, or audit nightmares.
+
+Here’s how we approach this in practice:
+
+✅ **Layer 1: Environment Selection**
+
+Customer-trained models should only exist in approved high-tier environments (e.g. staging, prod).
+
+Lower environments (e.g. dev) should use off-the-shelf or public models (preferably of the same architecture as your prod models) where no customer data is in play.
+This allows safe iteration and smoke testing before you ever touch real data.
+
+There is a good chance you already have something like this for your Prod endpoints, so just follow suit with the QA counterparts.
+
+✅ **Layer 2: Network Access Control**
+
+Network-level isolation is your strongest shield.
+
+QA endpoints should be inaccessible from the public internet, period. Restrict them to your VPC, VPN, or internal service mesh. This instantly shuts out casual or accidental misuse.
+
+✅ **Layer 3: Authentication, Authorization, and Routing**
+
+QA endpoints often need to live in prod environments, and that means they must be tightly locked down.
+
+Access should require strong authentication and authorization — not spoofable origin headers (though these can work as a temporary workaround if you're still wiring up proper auth).
+
+Some robust options include:
+
+* API Gateway tokens with scoped internal permissions
+* mTLS (mutual TLS) with client certificates for trusted services
+* Login-based access via internal identity providers (e.g. Okta, Google Workspace)
+* Service account credentials for CI pipelines or internal automation
+
+In addition, your infrastructure (e.g. API Gateway or ingress controller) should explicitly allow traffic to `/qa` endpoints only from trusted paths or identities, such as internal dashboards or specific service roles.
+
+Think of this as your blast radius limiter: even if QA code ships to prod, only authenticated, pre-approved clients can reach it.
+
+✅ **Layer 4: Data Privacy Within the Endpoint**
+
+This one’s easy to overlook.
+
+If your QA endpoint uses production data, it must also use production-grade data handling: masking, redaction, anonymization — whatever safeguards your prod stack applies to PII or sensitive content.
+
+It’s tempting to say “it’s just for internal use,” but QA paths are just as capable of leaking data if mishandled. They should inherit your data hygiene standards, not bypass them.
+
+
+**Bottom line**
+
+QA endpoints can be responsibly implemented, even for customer-trained models, when they’re protected with layered controls: environment boundaries, network rules, authentication, route restrictions, and proper data hygiene.
+
+They don’t have to be risky. But they do have to be deliberate.
+
+And yes, this adds surface area. QA endpoints must evolve with your systems, and that includes evolving security posture alongside them.
+
+If your network topology changes, your auth system is upgraded, or new data flows are added to your models, QA endpoint controls must stay in sync.
+
+It’s a small but worthwhile price to pay for the ability to debug production behavior safely and quickly.
+
+
+
+#### ❓ Okay, I'm on board with endpoints. But why not just add a something like a `qa` flag to your actual endpoints?
 
 
 Great questions!
@@ -385,7 +588,7 @@ I have two reasons for ya:
 
 **Reason #1**: Security
 
-Concerning our discussion about security above, grouping your QA code into your Prod endpoints removes the ability to cleanly toggle QA code off in Prod.
+Concerning our discussion about security above, grouping your QA code into your Prod endpoints removes the ability to cleanly toggle QA code as needed in higher-tier environments.
 It's much more straightforward to disallow an endpoint name rather than a payload flag or HTTP header, and keeps intent intact.
 
 Also, it increases the risk that new or unfamiliar devs accidentally switch QA on, and when your user starts seeing HTTP error payloads in the UI, we all lose.
@@ -398,19 +601,19 @@ In both of our examples, the QA endpoints returned very different outputs compar
 
 And if you're using data validators for your endpoint payloads (you should be), things can get very tricky trying to support very different structures within the same endpoint.
 
-Formalizing QA endpoints gives you freedom to define the shapes you need for productive QA.
+Having separate QA endpoints gives you freedom to define the outputs that fit your debugging needs, without battling your production constraints.
 
-#### ‼️  I get it now. All is clear. Thanks, BOS!
+#### ‼️  I get it now. All is clear. 🧘 Thanks, BOS!
 
 You got it, pal! 🤘
 
-And just for the record, I really am not claiming that QA endpoints are a panacea to your ML engineering woes.
+And just for the record, I really am not claiming that QA endpoints are a panacea to all your ML engineering woes.
 
 They certainly have their drawbacks -- the main one being the contrived friction to keep endpoints with different purposes / outputs / etc. in sync with each other.
 
-And maybe this is just not worth it for your pipeline -- and that's totally fine.
+And maybe this is just not worth it for your needs -- and that's totally fine.
 
 But in a world where bugs can drive us crazy for days, or -- God forbid -- multiple sprints, any tools that might help us keep our sanity, and keep us shipping fast, are worth a shot.
 
-Happy QA-ing!
+Happy QA-ing! 🧑‍🔬
 
