@@ -130,7 +130,7 @@ Wait. There has to be a better way to do this.
 
 ### 🥁 Enter: the synchronous QA endpoint
 
-You decide to make a new endpoint that just returns the model output synchronously:
+You decide to make a new endpoint that takes in the exact same inputs, but just returns the model output synchronously:
 
 ```
 > echo -e $(curl -X POST \
@@ -151,21 +151,22 @@ Cool!
 
 Model quality isn't quite there, but we can see it's improving.
 
-And even though it might still take a while for the model results to surface, we've removed the core friction, giving us a much quicker, easier iteration loop to keep going until parity is achieved.
+And even though it might still take a while for the model results to surface synchronously, we've removed the main friction, giving us a much quicker, easier iteration loop until parity is achieved.
 
-(A couple more iteration loops and we realize we accidentally swapped the `temperature` and `top_p` values... 🙃)
-
+(A couple more iteration loops and we realize we accidentally swapped the `temperature` and `top_p` values in our inference engine... 🙃)
 
 
 ## Case Study: A real-time study assistant
 
 Your `examgenerator` service was wildly successful!
 
-So much so that you decide to build out some more GenAI features to solve another academic need: the need for an around-the-clock study buddy.
-Because let's face it: TAs have better things to do at 11 PM on a Friday than explain the nuances of contemporary macroeconomic policy to a stressed-out sophomore over e-mail.
+So much so that you decide to build out another GenAI feature to solve another academic need: an around-the-clock study buddy.
 
-Enter `studycompanion`: an AI agent that uses a course's syllabi, notes, and other materials to answer student questions with targeted, helpful answers.
+Because let's face it: TAs have better things to do at 11 PM on a Friday than explain the nuances of contemporary macroeconomic policy to a stressed-out sophomore treating your e-mail like a 90's chat room.
 
+Enter `studycompanion`: an AI agent that uses course syllabi, notes, and other materials to answer student questions with targeted, helpful answers.
+
+You decide to put this agent behind a basic `/chat` endpoint that returns text responses based on certain inputs:
 
 ```
 > curl -N -X POST https://your-domain.com/studycompanion/chat \
@@ -233,9 +234,9 @@ Would you like to explore how this connects to business cycles or unemployment n
 While this is really slick, you quickly realize that the long responses _again_ lead to really high latency.
 
  
-But, an async solution as you used for `examgenerator` won't cut it here, since your students expect real time results.
+But, an async solution as you used for `examgenerator` won't cut it here, since your students expect real time results in the chat window.
 
-So, you opt for a **streaming response** -- words just appear in the UI on the fly, which makes it much less of a deal that it might take a minute or so for the full generation to complete.
+So, you opt for a **streaming response** -- words just appear in the UI on the fly as the agent generates them, which makes it much less of a deal that it might take a minute or so for the full generation to complete.
 
 
 For example, the first user query above would lead to streamed chunks that might look like:
@@ -282,7 +283,7 @@ data: ices.
 
 This looks brillaint in the UI as the words appear in near real-time.
 
-BUT, you realize that it's really hard to determine during development when the agent cannot produce an adequate response due to missing course materials:
+BUT, you soon realize that it's really hard to determine during development when the agent cannot produce an adequate response due to missing course materials:
 
 ```
 > curl -N -X POST https://your-domain.com/studycompanion/chat/stream \
@@ -316,7 +317,7 @@ data: e
 ```
 
 
-You decide to revive your old `/chat` endpoint to iterate on agent responses.
+You decide to revive your old `/chat` endpoint to iterate on agent responses in order to actually _read_ what the agent is saying:
 ```
 {
   "reply": "Let me search for relevant materials... sorry, it looks like I don't have knowledge about that topic."
@@ -324,28 +325,123 @@ You decide to revive your old `/chat` endpoint to iterate on agent responses.
 ```
 
 Hm, so the agent can't find the right materials... oh, you realize you forgot to index past exams for this course.
-Easy fix.
+Easy fix!
 
 Anyways, the vanilla `/chat` lets you look for your "sorry tokens" (`sorry`, `apologize`, etc.) as well as other text content _much_ faster than `/chat/stream` would allow.
 
 So you continue to rely on the vanilla `/chat` endpoint during development, at some point rebranding it `/chat/qa`, and also realize pretty quickly that you can use it to _power evals_, too.
 
-I mean, as fun as it sounds to replicate your front-end stream chunk parser to your eval pipeline running in a separate CI pipeline, why not just keep outputs simple?
+I mean, as fun as it sounds to replicate your front-end stream chunk parser to a separate back-end CI pipeline, why not just keep outputs simple?
 
 It's not like CI needs the same UI magic as your users, anyway.
 
 
 ## Why QA endpoints are your friends!
 
-The examples above illustrate what we mean by QA endpoints, and why they make an AI Engineer's life easy.
+The examples above illustrate what we mean by QA endpoints, and why they can make you a Happy Engineer™️.
 
-More formally, a **QA endpoint** is a simplified, synchronous version of a production endpoint, exposing the core logic without the delivery complexity (async, streaming, side effects).
+More formally, a **QA endpoint** is a simplified, synchronous version of a production endpoint, exposing the core logic without the delivery complexity (async, streaming, side effects, etc.).
 
-They exist to improve development and evaluation velocity, not to serve real users.
+It exists to improve development and evaluation velocity, not to serve end users.
 
 It’s a test harness that speaks HTTP, or whatever language is used to communicate with your models or services.
 
-What might this look like in code?
+Here is a diagram that captures what this generally looks like:
+
+<svg viewBox="0 0 800 780" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="780" fill="none" rx="10" ry="10"/>
+
+  <text x="400" y="40" font-family="Arial" font-size="24" text-anchor="middle" font-weight="bold">Shared Components: Production vs. QA Endpoints</text>
+
+  <!-- Legend -->
+  <rect x="620" y="70" width="20" height="20" fill="#e3f2fd" stroke="#2196f3" stroke-width="2"/>
+  <text x="650" y="85" font-family="Arial" font-size="14" text-anchor="start">Production Endpoint</text>
+  <rect x="620" y="100" width="20" height="20" fill="#e8f5e9" stroke="#4caf50" stroke-width="2"/>
+  <text x="650" y="115" font-family="Arial" font-size="14" text-anchor="start">QA Endpoint</text>
+  <rect x="620" y="130" width="20" height="20" fill="#fff3e0" stroke="#ff9800" stroke-width="2"/>
+  <text x="650" y="145" font-family="Arial" font-size="14" text-anchor="start">Shared Components</text>
+
+  <!-- Client -->
+  <rect x="325" y="75" width="150" height="60" fill="#eeeeee" stroke="#9e9e9e" stroke-width="2" rx="5" ry="5"/>
+  <text x="400" y="110" font-family="Arial" font-size="16" text-anchor="middle" font-weight="bold">Client</text>
+
+  <path d="M 350 135 L 250 175" stroke="#2196f3" stroke-width="3" marker-end="url(#arrowBlue)"/>
+  <text x="310" y="145" font-family="Arial" font-size="14" text-anchor="end">POST /api/v1</text>
+
+  <path d="M 450 135 L 550 175" stroke="#4caf50" stroke-width="3" marker-end="url(#arrowGreen)"/>
+  <text x="490" y="145" font-family="Arial" font-size="14" text-anchor="start">POST /api/v1/qa</text>
+
+  <!-- Shared Components (narrowed) -->
+  <rect x="200" y="175" width="400" height="360" fill="#fff3e0" stroke="#ff9800" stroke-width="3" rx="10" ry="10"/>
+  <text x="400" y="200" font-family="Arial" font-size="18" text-anchor="middle" font-weight="bold">Shared Components</text>
+
+  <rect x="250" y="220" width="300" height="50" fill="#ffe0b2" stroke="#ff9800" stroke-width="2" rx="5" ry="5"/>
+  <text x="400" y="250" font-family="Arial" font-size="16" text-anchor="middle" font-weight="bold">Request Handling / Validation</text>
+
+  <rect x="250" y="305" width="300" height="50" fill="#ffe0b2" stroke="#ff9800" stroke-width="2" rx="5" ry="5"/>
+  <text x="400" y="335" font-family="Arial" font-size="16" text-anchor="middle" font-weight="bold">Pre-processing</text>
+
+  <rect x="250" y="390" width="300" height="50" fill="#ffe0b2" stroke="#ff9800" stroke-width="2" rx="5" ry="5"/>
+  <text x="400" y="420" font-family="Arial" font-size="16" text-anchor="middle" font-weight="bold">Prompting</text>
+
+  <rect x="250" y="475" width="300" height="50" fill="#ffe0b2" stroke="#ff9800" stroke-width="2" rx="5" ry="5"/>
+  <text x="400" y="505" font-family="Arial" font-size="16" text-anchor="middle" font-weight="bold">Model Invocation</text>
+
+  <path d="M 400 270 L 400 305" stroke="#ff9800" stroke-width="2" marker-end="url(#arrowOrange)"/>
+  <path d="M 400 355 L 400 390" stroke="#ff9800" stroke-width="2" marker-end="url(#arrowOrange)"/>
+  <path d="M 400 440 L 400 475" stroke="#ff9800" stroke-width="2" marker-end="url(#arrowOrange)"/>
+
+  <!-- Production Response -->
+  <rect x="100" y="610" width="250" height="95" fill="#e3f2fd" stroke="#2196f3" stroke-width="3" rx="10" ry="10"/>
+  <text x="225" y="635" font-family="Arial" font-size="16" text-anchor="middle" font-weight="bold">Production Response</text>
+  <rect x="125" y="655" width="200" height="45" fill="#bbdefb" stroke="#1976d2" stroke-width="2" rx="5" ry="5"/>
+  <text x="225" y="682" font-family="Arial" font-size="14" text-anchor="middle">Response Handling / Streaming</text>
+
+  <!-- QA Response -->
+  <rect x="450" y="610" width="250" height="95" fill="#e8f5e9" stroke="#4caf50" stroke-width="3" rx="10" ry="10"/>
+  <text x="575" y="635" font-family="Arial" font-size="16" text-anchor="middle" font-weight="bold">QA Response</text>
+  <rect x="475" y="655" width="200" height="45" fill="#c8e6c9" stroke="#388e3c" stroke-width="2" rx="5" ry="5"/>
+  <text x="575" y="682" font-family="Arial" font-size="14" text-anchor="middle">Direct Response Return</text>
+
+  <path d="M 325 525 L 225 610" stroke="#2196f3" stroke-width="3" marker-end="url(#arrowBlue)"/>
+  <path d="M 475 525 L 575 610" stroke="#4caf50" stroke-width="3" marker-end="url(#arrowGreen)"/>
+
+  <!-- JSON (Prod Output) -->
+  <rect x="10" y="670" width="70" height="80" fill="#e3f2fd" stroke="#2196f3" stroke-width="2" rx="5" ry="5"/>
+  <text x="45" y="690" font-family="Arial" font-size="10" text-anchor="middle" font-weight="bold">JSON</text>
+  <text x="45" y="705" font-family="monospace" font-size="8" text-anchor="middle">{"id":"abc",</text>
+  <text x="45" y="720" font-family="monospace" font-size="8" text-anchor="middle">"status":</text>
+  <text x="45" y="735" font-family="monospace" font-size="8" text-anchor="middle">"pending"}</text>
+  <path d="M 125 677 L 80 710" stroke="#2196f3" stroke-width="2" marker-end="url(#arrowBlue)"/>
+
+  <!-- JSON (QA Output) -->
+  <rect x="720" y="670" width="70" height="80" fill="#e8f5e9" stroke="#4caf50" stroke-width="2" rx="5" ry="5"/>
+  <text x="755" y="690" font-family="Arial" font-size="10" text-anchor="middle" font-weight="bold">JSON</text>
+  <text x="755" y="705" font-family="monospace" font-size="8" text-anchor="middle">{"text":</text>
+  <text x="755" y="720" font-family="monospace" font-size="8" text-anchor="middle">"Direct</text>
+  <text x="755" y="735" font-family="monospace" font-size="8" text-anchor="middle">response"}</text>
+  <path d="M 675 677 L 720 710" stroke="#4caf50" stroke-width="2" marker-end="url(#arrowGreen)"/>
+
+  <!-- Arrow markers -->
+  <defs>
+    <marker id="arrowBlue" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#2196f3"/>
+    </marker>
+    <marker id="arrowGreen" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#4caf50"/>
+    </marker>
+    <marker id="arrowOrange" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#ff9800"/>
+    </marker>
+  </defs>
+</svg>
+
+This structure keeps the vast majority of the logic shared, while letting each endpoint optimize for its delivery context.
+
+And depending on the exact use case, you might be able to get away with common post-processing logic as well.
+
+
+#### What might this look like in code?
 
 Let's take our `examgenerator` use case.
 
@@ -370,6 +466,7 @@ class ExamGeneratorCore:
         prompt = EXAM_GENERATOR_PROMPT.format(title=course_title, topic=topic, n=num_questions)
         raw_output = self.model_client.generate(prompt)
         return self._postprocess_output(raw_output)
+
 ```
 
 Then our endpoints might look like:
@@ -378,15 +475,12 @@ Then our endpoints might look like:
 from fastapi import APIRouter, BackgroundTasks, Depends
 from pydantic import BaseModel
 from uuid import UUID, uuid4
-from core import ExamGeneratorCore
+
+from your_api import GenerateExamRequest
+from your_core import ExamGeneratorCore
 from your_model_client import ModelClient
 
 router = APIRouter()
-
-class GenerateExamRequest(BaseModel):
-    course_title: str
-    course_topic: str
-    num_questions: int = 15
 
 class GenerateExamAsyncResponse(BaseModel):
     success: bool
@@ -430,11 +524,11 @@ async def generate_exam_qa(
 ) -> GenerateExamQaResponse:
     result = run_exam_generation(req, core)
     return GenerateExamQaResponse(text=result)
+
 ```
 
-This structure keeps the vast majority of the logic shared, while letting each endpoint optimize for its delivery context.
 
-And while I've been using LLM-powered systems as examples (since they are my home-field advantage), the QA endpoint pattern is just as useful for any complex API where the real response is delayed, streamed, or transformed before delivery, from batch scoring pipelines to analytics exporters.
+While I've been using LLM-powered systems as examples (they are my home-field advantage, after all), the QA endpoint pattern is just as useful for any complex API where the real response is delayed, streamed, or transformed before delivery, from batch scoring pipelines to analytics exporters.
 
 **So, QA endpoints are your friends, regardless of the systems you're building!**
 
@@ -442,14 +536,14 @@ But, I would be _remiss_ if you didn't ask:
 
 #### ❓ Is adding and maintaining extra endpoints just for QA _really_ worth the engineering cost?
 
-I argue: absolutely.
+In my experience, _absolutely_.
 
-Especially if you set up your QA endpoints "correctly" in that they invoke 95%+ of the same logic as your Prod endpoints, as I illustrated with the code example above.
+Especially if you set up your QA endpoints "correctly" to invoke 95%+ of the same logic as your Prod endpoints, as illustrated with the diagram and code example above.
 
 In fact, the secret reason that I push these so hard is that they force you to think through what the _meat_ of your endpoint is, then add only the necessary bells and whistles you need to make things Prod-ready.
 
-And then, your QA endpoint can be exactly what it needs to be to let you easily and quickly verify AI or ML results, and establish parity with your data science experiments or intuition.
-They're a minor footprint with high leverage.
+And then, your QA endpoint can be exactly what it needs to be for quick-n-easy verification of results, until parity with your data science experiments or intuition is established.
+It's a minor footprint with high leverage.
 
 A well-factored system makes QA endpoints cheap to add.
 They’re a side effect of good separation between core logic and production scaffolding — not a hack layered on top.
@@ -475,19 +569,19 @@ QA endpoints don’t just help test better — they expose where your code could
 
 QA endpoints are _not_ a replacement for tests. 
 
-A QA endpoint is a real path through production logic, testing real integration, not just unit concerns.
+A QA endpoint is a real path through production logic, testing actual integration, not just unit concerns.
 It lives in and interacts with the same environment that exposes your model.
 Plus, you avoid the headaches and gotchas of dependency mocking.
 
-They are a tool to increase velocity, and ideally make your API logic more robust.
+It is a tool to increase velocity, and fortify your API logic.
 
-But -- it also depends on what you mean by tests.
+But... it also depends on what you mean by tests.
 
 I mentioned evals above.
 But what about CI smoke tests that automatically ensure basic model quality is still there?
 Seems like a great fit for your QA endpoint(s).
 
-(And please, PLEASE still write tests.)
+(And please, PLEASE still write tests!!)
 
 
 #### ❓ As your org or product grows, does the QA endpoint model break down?
@@ -498,7 +592,6 @@ _Are they formally tested themselves?_
 
 _How do you avoid them going stale?_
 
-These are all great questions.
 Here is my take:
 
 QA endpoints scale well when you treat them jointly as:
@@ -511,10 +604,10 @@ You should have observability for them in terms of dashboards, logging, and even
 You should test both happy and unhappy paths to ensure your error handling is sensible and consistent with your Prod endpoints.
 
 All in all, like any dev tool, they work best when used intentionally, and pruned when no longer needed.
-(Though in my experience, my colleagues and I have found good utility in keeping them around.)
+(Though in my experience, my colleagues and I have found good utility in keeping them around for the long haul.)
 
 In other words, cross that bridge when you need to.
-It's a good problem to have if the QA endpoints that got you from 0 to 1 ultimately need to be left behind as your rocket takes off. 🚀
+It's a good problem to have if the QA endpoints that got you from 0 to 1 ultimately hang in the balance as your rocket takes off. 🚀
 
 
 
@@ -529,13 +622,15 @@ There’s a real tension here:
 
 The goal, then, is not to avoid QA endpoints in prod-tier environments, but to build a layered, controlled access model that lets the right people debug the right things, without opening the door to data leaks, security holes, or audit nightmares.
 
+And while you don't want to hinder the dev velocity you're so excited to achieve, due diligence is required here.
+
 Here’s how we approach this in practice:
 
 ✅ **Layer 1: Environment Selection**
 
 Customer-trained models should only exist in approved high-tier environments (e.g. staging, prod).
 
-Lower environments (e.g. dev) should use off-the-shelf or public models (preferably of the same architecture as your prod models) where no customer data is in play.
+Lower environments (e.g. dev) should use off-the-shelf / public models (preferably of the same architecture as your prod models) where no customer data is in play.
 This allows safe iteration and smoke testing before you ever touch real data.
 
 There is a good chance you already have something like this for your Prod endpoints, so just follow suit with the QA counterparts.
@@ -552,16 +647,10 @@ QA endpoints often need to live in prod environments, and that means they must b
 
 Access should require strong authentication and authorization — not spoofable origin headers (though these can work as a temporary workaround if you're still wiring up proper auth).
 
-Some robust options include:
-
-* API Gateway tokens with scoped internal permissions
-* mTLS (mutual TLS) with client certificates for trusted services
-* Login-based access via internal identity providers (e.g. Okta, Google Workspace)
-* Service account credentials for CI pipelines or internal automation
-
 In addition, your infrastructure (e.g. API Gateway or ingress controller) should explicitly allow traffic to `/qa` endpoints only from trusted paths or identities, such as internal dashboards or specific service roles.
 
 Think of this as your blast radius limiter: even if QA code ships to prod, only authenticated, pre-approved clients can reach it.
+
 
 ✅ **Layer 4: Data Privacy Within the Endpoint**
 
@@ -585,7 +674,6 @@ If your network topology changes, your auth system is upgraded, or new data flow
 It’s a small but worthwhile price to pay for the ability to debug production behavior safely and quickly.
 
 
-
 #### ❓ Okay, I'm on board with endpoints. But why not just add a something like a `qa` flag to your actual endpoints?
 
 
@@ -598,19 +686,17 @@ I have two reasons for ya:
 Concerning our discussion about security above, grouping your QA code into your Prod endpoints removes the ability to cleanly toggle QA code as needed in higher-tier environments.
 It's much more straightforward to disallow an endpoint name rather than a payload flag or HTTP header, and keeps intent intact.
 
-Also, it increases the risk that new or unfamiliar devs accidentally switch QA on, and when your user starts seeing HTTP error payloads in the UI, we all lose.
+Also, it increases the risk that new or unfamiliar devs accidentally switch QA on, and when users starts seeing HTTP error payloads in the UI, we all lose.
 
 **Reason #2**: Response Validation
 
-The shapes of your Prod vs QA endpoints outputs are most likely very different: QA output is often just direct model results, whereas Prod output can be anything, really.
-
-In both of our examples, the QA endpoints returned very different outputs compared to their Prod counterparts, whether it's an async job ID, streaming events, or whatever else.
+The nature of your Prod vs QA endpoint outputs are most likely very different: QA output is just direct model results, whereas Prod output can be anything, really.
 
 And if you're using data validators for your endpoint payloads (you should be), things can get very tricky trying to support very different structures within the same endpoint.
 
 Having separate QA endpoints gives you freedom to define the outputs that fit your debugging needs, without battling your production constraints.
 
-#### ‼️  I get it now. All is clear. 🧘 Thanks, BOS!
+### ‼️  I get it now. All is clear. 🧘 Thanks, BOS!
 
 You got it, pal! 🤘
 
@@ -620,7 +706,7 @@ They certainly have their drawbacks -- the main one being the contrived friction
 
 And maybe this is just not worth it for your needs -- and that's totally fine.
 
-But in a world where bugs can drive us crazy for days, or -- God forbid -- multiple sprints, any tools that might help us keep our sanity, and keep us shipping fast, are worth a shot.
+But in a world where bugs can drive us crazy for days, or -- God forbid -- multiple sprints, any tools that might help us **keep our sanity**, and keep us **shipping fast**, are worth a shot.
 
 Happy QA-ing! 🧑‍🔬
 
