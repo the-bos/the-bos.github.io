@@ -4,7 +4,8 @@ title:  "The Case for QA Endpoints: A Faster Way to Debug Production Models"
 date:   2025-04-23 8:00:00 -0600
 ---
 
-> **TL;DR**: In this post, I make the case for building dedicated QA endpoints — simplified, synchronous wrappers around your production logic — to dramatically speed up debugging and evaluation of AI/ML systems. I motivate / illustrate with two examples and explore when, why, and how to use them effectively.
+> **TL;DR**: In this post, I make the case for building dedicated QA endpoints — simplified, synchronous wrappers around your production logic — to dramatically speed up debugging and evaluation of AI/ML systems.
+I motivate with two examples and explore when, why, and how to use them effectively.
 
 
 ## 📢 Has this ever happened to you? 📢
@@ -12,23 +13,24 @@ date:   2025-04-23 8:00:00 -0600
 
 * You build a wonderful ML model in some ML-friendly environment
 * You deploy that model to a new environment (Staging, Prod, etc)
-* You go to sanity check the deployed model is producing expected results, and...
+* You go to sanity check the model is working as expected, and...
 
 #### ...the results look... kinda _sus_? 👀
 
 
 ### You're not alone.
 
-This happens to the best of us, and IMO one of the key challenges of ML: ensuring consistent model performance across environments.
+This happens to the best of us, and a key challenge of ML engineering: ensuring consistent model performance across environments.
 
-I won't get into why this happens or how to achieve this consistency in _this_ post, but one thing's for sure:
+I won't get into why this happens or how to achieve parity in _this_ post, but one thing's for sure:
 
-**We need a way to iterate quickly in order to get a model that performs well where it matters most: Prod.**
+We need a way to **iterate quickly** in order to get a model that performs well where it matters most: **Prod**.
 
 
 ## Case study: The `examgenerator` service
 
-Let's say you're building a product to generate academic exam content given some relevant context.
+Let's say you're building a product to generate academic materials given some relevant context.
+Your premier feature will be creating **multiple choice exams**, which tend to me the most time-consuming for instructors to create.
 
 For example, for the following inputs:
 
@@ -38,7 +40,7 @@ Topic: Cell Structure
 Number of questions: 20
 ```
 
-Your generated exam might look like:
+your generated exam might look like:
 
 ```
 1. Which of the following organelles is primarily responsible for generating ATP, the main energy currency of the cell?
@@ -48,12 +50,12 @@ c)  Mitochondria
 d)  Golgi Apparatus
 Correct Answer: c)
 
-2. The cell wall, a rigid outer layer, is a characteristic feature of which type of cell?
+2. The cell wall, a rigid outer layer, is a characteristic feature of which type of cell(s)?
 a)  Animal cell
 b)  Fungal cell
 c)  Protozoan cell
 d)  Bacterial cell
-Correct Answer: b) and d)
+Correct Answers: b) and d)
 
 ...
 
@@ -65,17 +67,17 @@ d)  To provide structural support to the cell.
 Correct Answer: c)
 ```
 
-There are some things to note here:
+There are some important fetaures here to note:
 
-1. Multiple-choice exams have a very particular format: Numbered lists, with sub-lists, correct answers, and plenty of newlines.
-2. Exams can be quite long, and might take a while to generate.
+1. Multiple-choice exams have a _very_ particular format: Numbered lists, with sub-lists, correct answers, and plenty of newlines.
+2. Exams can be quite _long_, and might take a while to generate.
 
-Because of (2), you opt for an **async flow**: the client calls your endpoint, providing the relevant model inputs as well as a callback URL:
+Because of (2), you opt for an **async flow**: the client calls your endpoint, providing the relevant model inputs as well as a `Callback-Url` header:
 
 ```
 > curl -X POST \
   /examgenerator/create \
-  -H 'Callback-URL: /some/client/url' \
+  -H 'Callback-Url: /some/client/url' \
   -d '{"course_title": "Introduction to Biology", \
     "course_topic": "Cell Structure", \
     "num_questions": 20
@@ -87,17 +89,19 @@ Because of (2), you opt for an **async flow**: the client calls your endpoint, p
 
 Then your service eventually POSTs the model output to the provided callback URL with the corresponding callback ID.
 
-No timeouts. No dropped connections. Just pure async magic.
+No timeouts or dropped connections. Just pure async magic!
 
 Awesome!
 
-You go to deploy your model to `staging`, send your example curl w/ a dummy callback endpoint, wait 20 seconds, and get your response with `"callback-id": "def-456"`.
+You go to deploy your model to Staging, send your example curl w/ a dummy callback URL, and get your response with `"callback-id": "def-456"`.
 
 Cool!
 
 But what does the exam actually look like?
 
 ... Guess we'll check the service logs?
+
+Since you know the model generation might take a while, you twiddle your thumbs for a bit, and when you think 20 seconds or so have passed, you open the logs:
 
 ```
 some-service-controller get logs > logs.txt
@@ -106,6 +110,7 @@ some-service-controller get logs > logs.txt
 Then open `logs.txt` and CTRL+F for `def-456`:
 
 ```
+Model response for callback-id = def-456:
 Question: Which of the following organelles is primarily responsible for generating ATP, the main energy currency of the cell?
 Correct Answer: Mitochondria
 
@@ -117,13 +122,13 @@ Correct Answer: Fungal and bacterial cells.
 ```
 
 Gah!
-This doesn't look like a good multiple choice exam if there aren't any choices!
+This doesn't look like a good multiple choice exam if there aren't any _choices_!
 
 So we enter our dev flow: make changes to the model in `staging`, and send test curls, save log file to text, open file, ctrl+f, ...
 
 Wait. There has to be a better way to do this.
 
-### Enter: the synchronous QA endpoint.
+### 🥁 Enter: the synchronous QA endpoint
 
 You decide to make a new endpoint that just returns the model output synchronously:
 
@@ -145,7 +150,9 @@ a)  Nucleus b)  Endoplasmic Reticulum c)  Mitochondria d)  Golgi Apparatus Corre
 Cool!
 
 Model quality isn't quite there, but we can see it's improving.
-And we have a much quicker, easier iteration loop to keep going until parity is achieved.
+
+And even though it might still take a while for the model results to surface, we've removed the core friction, giving us a much quicker, easier iteration loop to keep going until parity is achieved.
+
 (A couple more iteration loops and we realize we accidentally swapped the `temperature` and `top_p` values... 🙃)
 
 
