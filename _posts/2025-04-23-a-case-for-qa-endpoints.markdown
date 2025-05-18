@@ -30,7 +30,7 @@ We need a way to **iterate quickly** in order to get a model that performs well 
 ## Case study: The `examgenerator` service
 
 Let's say you're building a product to generate academic materials given some relevant context.
-Your premier feature will be creating **multiple choice exams**, which tend to me the most time-consuming for instructors to create.
+Your premier feature will be creating **multiple choice exams**, which tend to be the most time-consuming for instructors to create.
 
 For example, for the following inputs:
 
@@ -67,7 +67,7 @@ d)  To provide structural support to the cell.
 Correct Answer: c)
 ```
 
-There are some important fetaures here to note:
+There are some important features here to note:
 
 1. Multiple-choice exams have a _very_ particular format: Numbered lists, with sub-lists, correct answers, and plenty of newlines.
 2. Exams can be quite _long_, and might take a while to generate.
@@ -281,7 +281,7 @@ data: ices.
 ...
 ```
 
-This looks brillaint in the UI as the words appear in near real-time.
+This looks brilliant in the UI as the words appear in near real-time.
 
 BUT, you soon realize that it's really hard to determine during development when the agent cannot produce an adequate response due to missing course materials:
 
@@ -686,7 +686,7 @@ I have two reasons for ya:
 Concerning our discussion about security above, grouping your QA code into your Prod endpoints removes the ability to cleanly toggle QA code as needed in higher-tier environments.
 It's much more straightforward to disallow an endpoint name rather than a payload flag or HTTP header, and keeps intent intact.
 
-Also, it increases the risk that new or unfamiliar devs accidentally switch QA on, and when users starts seeing HTTP error payloads in the UI, we all lose.
+Also, it increases the risk that new or unfamiliar devs accidentally switch QA on, and when users start seeing HTTP error payloads in the UI, we all lose.
 
 **Reason #2**: Response Validation
 
