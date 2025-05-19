@@ -27,7 +27,7 @@ I won't get into why this happens or how to achieve parity in _this_ post, but o
 We need a way to **iterate quickly** in order to get a model that performs well where it matters most: **Prod**.
 
 
-## Case study: The `examgenerator` service
+## 🕵️ Case study: The `examgenerator` service
 
 Let's say you're building a product to generate academic materials given some relevant context.
 Your premier feature will be creating **multiple choice exams**, which tend to be the most time-consuming for instructors to create.
@@ -156,7 +156,7 @@ And even though it might still take a while for the model results to surface syn
 (A couple more iteration loops and we realize we accidentally swapped the `temperature` and `top_p` values in our inference engine... 🙃)
 
 
-## Case Study: A real-time study assistant
+## 🕵️ Case Study: A real-time study assistant
 
 Your `examgenerator` service was wildly successful!
 
@@ -336,7 +336,7 @@ I mean, as fun as it sounds to replicate your front-end stream chunk parser to a
 It's not like CI needs the same UI magic as your users, anyway.
 
 
-## Why QA endpoints are your friends!
+## 🤗 Why QA endpoints are your friends
 
 The examples above illustrate what we mean by QA endpoints, and why they can make you a Happy Engineer™️.
 
@@ -349,29 +349,30 @@ It’s a test harness that speaks HTTP, or whatever language is used to communic
 Here is a diagram that captures what this generally looks like:
 
 <svg viewBox="0 0 800 780" xmlns="http://www.w3.org/2000/svg">
-  <rect width="800" height="780" fill="none" rx="10" ry="10"/>
+  <rect width="800" height="780" fill="#f8f9fa" rx="10" ry="10"/>
 
   <text x="400" y="40" font-family="Arial" font-size="24" text-anchor="middle" font-weight="bold">Shared Components: Production vs. QA Endpoints</text>
 
   <!-- Legend -->
   <rect x="620" y="70" width="20" height="20" fill="#e3f2fd" stroke="#2196f3" stroke-width="2"/>
-  <text x="650" y="85" font-family="Arial" font-size="14" text-anchor="start">Production Endpoint</text>
+  <text x="650" y="85" font-family="Arial" font-size="14">Production Endpoint</text>
   <rect x="620" y="100" width="20" height="20" fill="#e8f5e9" stroke="#4caf50" stroke-width="2"/>
-  <text x="650" y="115" font-family="Arial" font-size="14" text-anchor="start">QA Endpoint</text>
+  <text x="650" y="115" font-family="Arial" font-size="14">QA Endpoint</text>
   <rect x="620" y="130" width="20" height="20" fill="#fff3e0" stroke="#ff9800" stroke-width="2"/>
-  <text x="650" y="145" font-family="Arial" font-size="14" text-anchor="start">Shared Components</text>
+  <text x="650" y="145" font-family="Arial" font-size="14">Shared Components</text>
 
   <!-- Client -->
   <rect x="325" y="75" width="150" height="60" fill="#eeeeee" stroke="#9e9e9e" stroke-width="2" rx="5" ry="5"/>
   <text x="400" y="110" font-family="Arial" font-size="16" text-anchor="middle" font-weight="bold">Client</text>
 
-  <path d="M 350 135 L 250 175" stroke="#2196f3" stroke-width="3" marker-end="url(#arrowBlue)"/>
-  <text x="310" y="145" font-family="Arial" font-size="14" text-anchor="end">POST /api/v1</text>
+  <!-- Updated POST arrows -->
+  <path d="M 350 135 L 350 175" stroke="#2196f3" stroke-width="3" marker-end="url(#arrowBlue)"/>
+  <text x="330" y="155" font-family="Arial" font-size="14" text-anchor="end">POST /api/v1</text>
 
-  <path d="M 450 135 L 550 175" stroke="#4caf50" stroke-width="3" marker-end="url(#arrowGreen)"/>
-  <text x="490" y="145" font-family="Arial" font-size="14" text-anchor="start">POST /api/v1/qa</text>
+  <path d="M 450 135 L 450 175" stroke="#4caf50" stroke-width="3" marker-end="url(#arrowGreen)"/>
+  <text x="470" y="155" font-family="Arial" font-size="14" text-anchor="start">POST /api/v1/qa</text>
 
-  <!-- Shared Components (narrowed) -->
+  <!-- Shared Components -->
   <rect x="200" y="175" width="400" height="360" fill="#fff3e0" stroke="#ff9800" stroke-width="3" rx="10" ry="10"/>
   <text x="400" y="200" font-family="Arial" font-size="18" text-anchor="middle" font-weight="bold">Shared Components</text>
 
@@ -391,36 +392,34 @@ Here is a diagram that captures what this generally looks like:
   <path d="M 400 355 L 400 390" stroke="#ff9800" stroke-width="2" marker-end="url(#arrowOrange)"/>
   <path d="M 400 440 L 400 475" stroke="#ff9800" stroke-width="2" marker-end="url(#arrowOrange)"/>
 
-  <!-- Production Response -->
-  <rect x="100" y="610" width="250" height="95" fill="#e3f2fd" stroke="#2196f3" stroke-width="3" rx="10" ry="10"/>
-  <text x="225" y="635" font-family="Arial" font-size="16" text-anchor="middle" font-weight="bold">Production Response</text>
-  <rect x="125" y="655" width="200" height="45" fill="#bbdefb" stroke="#1976d2" stroke-width="2" rx="5" ry="5"/>
-  <text x="225" y="682" font-family="Arial" font-size="14" text-anchor="middle">Response Handling / Streaming</text>
+  <!-- Production & QA Responses -->
+  <path d="M 325 525 L 225 565" stroke="#2196f3" stroke-width="3" marker-end="url(#arrowBlue)"/>
+  <path d="M 475 525 L 575 565" stroke="#4caf50" stroke-width="3" marker-end="url(#arrowGreen)"/>
 
-  <!-- QA Response -->
-  <rect x="450" y="610" width="250" height="95" fill="#e8f5e9" stroke="#4caf50" stroke-width="3" rx="10" ry="10"/>
-  <text x="575" y="635" font-family="Arial" font-size="16" text-anchor="middle" font-weight="bold">QA Response</text>
-  <rect x="475" y="655" width="200" height="45" fill="#c8e6c9" stroke="#388e3c" stroke-width="2" rx="5" ry="5"/>
-  <text x="575" y="682" font-family="Arial" font-size="14" text-anchor="middle">Direct Response Return</text>
+  <rect x="100" y="565" width="250" height="95" fill="#e3f2fd" stroke="#2196f3" stroke-width="3" rx="10" ry="10"/>
+  <text x="225" y="590" font-family="Arial" font-size="16" text-anchor="middle" font-weight="bold">Production Response</text>
+  <rect x="115" y="600" width="220" height="45" fill="#bbdefb" stroke="#1976d2" stroke-width="2" rx="5" ry="5"/>
+  <text x="225" y="627" font-family="Arial" font-size="14" text-anchor="middle">Response Handling / Streaming</text>
 
-  <path d="M 325 525 L 225 610" stroke="#2196f3" stroke-width="3" marker-end="url(#arrowBlue)"/>
-  <path d="M 475 525 L 575 610" stroke="#4caf50" stroke-width="3" marker-end="url(#arrowGreen)"/>
+  <rect x="450" y="565" width="250" height="95" fill="#e8f5e9" stroke="#4caf50" stroke-width="3" rx="10" ry="10"/>
+  <text x="575" y="590" font-family="Arial" font-size="16" text-anchor="middle" font-weight="bold">QA Response</text>
+  <rect x="475" y="600" width="200" height="45" fill="#c8e6c9" stroke="#388e3c" stroke-width="2" rx="5" ry="5"/>
+  <text x="575" y="627" font-family="Arial" font-size="14" text-anchor="middle">Direct Response Return</text>
 
-  <!-- JSON (Prod Output) -->
-  <rect x="10" y="670" width="70" height="80" fill="#e3f2fd" stroke="#2196f3" stroke-width="2" rx="5" ry="5"/>
-  <text x="45" y="690" font-family="Arial" font-size="10" text-anchor="middle" font-weight="bold">JSON</text>
-  <text x="45" y="705" font-family="monospace" font-size="8" text-anchor="middle">{"id":"abc",</text>
-  <text x="45" y="720" font-family="monospace" font-size="8" text-anchor="middle">"status":</text>
-  <text x="45" y="735" font-family="monospace" font-size="8" text-anchor="middle">"pending"}</text>
-  <path d="M 125 677 L 80 710" stroke="#2196f3" stroke-width="2" marker-end="url(#arrowBlue)"/>
+  <!-- JSON Boxes (slightly lowered) -->
+  <rect x="190" y="685" width="70" height="80" fill="#e3f2fd" stroke="#2196f3" stroke-width="2" rx="5" ry="5"/>
+  <text x="225" y="705" font-family="Arial" font-size="10" text-anchor="middle" font-weight="bold">JSON</text>
+  <text x="225" y="720" font-family="monospace" font-size="8" text-anchor="middle">{"id":"abc",</text>
+  <text x="225" y="735" font-family="monospace" font-size="8" text-anchor="middle">"status":</text>
+  <text x="225" y="750" font-family="monospace" font-size="8" text-anchor="middle">"pending"}</text>
+  <path d="M 225 645 L 225 685" stroke="#2196f3" stroke-width="2" marker-end="url(#arrowBlue)"/>
 
-  <!-- JSON (QA Output) -->
-  <rect x="720" y="670" width="70" height="80" fill="#e8f5e9" stroke="#4caf50" stroke-width="2" rx="5" ry="5"/>
-  <text x="755" y="690" font-family="Arial" font-size="10" text-anchor="middle" font-weight="bold">JSON</text>
-  <text x="755" y="705" font-family="monospace" font-size="8" text-anchor="middle">{"text":</text>
-  <text x="755" y="720" font-family="monospace" font-size="8" text-anchor="middle">"Direct</text>
-  <text x="755" y="735" font-family="monospace" font-size="8" text-anchor="middle">response"}</text>
-  <path d="M 675 677 L 720 710" stroke="#4caf50" stroke-width="2" marker-end="url(#arrowGreen)"/>
+  <rect x="540" y="685" width="70" height="80" fill="#e8f5e9" stroke="#4caf50" stroke-width="2" rx="5" ry="5"/>
+  <text x="575" y="705" font-family="Arial" font-size="10" text-anchor="middle" font-weight="bold">JSON</text>
+  <text x="575" y="720" font-family="monospace" font-size="8" text-anchor="middle">{"text":</text>
+  <text x="575" y="735" font-family="monospace" font-size="8" text-anchor="middle">"Direct</text>
+  <text x="575" y="750" font-family="monospace" font-size="8" text-anchor="middle">response"}</text>
+  <path d="M 575 645 L 575 685" stroke="#4caf50" stroke-width="2" marker-end="url(#arrowGreen)"/>
 
   <!-- Arrow markers -->
   <defs>
@@ -677,7 +676,7 @@ It’s a small but worthwhile price to pay for the ability to debug production b
 #### ❓ Okay, I'm on board with endpoints. But why not just add a something like a `qa` flag to your actual endpoints?
 
 
-Great questions!
+Great question!
 
 I have two reasons for ya:
 
