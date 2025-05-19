@@ -349,7 +349,7 @@ It’s a test harness that speaks HTTP, or whatever language is used to communic
 Here is a diagram that captures what this generally looks like:
 
 <svg viewBox="0 0 800 780" xmlns="http://www.w3.org/2000/svg">
-  <rect width="800" height="780" fill="#f8f9fa" rx="10" ry="10"/>
+  <rect width="800" height="780" fill="none" rx="10" ry="10"/>
 
   <text x="400" y="40" font-family="Arial" font-size="24" text-anchor="middle" font-weight="bold">Shared Components: Production vs. QA Endpoints</text>
 
