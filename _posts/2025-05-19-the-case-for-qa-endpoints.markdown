@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "The Case for QA Endpoints: A Faster Way to Debug Production Models"
-date:   2025-04-23 8:00:00 -0600
+date:   2025-05-19 8:00:00 -0600
 ---
 
 > **TL;DR**: In this post, I make the case for building dedicated QA endpoints — simplified, synchronous wrappers around your production logic — to dramatically speed up debugging and evaluation of AI/ML systems.
