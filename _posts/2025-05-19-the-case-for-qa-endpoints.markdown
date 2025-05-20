@@ -231,7 +231,7 @@ Would you like to explore how this connects to business cycles or unemployment n
 
 ```
 
-While this is really slick, you quickly realize that the long responses _again_ lead to really high latency.
+While this is really slick, you quickly realize that the long responses _again_ lead to really high latency, especially when longer conversations start to really eat up your LLM's context window.
 
  
 But, an async solution as you used for `examgenerator` won't cut it here, since your students expect real time results in the chat window.
@@ -252,38 +252,43 @@ For example, the first user query above would lead to streamed chunks that might
     "message": "Can you explain the difference between nominal and real GDP?"
   }'
 
-data: **No
-data: mina
-data: l 
-data: GDP**
-data:  is 
+data: **N
+data: om
+data: in
+data: al 
+data: GDP
+data: ** 
+data: is 
 data: the 
-data: m
-data: eas
-data: ure 
+data: mea
+data: su
+data: re 
 data: of 
-data: a 
-data: country
-data: ’
-data: s 
-data: ec
-data: ono
+data: a  
+data: cou
+data: nt
+data: ry
+data: ’s 
+data: eco
+data: no
 data: mic 
-data: ou
-data: tput 
-data: u
-data: sing 
+data: out
+data: put 
+data: us
+data: ing 
 data: cu
-data: rrent 
+data: rre
+data: nt 
 data: pr
-data: ices.
+data: ice
+data: s.
 
 ...
 ```
 
 This looks brilliant in the UI as the words appear in near real-time.
 
-BUT, you soon realize that it's really hard to determine during development when the agent cannot produce an adequate response due to missing course materials:
+BUT, you soon realize that it's really hard to determine during development when the agent cannot produce an adequate response for whatever reason:
 
 ```
 > curl -N -X POST https://your-domain.com/studycompanion/chat/stream \
@@ -457,11 +462,16 @@ class ExamGeneratorCore:
     def __init__(self, model_client):
         self.model_client = model_client
 
+    def _moderate_inputs(self, title: str, topic: str) -> None:
+	# perform content moderation / sanitization, etc., raising errors if detected unsafe
+	...
+
     def _postprocess_output(self, text: str) -> str:
         # normalize formatting, scrub PII, content moderation, etc.
 	...
 
     def generate_exam(self, course_title: str, topic: str, num_questions: int = 15) -> str:
+	self._moderate_inputs(title=course_title, topic=topic)
         prompt = EXAM_GENERATOR_PROMPT.format(title=course_title, topic=topic, n=num_questions)
         raw_output = self.model_client.generate(prompt)
         return self._postprocess_output(raw_output)
