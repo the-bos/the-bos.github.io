@@ -54,9 +54,12 @@ However, I'm excited to discuss a formulation that has helped me in my day-to-da
 ## Case study: The `bugtriager` agent
 
 
-Imagine you’ve just shipped an AI agent that helps triage bug reports. It lives in Slack, reads messages from engineers and QA testers, and responds with diagnostic suggestions — maybe even proposed fixes or links to logs.
+Imagine you’ve just shipped an AI agent that helps triage bug reports.
+It lives in Slack, reads messages from engineers and QA testers, and responds with diagnostic suggestions — maybe even proposed fixes or links to logs.
 
-You’ve designed it, architected it, tested it in dev and staging. Maybe it parses stack traces, queries logs, or hits internal APIs. Maybe it’s even starting to sound helpful.
+You’ve designed it, architected it, tested it in dev and staging.
+
+Maybe it parses stack traces, queries logs, or hits internal APIs. Maybe it’s even starting to sound helpful.
 
 But now your team is asking:
 
@@ -71,7 +74,11 @@ And a more unsettling voice creeps in from your own head:
 </blockquote>
 
 
-You’ve seen a few promising replies, and a couple weird ones. You’ve read the logs. But you need more than anecdotes. You need structure.
+You’ve seen a few promising replies, and a couple weird ones.
+You’ve read the logs.
+But you need more than anecdotes.
+
+You need a structured view.
 
 That’s where the 3T Framework comes in:
 Text, Tools, and Truth.
@@ -79,6 +86,198 @@ A lens to evaluate not just whether your agent said something plausible — but 
 
 ## The 3 T's of Good Evals: Text, Tools, and Truth
 
+### T1: Text
+
+The big deal about AI agents is that they are a natural language interface between the user and the code.
+
+The user asks it to do a thing, and it does that thing.
+
+Sometimes that thing is a simple text answer, without even talking about tools, actions, or anything really fancy.
+
+In our `bugtriager` example, let's say you have the following conversation with the agent:
+
+
+```
+User: "What sort of things can you help me with?"
+
+AI Agent: I can help triage bug reports, whether they live in Slack, JIRA, you name it. I can look at logs, source code, and other sources of proprietary information to help you resolve bugs fast.
+```
+
+Now that's a response!
+Users will love this.
+
+But, later that day, you push a change, and ask it the same question to double check everything is still good:
+
+```
+User: "What sort of things can you help me with?"
+
+AI Agent: I'm an AI assistant here to help you with any questions or tasks you have! How may I assist today?
+```
+
+Wait a minute.
+
+It didn't even _mention_ bugs, or triaging, or really anything that should distinguish it as a bugfixer, not a general LLM.
+
+
+You decide to add an example in your evals that makes sure the agent responds to this particular query with the right sort of **keywords**.
+
+In a nutshell, this might look like:
+
+```
+import numpy as np
+from bugtraiger import agent, normalize_text
+
+query = "What sort of things can you help me with?"
+expected_text = ["triage", "bug reports", "Slack", "JIRA", "logs", "source code"]
+
+agent_response = agent.run(prompt=query)
+
+hits = [normalize(text) in normalize(agent_response) for text in expected_text)
+
+coverage = np.mean(hits)
+```
+
+The key thing to note here is how cheap basic text inclusion is. 
+No need for LLMs, complex processing, or anything beyond a simple list comprehension.
+
+It's not perfect (the coverage for this example will drop from 100% to 83% if `logs` aren't mentioned, specifically), but it gives you a quick and easy guardrail against regressions.
+
+And you can tune or weight things as needed to capture what is truly important, and what is a good to have.
+
+
+
+
+### T2: Tools
+
+Tools are the what help **distinguish your AI agent** from a typical chatbot.
+
+If your LLM is your agent's brain, the tools are its _brawns_.
+
+It goes without saying that you'll want to be very intentional about which tools your agent calls in various query scenarios.
+
+Going back to our `bugtriager`:
+
+You have your main app running at `main_app`, saving logs to a logfile on the fly.
+
+Your agent has a tool to inspect these logs at runtime.
+
+**At least, in theory.**
+
+You intentionally send a malformed request to your `main_app` service, triggering a 422 error.
+
+You go to test that your agent can figure all this out:
+
+```
+User: why am I getting a 422?
+
+Assistant: Let me check...
+
+Assistant: I'm sorry, but I'm not sure why you are getting a 422. I can't seem to access any traces from `main_app` at the moment.  Maybe you can share some logs we can check?
+```
+
+What the heck?
+
+YOU should be checking the logs, `bugtriager`!
+
+If I wanted to copy and paste logs, I'd just use ChatGPT or something.
+
+```
+User: don't you have a check_logs tool?
+
+Assistant: You're right, I do. Let me try that...
+
+AI Agent: Good news, I was able to find your 422 in the logs. It looks like you sent `fake-uuid` as the user ID which triggered a ValidationError...
+```
+
+Okay, so the agent has the tool, and can use the tool, but didn't seem like it was appropriate from my query.
+
+Hmm...
+
+You go to inspect the `check_logs` tool to see if anything looks strange.
+
+```
+@tool
+def check_logs():
+    """Test description - TODO: actually fill this out"""
+	
+    ...
+```
+
+Oh... there's the smoking gun!
+
+Also, are we not even sending in the user query?
+That seems like it would be useful context for the agent when searching through what could be very many logs, potentially with more errors than are relevant to what the user's asking about.
+
+You make the following changes:
+
+```
+@tool
+def check_logs(user_query: str):
+    """
+	Check the `main_app` logs for errors, warnings, or other critical information 
+        given a user query.
+	Useful if the user is hitting a particular HTTP error code.
+    """
+	
+    ...
+```
+
+Cool!
+
+Let's try this again in the UI...    
+
+
+```
+User: why am I getting a 422?
+
+AI Agent: Let me check the logs for a 422 HTTP error...
+
+AI Agent: Calling check_logs() tool...
+
+AI Agent: Good news, I was able to find your 422 in the logs. It looks like you sent `fake-uuid` as the user ID which triggered a ValidationError...
+```
+
+Voila!
+
+Who knew docstrings would be the bottleneck to good agent experience?
+
+
+This is a simple example, but what about more complex scenarios where there are multiple factors, and hence multiple tool calls at play?
+
+
+For example, maybe we want to introduce a `generate_fix` tool that outputs a code suggestion to fix a bug the user is seeing.
+
+Hell, maybe you want another tool to file a GitHub issue, or even summon a separate AI agent to actually fix the bug and put out a PR.
+
+This can be abstracted as a **tool call sequence**, something like:
+
+```
+[check_logs, generate_fix, create_github_issue, summon_bugfixer]
+```
+
+The key to note here is that we can get quite elaborate with the behavior you might want from your agent when it comes to tool calls.
+
+And that's totally fine!
+We just have to make sure this is captured in our evals.
+
+Adding support for separate **tool call modes** will give you the flexibility you need to define diverse examples that provide a strong signal to agent performance.
+
+Three "tool call modes" I've found personally useful:
+
+
+1. **Exact match**: The agent must call every tool call you provide, in the exact sequence it was provided, and nothing more.
+2. **Subsequence match**: The agent must call every tool you provide, in the sequence provided, but potentially with other tool calls sprinkled in.
+3. **Subset match**: The agent must call at least one tool you provided, or a general subset of tools, regardless of sequence
+
+But the cool thing here is that could define many other modes that are useful for your specific context.
+
+Just make sure it's easy to surface the observed tool calls from production logic to your eval pipeline.
+
+
+**“But,"** you ask, **"just checking that tools were called isn’t enough. It _can't_ be enough. How do we know the answer the agent gave is actually true?”**
+
+
+### T3: Truth
 ...
 
 <!-- Tool call: intentional bug using proprietary class, ensuring the tool call hits the class tool, or logs, or something-->
@@ -88,4 +287,14 @@ A lens to evaluate not just whether your agent said something plausible — but 
 
 <!-- Truth as a robustness tool to changing tool names, etc.-->
 
+
+<!-- A big reason truth works online is that it the LLM bottleneck doesn't matter: it's a post-hoc background call after the agent response has already been surfaced. No ETL spikes.-->
+
+
+
+## Conclusion
+
+If you can get to a place where your agent nails all of the 3T's on a rich and representative set of eval examples, it will be in great shape.
+
+And your users will love it.
 
