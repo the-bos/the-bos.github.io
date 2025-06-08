@@ -5,7 +5,7 @@ date:   2025-06-06 8:00:00 -0600
 ---
 
 > **TL;DR**: In this post, I discuss how the 3 T's -- Text, Tools, and Truth -- comprise a powerful core for evals.
-I distinguish between offline and online evals, and argue for doing both.
+I distinguish between offline and online evals, and make a case for why you should do do both.
 
 
 
@@ -151,7 +151,7 @@ And you can tune or weight things as needed to capture what is truly important, 
 
 Tools are the what help **distinguish your AI agent** from a typical chatbot.
 
-If your LLM is your agent's brain, the tools are its _brawns_.
+If the LLM is your agent's brain, tools are its _brawn_.
 
 It goes without saying that you'll want to be very intentional about which tools your agent calls in various query scenarios.
 
@@ -290,6 +290,14 @@ Just make sure it's easy to surface the observed tool calls from production logi
 
 <!-- A big reason truth works online is that it the LLM bottleneck doesn't matter: it's a post-hoc background call after the agent response has already been surfaced. No ETL spikes.-->
 
+
+## Comparison
+
+<!-- Text is a lot easier to assess / interpret quickly, compared to truth or even tool calls. -->
+
+<!-- Tools ensure your agent is guided down the proper paths under uncertainty -->
+
+<!-- Truth finds the juicy middle, and doesn't need ground truth data to estimate. But it does need an LLM. -->
 
 
 ## Conclusion
