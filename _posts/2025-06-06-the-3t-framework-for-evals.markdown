@@ -5,20 +5,20 @@ date:   2025-06-06 8:00:00 -0600
 ---
 
 > **TL;DR**: In this post, I discuss how the 3 T's -- Text, Tools, and Truth -- comprise a powerful core for evals.
-I distinguish between offline and online evals, and make a case for why you should do do both.
+I distinguish between offline and online evals, make a case for why you should do do both, and demonstrate how the 3Ts have your back here.
 
 
 
 
 ## "Agent evals are your most precious IP."
 
-This was claimed on center stage at this year's LangGraph Interrupt conference said this, inducing a loud murmur in the crowd.
+This line was dropped on center stage at this year's [LangChain Interrupt conference](https://interrupt.langchain.com), igniting a loud murmur in the crowd.
 
-After a solid first morning covering agent architectures and conceputalizing the Agent Engineer as an emergent role, the entire afternoon was dedicated to instilling, no, indoctrinating the following idea into everyone's brains:
+After a solid first morning covering agent architectures and conceptualizing the Agent Engineer as an emergent role, the entire afternoon was dedicated to instilling, no, indoctrinating the following idea into everyone's brains:
 
 #### You NEED to do evals, and you NEED to do them well.
 
-I think this is was something all of us kind of knew, to various extents, but didn't really _feel_ in our _bones_ until then.
+This was something we all kind of knew—but didn’t really _feel in our bones_ until that moment.”
 
 And I think it's because, frankly, evals seem _hard_, at least to do well.
 
@@ -29,7 +29,7 @@ But... are evals really as critical as everyone seems to be insisting?
 
 Indeed, there are a wealth of resources, learning content, and open source tooling to help you stand up your own agent surprisingly fast.
 
-#### But it's a LOT harder to build a good agent.
+#### But it's a _lot_ harder to build a **good agent**.
 
 
 Well, what is a good agent?
@@ -103,7 +103,7 @@ User: "What sort of things can you help me with?"
 AI Agent: I can help triage bug reports, whether they live in Slack, JIRA, you name it. I can look at logs, source code, and other sources of proprietary information to help you resolve bugs fast.
 ```
 
-Now that's a response!
+Great response!
 Users will love this.
 
 But, later that day, you push a change, and ask it the same question to double check everything is still good:
@@ -273,12 +273,87 @@ But the cool thing here is that could define many other modes that are useful fo
 
 Just make sure it's easy to surface the observed tool calls from production logic to your eval pipeline.
 
+It's worth noting that captured actions aren't confined to tool calls, necessarily.
+For example, maybe you want to ensure a sub-agent is correctly called and executed, or maybe you want to ensure an interrupt is raised before a particular tool is called.
+These are great extensions of the spirit of the Second T (and maybe I'll think of a better T-starting category name for them, someday)!
+
 
 **“But,"** you ask, **"just checking that tools were called isn’t enough. It _can't_ be enough. How do we know the answer the agent gave is actually true?”**
 
 
 ### T3: Truth
-...
+
+While text and tool call evaluators are powerful, they also have blind spots — especially when correctness hinges on nuanced reasoning.
+
+
+Let's say a QA tester reports a flaky test that sometimes fails with a `TimeoutError: Element not found` after 10 seconds.
+
+They send you the stack trace, which points to a button that should appear after a modal loads.
+
+You decide to ask the agent why the test is flaky, attaching the stack trace for reference.
+
+The agent must:
+
+- analyze the trace
+- interpret the test logic
+- identify the relevant source code
+- recognize that the model is tied to an async API call
+- realize the DOM may not be updated in time
+- conclude: `add an explicit wait for the model to load, or mock the API call`
+
+
+Indeed, the agent ultimately comes to this conclusion and reports back with the answer you wanted.
+
+Awesome!
+
+
+
+You realize this is a great example for evals — about as close to a holistic reasoning eval as it gets.
+
+But... how should you specify it?
+
+#### Would text inclusion work?
+
+You _could_ check that it mentions `timeout`s or `flak(y|iness)`, but this won't guarantee that its solution will actually fix the test.
+
+
+#### Would tool call checking work?
+
+You _could_ ensure it calls a `source_code` tool, or something, but that isn't sufficient to verify the agent's **correctness**.
+
+Or what I'm calling **truth**.
+
+
+#### Enter: LLM-as-a-Judge™
+
+You decide to invoke a second LLM to evaluate the first agent’s reasoning and conclusions based on the original user query.
+
+This works surprisingly well: you don’t need hand-crafted ground truth labels.
+
+All you need is:
+
+- the user question
+- the agent's response
+- an evaluation prompt
+
+With the right template and scoring rubric, you've turned a tricky reasoning task into a scalable eval!
+
+
+
+#### Bonus: Online evals!
+
+Let's fast-forward a bit and say your agent is deployed in prod and serving real customer traffic!
+Woohoo!
+
+Your team is natuarally very curious how the agent is doing in the wild. 
+
+It turns out that one of the biggest strengths of the truth evaluator is that it can run immediately after a live user query / agent response event (as a background event hidden to the actual conversation).
+
+You just send this event, along with your same evaluation prompt, to your judging LLM, and that's it!
+You suddenly have more eval examples and correctness labels, at the cost of an LLM call and a bit more work specifying your agent's topology.
+
+Truth-based evals like this can run continuously, sampling real queries and auditing responses. No offline simulation needed—just real behavior, judged with real criteria.
+
 
 <!-- Tool call: intentional bug using proprietary class, ensuring the tool call hits the class tool, or logs, or something-->
 
@@ -291,7 +366,41 @@ Just make sure it's easy to surface the observed tool calls from production logi
 <!-- A big reason truth works online is that it the LLM bottleneck doesn't matter: it's a post-hoc background call after the agent response has already been surfaced. No ETL spikes.-->
 
 
+#### A note on truth
+
+I want to address the elephant in the room here:
+
+- I'm proposing you use one LLM, falliable as it may be, to output whether an answer from _another_ LLM is correct or not,
+- without any labels, or human review, or intrepretability beyond our prompt and the LLM's street cred,
+- and I _dare_ to call this _truth_?
+
+
+This is a fair point, but more of a critique of LLM-as-a-Judge rather than the end goal of Truth.
+
+Ultimately, we want a score of whether the agent _seems_ to have correctly responded to one or more queries.
+
+We could rely on human judges for this (at least for offline evals), but even humans might have a difficult time determining these scores (and might even [disagree with each other](https://en.wikipedia.org/wiki/Inter-rater_reliability#Disagreement)).
+
+Maybe the user had no idea what they _really_ were looking for, and just started with the first thing that came to mind.
+What is the correct agent response even supposed to be here?
+
+I'll conclude that LLM-as-a-Judge is an increasingly popular state-of-the-art evaluation paraidgm, producing generally robust metrics especially when aggregated, and leave it at that for now.
+
+
+
+
 ## Comparison
+
+The 3Ts of evals form a triforce of utility, and work best as a complete set.
+
+Below is a table of benefits and drawbacks of each one.
+
+
+| Evaluator    | What it does | Typical checks | Benefits | Drawbacks |
+| ------------ | -------- | --------- |
+| **Text**         | Does the agent respond clearly and appropriately in natural language? |  Keyword coverage, BLEU, ROUGE, embedding similarity |  ✅ Fast<br>✅ Targeted<br>✅ Easy to implement<br>✅ Interpretable<br>✅ Quickly verifiable<br>✅ No API dependency<br>✅ Easy to crowdsource<br>✅ Helps shape agent personality / style| ⚠️ Doesn't test reasoning<br>⚠️ Keywords aren't robust to typos / semnatic variants<br> ⚠️ Can be brittle to nomenclature changes<br>⚠️ Not always applicable<br>⚠️  Can only run offline|
+| **Tools**        | Does the agent use the right tools, with the right arguments, at the right time? | Tool call sequence match, argument inspection | ✅ Ensures tools are being called and used as intended<br>✅ Can test complex tool call flows <br>✅ Captures reasoning structure<br>✅ Good for regression detection<br>✅ Encourages clean interfaces| ⚠️ Can require sophisticated setup<br>⚠️ Tool use ≠ good outcome<br>⚠️  Can penalize valid alternate strategies<br>⚠️ Only applicable if tools are required<br>⚠️  Fragile to interface changes<br>⚠️  Can only run offline| 
+| **Truth**        | Is the final output aligned with the real state of the world or system? | LLM-as-a-Judge, human annotations | ✅ Holistic notion of agent correctness<br>✅ Best proxy for good UX<br>✅ No ground truth labels needed<br>✅ Extensible across modalies beyond text<br>✅ Flexible scoring (e.g. 1-5 scale)<br>✅ Can run online    | ⚠️ Requires LLM call (and thus maybe an API dependency)<br>⚠️ Slower<br>⚠️ More subjective / less interpretable<br>⚠️  Ambiguity in gold standards<br>⚠️  Harder to debug |
 
 <!-- Text is a lot easier to assess / interpret quickly, compared to truth or even tool calls. -->
 
@@ -302,7 +411,16 @@ Just make sure it's easy to surface the observed tool calls from production logi
 
 ## Conclusion
 
-If you can get to a place where your agent nails all of the 3T's on a rich and representative set of eval examples, it will be in great shape.
+Of course, there are a whole lot more to evals than I've covered here.
+
+Getting a genuinely good example dataset, though seemingly straightforward on the surface, might be the biggest bottleneck of all.
+
+You also will probably want many more evaluators beyond the 3 Ts, to really capture the context or domain that gives your agent and organization an upper hand.
+
+And I didn't even _mention_ the trials and tribulations of doing actual, hardcore Eval-Driven Development.
+(Though I might touch on this in a following post.)
+
+But, if you can get to a place where your agent nails all of the 3T's on a rich and representative set of eval examples, it will be in great shape.
 
 And your users will love it.
 
