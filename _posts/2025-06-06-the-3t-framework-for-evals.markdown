@@ -10,7 +10,7 @@ I distinguish between offline and online evals, make a case for why you should d
 
 
 
-## "Agent evals are your most precious IP."
+## 🎤 "Agent evals are your most precious IP."
 
 This line was dropped on center stage at this year's [LangChain Interrupt conference](https://interrupt.langchain.com), igniting a loud murmur in the crowd.
 
@@ -43,7 +43,7 @@ And I'm here to echo the idea that a lot of hard work is in your evals.
 Sure, it's possible to rely on subjective evaluation to ensure your agent is performing well, but this requires either a dedicated team reviewing agent output on a weekly basis, or a gift of really, really strong intuition.
 
 
-## The good news: YOU can build a good agent!
+## 🌅 The good news: YOU can build a good agent!
 
 I'm not here to say evals are easy.
 
@@ -51,7 +51,7 @@ But I do think it's easy to get confused in all of the commotion surrounding the
 
 However, I'm excited to discuss a formulation that has helped me in my day-to-day, and just might help you as well.
 
-## Case study: The `bugtriager` agent
+## 🕵️ Case study: The `bugtriager` agent
 
 
 Imagine you’ve just shipped an AI agent that helps triage bug reports.
@@ -84,9 +84,9 @@ That’s where the 3T Framework comes in:
 Text, Tools, and Truth.
 A lens to evaluate not just whether your agent said something plausible — but whether it understood the user, used the right tools, and aligned with the truth of the system.
 
-## The 3 T's of Good Evals: Text, Tools, and Truth
+## 3️⃣ The 3 T's of Good Evals: Text, Tools, and Truth
 
-### T1: Text
+### 📄 T1: Text
 
 The big deal about AI agents is that they are a natural language interface between the user and the code.
 
@@ -147,7 +147,7 @@ And you can tune or weight things as needed to capture what is truly important, 
 
 
 
-### T2: Tools
+### 🛠️ T2: Tools
 
 Tools are the what help **distinguish your AI agent** from a typical chatbot.
 
@@ -281,7 +281,7 @@ These are great extensions of the spirit of the Second T (and maybe I'll think o
 **“But,"** you ask, **"just checking that tools were called isn’t enough. It _can't_ be enough. How do we know the answer the agent gave is actually true?”**
 
 
-### T3: Truth
+### 🎯 T3: Truth
 
 While text and tool call evaluators are powerful, they also have blind spots — especially when correctness hinges on nuanced reasoning.
 
@@ -324,7 +324,7 @@ You _could_ ensure it calls a `source_code` tool, or something, but that isn't s
 Or what I'm calling **truth**.
 
 
-#### Enter: LLM-as-a-Judge™
+#### 🦾 Enter: LLM-as-a-Judge™
 
 You decide to invoke a second LLM to evaluate the first agent’s reasoning and conclusions based on the original user query.
 
@@ -340,7 +340,7 @@ With the right template and scoring rubric, you've turned a tricky reasoning tas
 
 
 
-#### Bonus: Online evals!
+#### 💰 Bonus: Online evals!
 
 Let's fast-forward a bit and say your agent is deployed in prod and serving real customer traffic!
 Woohoo!
@@ -366,7 +366,7 @@ Truth-based evals like this can run continuously, sampling real queries and audi
 <!-- A big reason truth works online is that it the LLM bottleneck doesn't matter: it's a post-hoc background call after the agent response has already been surfaced. No ETL spikes.-->
 
 
-#### A note on truth
+#### 📝 A note on truth
 
 I want to address the elephant in the room here:
 
@@ -389,18 +389,89 @@ I'll conclude that LLM-as-a-Judge is an increasingly popular state-of-the-art ev
 
 
 
-## Comparison
+## ⚖️ Comparison
 
 The 3Ts of evals form a triforce of utility, and work best as a complete set.
 
 Below is a table of benefits and drawbacks of each one.
 
-
-| Evaluator    | What it does | Typical checks | Benefits | Drawbacks |
-| ------------ | -------- | --------- |
-| **Text**         | Does the agent respond clearly and appropriately in natural language? |  Keyword coverage, BLEU, ROUGE, embedding similarity |  ✅ Fast<br>✅ Targeted<br>✅ Easy to implement<br>✅ Interpretable<br>✅ Quickly verifiable<br>✅ No API dependency<br>✅ Easy to crowdsource<br>✅ Helps shape agent personality / style| ⚠️ Doesn't test reasoning<br>⚠️ Keywords aren't robust to typos / semnatic variants<br> ⚠️ Can be brittle to nomenclature changes<br>⚠️ Not always applicable<br>⚠️  Can only run offline|
-| **Tools**        | Does the agent use the right tools, with the right arguments, at the right time? | Tool call sequence match, argument inspection | ✅ Ensures tools are being called and used as intended<br>✅ Can test complex tool call flows <br>✅ Captures reasoning structure<br>✅ Good for regression detection<br>✅ Encourages clean interfaces| ⚠️ Can require sophisticated setup<br>⚠️ Tool use ≠ good outcome<br>⚠️  Can penalize valid alternate strategies<br>⚠️ Only applicable if tools are required<br>⚠️  Fragile to interface changes<br>⚠️  Can only run offline| 
-| **Truth**        | Is the final output aligned with the real state of the world or system? | LLM-as-a-Judge, human annotations | ✅ Holistic notion of agent correctness<br>✅ Best proxy for good UX<br>✅ No ground truth labels needed<br>✅ Extensible across modalies beyond text<br>✅ Flexible scoring (e.g. 1-5 scale)<br>✅ Can run online    | ⚠️ Requires LLM call (and thus maybe an API dependency)<br>⚠️ Slower<br>⚠️ More subjective / less interpretable<br>⚠️  Ambiguity in gold standards<br>⚠️  Harder to debug |
+<div style="overflow-x: auto; margin: 2rem 0; -webkit-overflow-scrolling: touch;">
+  <table style="min-width: 900px; width: 100%; table-layout: fixed; border-collapse: collapse;">
+    <thead>
+      <tr>
+        <th style="width: 100px;">Evaluator</th>
+        <th style="width: 160px;">What it does</th>
+        <th style="width: 160px;">Typical checks</th>
+        <th style="width: 290px;">Benefits</th>
+        <th style="width: 290px;">Drawbacks</th>
+      </tr>
+    </thead>
+  <tbody>
+    <tr>
+      <td><strong>Text</strong></td>
+      <td>Does the agent respond clearly and appropriately in natural language?</td>
+      <td>Keyword coverage, BLEU, ROUGE, embedding similarity</td>
+      <td>
+        ✅ Fast<br>
+        ✅ Targeted<br>
+        ✅ Easy to implement<br>
+        ✅ Interpretable<br>
+        ✅ Quickly verifiable<br>
+        ✅ No API dependency<br>
+        ✅ Easy to crowdsource<br>
+        ✅ Helps shape agent personality / style
+      </td>
+      <td>
+        ⚠️ Doesn't test reasoning<br>
+        ⚠️ Keywords aren't robust to typos / semantic variants<br>
+        ⚠️ Can be brittle to nomenclature changes<br>
+        ⚠️ Not always applicable<br>
+        ⚠️ Can only run offline
+      </td>
+    </tr>
+    <tr>
+      <td><strong>Tools</strong></td>
+      <td>Does the agent use the right tools, with the right arguments, at the right time?</td>
+      <td>Tool call sequence match, argument inspection</td>
+      <td>
+        ✅ Ensures tools are used as intended<br>
+        ✅ Can test complex tool call flows<br>
+        ✅ Captures reasoning structure<br>
+        ✅ Good for regression detection<br>
+        ✅ Encourages clean interfaces
+      </td>
+      <td>
+        ⚠️ Requires sophisticated setup<br>
+        ⚠️ Tool use ≠ good outcome<br>
+        ⚠️ Can penalize valid alternate strategies<br>
+        ⚠️ Only applicable if tools are required<br>
+        ⚠️ Fragile to interface changes<br>
+        ⚠️ Can only run offline
+      </td>
+    </tr>
+    <tr>
+      <td><strong>Truth</strong></td>
+      <td>Is the final output aligned with the real state of the world or system?</td>
+      <td>LLM-as-a-Judge, human annotations</td>
+      <td>
+        ✅ Holistic notion of agent correctness<br>
+        ✅ Best proxy for good UX<br>
+        ✅ No ground truth labels needed<br>
+        ✅ Extensible beyond text<br>
+        ✅ Flexible scoring (e.g. 1–5 scale)<br>
+        ✅ Can run online
+      </td>
+      <td>
+        ⚠️ Requires LLM call (API dependency)<br>
+        ⚠️ Slower<br>
+        ⚠️ More subjective / less interpretable<br>
+        ⚠️ Ambiguity in gold standards<br>
+        ⚠️ Harder to debug
+      </td>
+    </tr>
+  </tbody>
+</table>
+</div>
 
 <!-- Text is a lot easier to assess / interpret quickly, compared to truth or even tool calls. -->
 
@@ -409,7 +480,7 @@ Below is a table of benefits and drawbacks of each one.
 <!-- Truth finds the juicy middle, and doesn't need ground truth data to estimate. But it does need an LLM. -->
 
 
-## Conclusion
+## 🏁 Conclusion
 
 Of course, there are a whole lot more to evals than I've covered here.
 
