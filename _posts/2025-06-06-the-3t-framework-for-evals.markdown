@@ -137,13 +137,36 @@ hits = [normalize(text) in normalize(agent_response) for text in expected_text)
 coverage = np.mean(hits)
 ```
 
-The key thing to note here is how cheap basic text inclusion is. 
+The key thing to note here is how cheap basic **text inclusion** is. 
 No need for LLMs, complex processing, or anything beyond a simple list comprehension.
 
 It's not perfect (the coverage for this example will drop from 100% to 83% if `logs` aren't mentioned, specifically), but it gives you a quick and easy guardrail against regressions.
 
 And you can tune or weight things as needed to capture what is truly important, and what is a good to have.
 
+
+#### BLUE and ROGUE
+
+Note that there are quite a few existing text similarity metrics out there that you can plug and play into your text evaluators.
+
+Often, they are tailored towards specific NLP tasks you might want your agent to handle.
+
+For example, you can use BLEU for translation scoring, and ROGUE to assess summarization quality.
+
+
+#### Semantic similarity
+
+Exact text matching has the following drawbacks, among others:
+
+- Not robust to typos
+- Doesn't capture semantic variation
+- Can't easily handle complex phrasing 
+
+Thankfully, we have an amazing tool at our disposal: text embeddings!
+
+
+Indeed, all you need is an **embedding model** (off-the-shelf models that you can commit to your repo directly have gotten, like, really good, but fine-tuning can always get you even more lift), and some extra validator logic, and you now have **semantic similarity** checks between the agent response and expected text outputs.
+Let's go!
 
 
 
@@ -338,6 +361,15 @@ All you need is:
 
 With the right template and scoring rubric, you've turned a tricky reasoning task into a scalable eval!
 
+The cool thing is, you can apply this to all of your examples. The inputs couldn't be simpler: just your user queries and agent responses.
+
+And you might find that your truth / correctness score tends to fall in between the text and tool scores.
+(At least I have.)
+
+I think this happens because text evaluators are very precise and easy to get working, whereas tool calls, while powerful, can be more difficult to excel at across the board.
+
+Truth gives you a juicy middle that might be the most honest indicator of response quality: what's working well, and where your biggest areas of improvement are.
+
 
 
 #### 💰 Bonus: Online evals!
@@ -393,7 +425,7 @@ I'll conclude that LLM-as-a-Judge is an increasingly popular state-of-the-art ev
 
 The 3Ts of evals form a triforce of utility, and work best as a complete set.
 
-Below is a table of benefits and drawbacks of each one.
+Below is a table of considerations for each group:
 
 <div style="overflow-x: auto; margin: 2rem 0; -webkit-overflow-scrolling: touch;">
   <table style="min-width: 900px; width: 100%; table-layout: fixed; border-collapse: collapse;">
@@ -473,11 +505,10 @@ Below is a table of benefits and drawbacks of each one.
 </table>
 </div>
 
-<!-- Text is a lot easier to assess / interpret quickly, compared to truth or even tool calls. -->
 
-<!-- Tools ensure your agent is guided down the proper paths under uncertainty -->
+The important thing here is that only one or two isn't quite enough.
 
-<!-- Truth finds the juicy middle, and doesn't need ground truth data to estimate. But it does need an LLM. -->
+My thesis here is that you need at least all three to have a sufficiently complete view of your agent's performance, especially if you want both offline and online evals.
 
 
 ## 🏁 Conclusion
