@@ -14,7 +14,7 @@ I distinguish between offline and online evals, make a case for why you should d
 
 This line was dropped on center stage at this year's [LangChain Interrupt conference](https://interrupt.langchain.com), igniting a loud murmur in the crowd.
 
-After a solid first morning covering agent architectures and conceptualizing the Agent Engineer as an emergent role, the entire afternoon was dedicated to instilling, no, indoctrinating the following idea into everyone's brains:
+After a solid first morning covering agent architectures and conceptualizing the Agent Engineer™️ as an emergent role, the entire afternoon was dedicated to instilling, no, indoctrinating the following idea into everyone's brains:
 
 #### You NEED to do evals, and you NEED to do them well.
 
@@ -125,14 +125,14 @@ In a nutshell, this might look like:
 
 ```
 import numpy as np
-from bugtraiger import agent, normalize_text
+from bugtriager import agent, normalize
 
 query = "What sort of things can you help me with?"
 expected_text = ["triage", "bug reports", "Slack", "JIRA", "logs", "source code"]
 
 agent_response = agent.run(prompt=query)
 
-hits = [normalize(text) in normalize(agent_response) for text in expected_text)
+hits = [normalize(text) in normalize(agent_response.text) for text in expected_text)
 
 coverage = np.mean(hits)
 ```
@@ -145,7 +145,7 @@ It's not perfect (the coverage for this example will drop from 100% to 83% if `l
 And you can tune or weight things as needed to capture what is truly important, and what is a good to have.
 
 
-#### BLUE and ROGUE
+#### BLEU and ROUGE
 
 Note that there are quite a few existing text similarity metrics out there that you can plug and play into your text evaluators.
 
@@ -292,9 +292,39 @@ Three "tool call modes" I've found personally useful:
 2. **Subsequence match**: The agent must call every tool you provide, in the sequence provided, but potentially with other tool calls sprinkled in.
 3. **Subset match**: The agent must call at least one tool you provided, or a general subset of tools, regardless of sequence
 
-But the cool thing here is that could define many other modes that are useful for your specific context.
 
-Just make sure it's easy to surface the observed tool calls from production logic to your eval pipeline.
+A simple implementation in Python might look like:
+
+```python
+from bugtriager import agent
+
+def exact_match(observed_tool_calls: list[str], expected_tool_calls: list[str]) -> bool:
+    return observed_tool_calls == expected_tool_calls
+
+def subsequence_match(observed_tool_calls: list[str], expected_tool_calls: list[str]) -> bool:
+    it = iter(observed_tool_calls)
+    return all(elem in it for elem in expected_tool_calls)
+
+def subset_match(observed_tools: list [str], expected_tools: list[str]) -> bool:
+    return set(expected_tools) <= set(observed_tools)
+
+query = "fix the 422 bug that i'm seeing"
+
+expected_tool_calls = ["check_logs", "generate_fix", "create_github_issue", "summon_bugfixer"]
+
+agent_response = agent.run(prompt=query)
+observed_tool_calls = agent_response.tool_calls or []
+
+hits = {
+    "exact": exact_match(observed_tool_calls, expected_tool_calls),
+    "subsequence": subsequence_match(observed_tool_calls, expected_tool_calls),
+    "subset": subset_match(observed_tool_calls, expected_tool_calls),
+}
+```
+
+The cool thing here is that could define many other modes that are useful for your specific context.
+
+Just make sure it's easy to surface the observed tool calls from production logic to your eval pipeline (cf. the `agent_response.tool_calls` in our above code).
 
 It's worth noting that captured actions aren't confined to tool calls, necessarily.
 For example, maybe you want to ensure a sub-agent is correctly called and executed, or maybe you want to ensure an interrupt is raised before a particular tool is called.
@@ -505,24 +535,29 @@ Below is a table of considerations for each group:
 </table>
 </div>
 
-
-The important thing here is that only one or two isn't quite enough.
-
-My thesis here is that you need at least all three to have a sufficiently complete view of your agent's performance, especially if you want both offline and online evals.
+While each evaluation strategy has its pros and cons, the three of them together cover quite a bit of ground, and give you flexibility to run evals however, whenever, and wherever you want.
 
 
 ## 🏁 Conclusion
 
+I can't tell you with definitive authority whether or not the quote from the LangChain stage was right.
+Your evals may or may not be your organization's most precious IP.
+
+But I _can_ reassure you that by building a robust evaluation suite founded on Text, Tools, and Truth, you're not just testing an agent; you're systematically building a moat around your product.
+
+You're building the IP that ensures your agent doesn't just work.
+**It wins.**
+
 Of course, there are a whole lot more to evals than I've covered here.
 
-Getting a genuinely good example dataset, though seemingly straightforward on the surface, might be the biggest bottleneck of all.
+Getting a genuinely good example dataset, though seemingly straightforward on the surface, might be your biggest bottleneck.
 
-You also will probably want many more evaluators beyond the 3 Ts, to really capture the context or domain that gives your agent and organization an upper hand.
+You also will probably want many more evaluators beyond the 3 Ts, to really capture the context or domain that makes _your_ agent a real specialist, and gives your organization an upper hand.
 
 And I didn't even _mention_ the trials and tribulations of doing actual, hardcore Eval-Driven Development.
 (Though I might touch on this in a following post.)
 
-But, if you can get to a place where your agent nails all of the 3T's on a rich and representative set of eval examples, it will be in great shape.
+But, if you can get to a place where your agent nails all of the 3T's on a rich, representative set of examples, your agent will be in great shape.
 
 And your users will love it.
 
