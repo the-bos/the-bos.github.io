@@ -135,17 +135,26 @@ Wait a minute.
 It didn't even _mention_ bugs, or triaging, or really anything that should distinguish it from any other run-of-the-mill AI.
 
 
-You decide to add an example in your evals that makes sure the agent responds to this particular query with the right sort of **keywords**:
+You decide to add an example in your evals that makes sure the agent responds to this particular query with the right sort of **keywords**.
 
+In terms of code: assuming you have a nice typed `AgentResponse` class as so:
 
+```python
+class AgentResponse:
+    text: str
+    tool_calls: list[str]
 ```
+
+your Text evaluator might look like:
+
+```python
 import numpy as np
-from bugtriager import agent, normalize
+from bugtriager import agent, normalize, AgentResponse
 
 query = "What sort of things can you help me with?"
 expected_texts = ["triage", "bug reports", "Slack", "JIRA", "logs", "source code"]
 
-agent_response = agent.run(prompt=query)
+agent_response: AgentResponse = agent.run(prompt=query)
 
 hits = [normalize(text) in normalize(agent_response.text) for text in expected_texts]
 
@@ -190,7 +199,7 @@ In code, this can be as simple as:
 
 ```python
 import numpy as np
-from bugtriager import agent, embedder
+from bugtriager import agent, embedder, AgentResponse
 
 def cosine_similarity(a, b):
     return np.dot(a, b)/(np.linalg.norm(a)*np.linalg.norm(b))
@@ -348,7 +357,7 @@ Some tool call modes of interest:
 A simple implementation in Python might look like:
 
 ```python
-from bugtriager import agent
+from bugtriager import agent, AgentResponse
 
 def exact_match(observed_tool_calls: list[str], expected_tool_calls: list[str]) -> bool:
     return observed_tool_calls == expected_tool_calls
@@ -364,7 +373,7 @@ query = "fix the 422 bug that i'm seeing"
 
 expected_tool_calls = ["check_logs", "generate_fix", "create_github_issue", "summon_bugfixer"]
 
-agent_response = agent.run(prompt=query)
+agent_response: AgentResponse = agent.run(prompt=query)
 observed_tool_calls = agent_response.tool_calls or []
 
 hits = {
@@ -445,13 +454,32 @@ All you need is:
 
 and the LLM has what it needs to compute a best guess of whether the agent correctly addressed the user query.
 
+In code, this could be as simple as:
+
+```python
+import numpy as np
+from some_awesome_llms import LLMJudge
+from bugtriager import agent, AgentResponse, EVALUATION_PROMPT
+
+query = "help me fix the following stack trace: <STACK-TRACE>"
+
+agent_response: AgentResponse = agent.run(prompt=query)
+
+evaluation_prompt = EVALUATION_PROMPT.format(
+    user_query=query,
+    agent_text=agent_response.text,
+)
+
+judgement = LLMJudge(prompt=evaluation_prompt)
+```
+
+
 With the right template and scoring rubric, you've turned a tricky reasoning task into a scalable eval!
 
 And yes, you can apply this to _all_ of your examples!
 Any user-agent interaction is bona fide input to inject into a prompt, feed to the LLM, and obtain a legit eval.
 
 You can think of Text and Tool evaluators as "supervised evals", and Truth evaluators as "unsupervised evals".
-
 
 And you might find that your truth / correctness scores tend to fall in between the text and tool scores.
 
@@ -540,13 +568,15 @@ And, for the record, there are quite a few bones to pick with LLM-as-a-Judge.
 
 Ultimately, we want a score of whether the agent _seems_ to have correctly responded to one or more queries.
 
-We could rely on human judges for this (at least for offline evals, unless we hire the world's first Near-Real-Time QA Engineer), but even humans might have a difficult time determining these scores (and might even [disagree with each other](https://en.wikipedia.org/wiki/Inter-rater_reliability#Disagreement)).
+We could rely on human judges for this (at least for offline evals, unless we hire the world's first Near-Real-Time QA Engineer), but even humans might have a difficult time determining these scores.
 
 Maybe the user had no idea what they _really_ were looking for, and just started with the first thing that came to mind.
 What is the canonical agent response even supposed to _be_ in that case?
 
+Well, you'd be surprised at how well LLM-as-a-Judge performs empirically, [achieving over 80% agreement with human judges in certain casees](https://arxiv.org/abs/2306.05685).
+Humans usually [don't even agree with each other](https://en.wikipedia.org/wiki/Inter-rater_reliability#Disagreement) that often (anyone who's had even one holiday dinner with relatives can confirm).
 
-Nonetheless, LLM-as-a-Judge is an increasingly popular, state-of-the-art evaluation paradigm, producing generally robust metrics especially when aggregated, and gives us automated, principled insight into agent performance that would otherwise be difficult to capture.
+Overall, LLM-as-a-Judge is an increasingly popular, state-of-the-art evaluation paradigm, producing generally robust metrics especially when aggregated, and gives us automated, principled insight into agent performance that would otherwise be difficult to capture.
 
 I'll leave it at that for now.
 
@@ -652,6 +682,9 @@ But I _can_ reassure you that by building a robust evaluation suite founded on T
 
 You're building the IP that ensures your agent doesn't just work.
 **It wins.**
+
+Try implementing just one 3T eval missing from your stack this week.
+You might be surprised by what you learn.
 
 Of course, there are a whole lot more to evals than I've covered here.
 
