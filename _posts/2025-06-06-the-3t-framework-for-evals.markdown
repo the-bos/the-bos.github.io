@@ -108,6 +108,45 @@ You can build a simple, structured approach to evals by following the 3T framewo
 
 Together, they form a comprehensive evaluation stack, ensuring you're not just checking one aspect of your agent, but its entire chain of operation.
 
+<div style="display: flex; justify-content: center;">
+  <svg viewBox="0 0 300 270" width="70%" xmlns="http://www.w3.org/2000/svg" style="color: currentColor; background: none;">
+    <defs>
+      <linearGradient id="aiGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#8B5CF6" />
+        <stop offset="100%" stop-color="#F97316" />
+      </linearGradient>
+    </defs>
+
+    <!-- Triangle border -->
+    <polygon
+      points="150,40 40,230 260,230"
+      fill="none"
+      stroke="url(#aiGradient)"
+      stroke-width="5"
+    />
+
+    <!-- Centered multi-line text -->
+    <text text-anchor="middle" font-size="18" font-weight="500" fill="currentColor">
+      <tspan x="150" y="130">Good</tspan>
+      <tspan x="150" y="150">Agent™</tspan>
+      <tspan x="150" y="170">Experience</tspan>
+    </text>
+
+    <!-- Corner labels -->
+    <text x="150" y="25" text-anchor="middle" font-size="20" font-weight="600" fill="currentColor">
+      📄 Text
+    </text>
+    <text x="40" y="255" text-anchor="middle" font-size="20" font-weight="600" fill="currentColor">
+      🛠️ Tools
+    </text>
+    <text x="260" y="255" text-anchor="middle" font-size="20" font-weight="600" fill="currentColor">
+      🎯 Truth
+    </text>
+  </svg>
+</div>
+
+
+
 Let's dig into these one by one.
 
 
@@ -306,7 +345,7 @@ So, you make the following changes:
 @tool
 def check_logs(user_query: str):
     """
-	Check the `main_app` logs for errors, warnings, or other critical information 
+	Check `main_app` logs for errors, warnings, or other critical information 
         given a user query.
 	Useful if the user is hitting a particular HTTP error code, which will be formatted as [HTTP XXX <ERROR NAME>].
     """
@@ -369,8 +408,8 @@ def subsequence_match(observed_tool_calls: list[str], expected_tool_calls: list[
     it = iter(observed_tool_calls)
     return all(elem in it for elem in expected_tool_calls)
 
-def subset_match(observed_tools: list[str], expected_tools: list[str]) -> bool:
-    return set(expected_tools) <= set(observed_tools)
+def subset_match(observed_tool_calls: list[str], expected_tool_calls: list[str]) -> bool:
+    return set(expected_tool_calls) <= set(observed_tool_calls)
 
 query = "fix the 422 bug that i'm seeing"
 expected_tool_calls = ["check_logs", "generate_fix", "create_github_issue", "summon_bugfixer"]
@@ -697,7 +736,7 @@ While each evaluation strategy has its pros and cons, the three of them together
 The 3T Framework gives you a strong core for evals.
 But once they are in place, the fun doesn't need to stop there!
 
-You're now in a place to purse more sophisticated eval categories, promoting your agent from production-ready to showstopper.
+You're now in a place to pursue more sophisticated eval categories, promoting your agent from production-ready to showstopper.
 
 Here I quickly walk through 2 more T's -- Taste and Trust -- that are potential focus areas once your 3Ts are in a happy place.
 
