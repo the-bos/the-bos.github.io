@@ -112,8 +112,10 @@ Together, they form a comprehensive evaluation stack, ensuring you're not just c
   <svg viewBox="0 0 300 270" width="70%" xmlns="http://www.w3.org/2000/svg" style="color: currentColor; background: none;">
     <defs>
       <linearGradient id="aiGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-        <stop offset="0%" stop-color="#8B5CF6" />
-        <stop offset="100%" stop-color="#F97316" />
+        <stop offset="0%" stop-color="#8B5CF6" />   <!-- Purple -->
+        <stop offset="30%" stop-color="#06B6D4" />  <!-- Blue -->
+        <stop offset="65%" stop-color="#D946EF" />  <!-- Pinkish Magenta -->
+        <stop offset="100%" stop-color="#F97316" /> <!-- Orange -->
       </linearGradient>
     </defs>
 
@@ -144,7 +146,6 @@ Together, they form a comprehensive evaluation stack, ensuring you're not just c
     </text>
   </svg>
 </div>
-
 
 
 Let's dig into these one by one.
