@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "The 3T Framework for Excellent Agent Evals: Text, Tools, and Truth"
+title:  "The 3T Framework for Agent Evals: Text, Tools, and Truth"
 date:   2025-06-06 8:00:00 -0600
 ---
 
@@ -11,50 +11,38 @@ date:   2025-06-06 8:00:00 -0600
 </script>
 {% endraw %}
 
-> **TL;DR**: In this post, I introduce the 3T framework for evals -- Text, Tools, and Truth -- and show why they comprise a powerful core for evals.
-I show how they can power both offline and online evals, make a case for why you should do both, and discuss extensions to advance your evals even further.
 
-
-
+> **TL;DR:** Agent evals are essential — but too often vague and brittle.
+The 3T framework (Text, Tools, Truth) offers a concrete yet flexible foundation for evaluating agents, whether in offline tests or live monitoring.
+This post shows how to evaluate agent responses, actions, and real-world correctness, with relatable examples that move you from guesswork to grounded, scalable evals and a UX your agents can be proud of.
 
 ## 🎤 "Agent evals are your most precious IP."
 
-This line was dropped on center stage at this year's [LangChain Interrupt conference](https://interrupt.langchain.com), sparking the loudest murmur in the crowd I'd heard that day.
+That line dropped like a lightning bolt at this year's [LangChain Interrupt conference](https://interrupt.langchain.com), sparking the loudest murmur of the day.
 
-After an insightful first morning of talks and keynotes covering agent architectures and conceptualizing the Agent Engineer™️ as an emergent role, the entire afternoon was dedicated to instilling -- no, _indoctrinating_ -- the following idea into everyone's brains:
+After a morning of dense talks on agent architectures and the rise of the Agent Engineer™️, the entire afternoon zeroed in on a single, rallying idea:
 
-#### You NEED to do evals, and you NEED to do them well.
+#### You NEED to evaluate your agents. And you need to do it well.
 
-This was something a lot of us kind of knew, but didn’t really _feel in our bones_ until that moment.
-
-And I think it's because, frankly, evals seem kind of _hard_, at least to do well.
-
-And also, why not just focus on building out the shiny new features we were promised we could prioritize after successfully releasing Beta, features we _know_ our users will love?
-
-Yet, the post-conference chatter over drinks seemed to center around the same question: are evals really as critical as everyone insists?
+We all kind of knew that already, sure.
+But this time it hit deeper.
+Not just as best practice, but as _survival instinct_ — the difference between shipping something magical and unleashing chaos to our users.
 
 
-## Why Evals are Critical
+## Building a Good Agent is Hard Work
 
-### 💥 The hard truth: Anyone can build an AI agent.
+Anyone can spin up an AI agent in minutes.
 
-Indeed, there are a wealth of resources, learning materials, and open source tooling to help anyone with an internet connection and a crumb of curiosity to stand up their very own agent -- and do it astonishingly fast!
+But building a Good Agent™? One that’s dependable, explainable, and production-ready?
 
-#### But it's a _lot_ harder to build a **Good Agent™**.
+That takes more than vibes.
+It takes honest, structured hard work.
 
+This is where evals come in: not just as a gut-check, but as a pipeline that lets you simulate real use cases, make concrete improvements, and achieve confidence that your agent actually _slaps_.
 
-Well, what is a good agent?
+By evals, I mean a pipeline that feeds your agent realistic inputs and scores its responses and behavior.
 
-Is it _magic_?
-
-No.
-It's **hard work**.
-
-And much of that hard work shows up in your evals.
-
-When I say evals, I mean a dedicated pipeline that provides your agent with example user queries (or other supported inputs), and scores the agent responses / general behavior.
-
-I mean, sure -- it's _possible_ to crank out a decent agent based solely on subjective evaluation, gut instincts, and pure vibes, but unless you have a designated team of human annotators reviewing agent output on a weekly basis, this likely won't keep you afloat for too long.
+I mean, sure -- it's _possible_ to crank out a decent agent based solely on subjective evaluation, but unless you have a designated team of human annotators reviewing agent output on a weekly basis, this won't scale.
 
 
 ### 🌅 The good news: YOU can build a Good Agent™!
@@ -65,13 +53,16 @@ In fact, they're arguably the most difficult component of AI Engineering, which 
 
 Amid the hype, LinkedIn posts, and daily noise, it's easy to feel lost about how to do evals right, or what evals even _are_.
 
-While I don't want to add more noise or contribute to the confusion, I'm excited to share a formulation that has helped me in my day-to-day, and just might give you some clarity around evals as well.
+That’s why I developed a framework that **cuts through the noise** and focuses on **what actually matters**.
+
+Let's skip the abstact.
+Here's what it looks like in action.
 
 ## 🕵️ Case study: The `bugtriager` agent
 
 
-Imagine you’ve just shipped an AI agent that helps triage bug reports.
-It lives in Slack, reads messages from engineers and QA testers, and responds with diagnostic suggestions — maybe with proposed fixes, or even a button you can press to open a corresponding PR.
+Imagine you’ve just shipped an AI agent that helps **triage bug reports**.
+It lives in Slack, reads messages from engineers and QA testers, and responds with diagnostic suggestions — maybe with proposed fixes, or even full-fledged PR with the solution.
 
 You’ve designed it, architected it, tested it in dev and staging.
 
@@ -81,13 +72,13 @@ Maybe it’s even starting to sound helpful.
 And now your team is asking:
 
 <blockquote style="font-style: normal;">
-Does it <em>really</em> work?
+Are we really sure it <em>actually</em> works?
 </blockquote>
 
 Worse — so are you.
 
 
-You’ve seen a few promising replies, and a couple weird ones.
+You’ve seen countless agent replies, some promising, some weird.
 You’ve read the logs and monitored the dashboards.
 But you need more than anecdotes.
 
@@ -99,14 +90,6 @@ You need **evals**, and they need to capture this structured, clear view with si
 
 
 ## 3️⃣ The 3 T's of Good Evals: Text, Tools, and Truth
-
-You can build a simple, structured approach to evals by following the 3T framework.
-
-- 📄 T1: **Text**. This is the **Interface** Layer. Does the agent respond with clear and accurate natural language?
-- 🛠️ T2: **Tools**. This is the **Action** Layer. Does the agent take the correct actions and interact with its environment properly?
-- 🎯 T3: **Truth**. This is the **Reasoning** Layer. Is the agent's underlying conclusion correct and aligned with reality?
-
-Together, they form a comprehensive evaluation stack, ensuring you're not just checking one aspect of your agent, but its entire chain of operation.
 
 <div style="display: flex; justify-content: center;">
   <svg viewBox="0 0 300 270" width="70%" xmlns="http://www.w3.org/2000/svg" style="color: currentColor; background: none;">
@@ -148,7 +131,24 @@ Together, they form a comprehensive evaluation stack, ensuring you're not just c
 </div>
 
 
-Let's dig into these one by one.
+The 3T framework proposes that you focus on 3 areas -- Text, Tools, and Truth -- to build effective evals.
+
+What do we mean by each of these?
+At a high level, we have:
+
+- 📄 T1: **Text**
+  - Think of this as the **Interface** Layer, or what the agent _says_.
+  - It asks: Does the agent respond with clear and accurate natural language?
+- 🛠️ T2: **Tools**
+  - Think of this as the **Action** Layer, or what the agent _does_.
+  - It asks: Does the agent take the correct steps, call the right code, and interact with its environment properly?
+- 🎯 T3: **Truth**
+  - Think of this as the **Reasoning** Layer, or whether the agent is _right_.
+  - It asks: Is the agent's ultimate output / response correct and aligned with reality?
+
+Together, they form a comprehensive evaluation stack, ensuring you're not just checking one aspect of your agent, but its entire chain of operation.
+
+And while our trifecta may appear simple at first, there's a lot to unfold here, so let's dig into these one by one.
 
 
 ### 📄 T1: Text, or What the Agent Says
@@ -157,10 +157,12 @@ The big deal about AI agents is that they are a **natural language interface** t
 
 The user asks it to do a thing, and it does that thing.
 
-Sometimes that thing is to respond with a simple text answer, without even talking about tools, actions, or anything fancy.
+Sometimes that thing is to respond with a simple text answer, without even talking about tools, actions, or anything fancy -- just basic information retrieval, and then presenting that info nicely to the user.
 
+This is what I mean by getting the Text right.
+
+It ensures your agent's "front door" is on-brand and builds initial user confidence.
 This is often the first and most immediate form of evaluation.
-Getting the Text right ensures your agent's "front door" is on-brand and builds initial user confidence.
 
 In our `bugtriager` example, let's say you have the following conversation with the agent:
 
@@ -217,11 +219,13 @@ The beauty of this check?
 It's cheap.
 No need for LLMs, complex processing, or anything beyond a simple list comprehension.
 
-Of course, it's not perfect (e.g., the coverage for this example will drop from 100% to 83% if `logs` aren't mentioned, specifically), but it gives you a quick and easy guardrail against regressions.
+Of course, it's not perfect.
+For example, the coverage for this example will drop a bit if `logs` aren't mentioned, specifically.
+But it gives you a quick and easy guardrail against regressions.
 
 And it's easy to reason about.
 
-_And_ you can tune or weight things as needed to capture what is truly important, vs what is a good to have.
+_And_ you can tune or weight things as needed to capture what is truly important, and avoid fussing over the less important details.
 
 
 #### BLEU, ROUGE, etc.
@@ -230,7 +234,7 @@ Note that there are quite a few existing text similarity metrics out there that 
 
 Often, they are tailored towards specific NLP tasks you might want your agent to handle.
 
-For example, you can use BLEU for translation scoring, and ROGUE to assess summarization quality.
+You can use BLEU for translation scoring, and ROGUE to assess summarization quality.
 
 The world is your oyster here.
 
@@ -270,22 +274,23 @@ Embeddings are the secret sauce of AI, and with a few extra lines of code, you'r
 ### 🛠️ T2: Tools, or What the Agent Does
 
 
-Many teams stop at "does it sound smart?"
+Many teams stop at
+> "Does it sound smart?"
 
-and forget to ask: "does it _do_ the right _thing?_"
+and forget to ask
+> "Does it _do_ the right _thing?_"
 
-While Text covers how an agent speaks, Tool evaluation is the critical next step to verify what an agent does.
-This is where you validate its core capabilities.
+While Text covers how an agent speaks, Tool evaluation is the critical next step to verify the specific things an agent does.
 
 Tools are what help **distinguish your AI agent's capabilities** from a typical chatbot.
 
 If the LLM is your agent's brain, tools are its _brawn_.
 
-It goes without saying that you'll want to be very intentional about which tools your agent calls in various query scenarios.
+And you'll want to be very intentional about which tools your agent calls in various query scenarios.
 
-Going back to our `bugtriager`:
+#### Going back to `bugtriager`
 
-You have your main app running at `main_app`, saving logs to a logfile on the fly.
+Let's say you're running your `main_app` locally, saving logs to a logfile on the fly.
 
 Your agent has a `check_logs` tool to inspect these logs at runtime.
 
@@ -317,7 +322,7 @@ Assistant: You're right, I do. Let me try that...
 AI Agent: Good news, I was able to find your 422 in the logs. It looks like you sent `fake-uuid` as the user ID which triggered a ValidationError...
 ```
 
-So the agent has the tool, and knows how to use it, but didn’t realize when it was relevant.
+The agent had the tool and knew how to use it — it just failed to recognize when.
 
 Hmm...
 
@@ -429,8 +434,8 @@ The cool thing here is that you can define other tool call modes that are useful
 
 Just make sure it's easy to surface the observed tool calls from production logic to your eval pipeline (cf. the `agent_response.tool_calls` in our above code).
 
-It's worth noting that agent actions aren't confined to tool calls, necessarily.
-For example, maybe you want to ensure a **sub-agent** is correctly called and executed, or maybe you want to ensure an **interrupt** is triggered before a particular tool is called.
+Agents can act beyond tool calls, too.
+Maybe you want to ensure a **sub-agent** is correctly called and executed, or maybe you want to ensure an **interrupt** is triggered before a particular tool is called.
 These are great extensions of the spirit of the Second T (and maybe I'll think of a better T-starting category name for them, someday)!
 
 
@@ -481,7 +486,7 @@ You _could_ check that it mentions `timeout`s or `flak(y|iness)`, but this won't
 
 You _could_ ensure it calls the `source_code` tool, among others, but that won't be sufficient to verify the agent provided an ultimately correct response.
 
-This is what I call **truth**.
+You want to get to the **truth** of the matter.
 
 
 ### 🦾 Enter: LLM-as-a-Judge™
@@ -490,7 +495,7 @@ You decide to invoke a **second LLM** to evaluate the first agent’s reasoning 
 
 This works surprisingly well: you don’t need hand-crafted ground truth labels.
 
-Let me repeat that: *you don’t need hand-crafted ground truth labels*!
+Yep, you read that correctly — no ground truth required.
 
 All you need is:
 
@@ -500,22 +505,26 @@ All you need is:
 
 and the LLM has what it needs to compute a best guess of whether the agent correctly addressed the user query.
 
-In code, this could be as simple as:
+An example using `langchain` might look like:
 
 ```python
-from some_awesome_llms import LLMJudge
-from bugtriager import agent, AgentResponse, EVALUATION_PROMPT
+from langchain_openai import ChatOpenAI
+from langchain.evaluation.criteria import CriteriaEvalChain
+from bugtriager import agent, AgentResponse
+
+llm = ChatOpenAI(model="gpt-4", temperature=0)
+evaluator = CriteriaEvalChain.from_llm(llm, criteria="correctness")
 
 query = "help me fix the following stack trace: <STACK-TRACE>"
-
 agent_response: AgentResponse = agent.run(prompt=query)
 
-evaluation_prompt = EVALUATION_PROMPT.format(
-    user_query=query,
-    agent_text=agent_response.text,
+judgement = evaluator.evaluate_strings(
+    input=query,
+    prediction=agent_response.text,
 )
 
-judgement = LLMJudge(prompt=evaluation_prompt)
+score = judgement.get("score")
+reasoning = judgement.get("reasoning")
 ```
 
 
@@ -553,7 +562,7 @@ From here, you can modify and tweak the prompt to suit your specific needs.
 Let's fast-forward a bit and say your agent is deployed in prod and serving real customer traffic!
 Woohoo!
 
-Your team is naturally very curious how the agent is doing in the wild. 
+Your team is dying to know how the agent is doing in the wild. 
 
 I mean, let's face it: would you trust a self-driving car that had never been evaluated outside the garage?
 Then why trust your agent with only local examples?
@@ -588,7 +597,7 @@ Neat, huh?
 This is why I made such a big deal about not needing hand-crafted ground truth labels earlier.
 
 You just send this event, along with your same evaluation prompt, to your judging LLM, and that's all you need in terms of data or context!
-You suddenly have more eval examples and correctness labels, at the cost of an LLM call and a bit more work specifying your agent's topology to support seamless asynchronous evals that don't impact runtime results.
+You've unlocked a stream of real-world evals, at the cost of an LLM call and a bit more work specifying your agent's topology to support seamless asynchronous evals that don't impact runtime results.
 
 Truth-based evals like this can run continuously, sampling real queries and auditing responses. No offline simulation needed — just real behavior, judged with real criteria.
 
@@ -607,13 +616,13 @@ This is a big reason why the 3Ts work best as a harmonious trio: what you can't 
 <!-- A big reason truth works online is that it the LLM bottleneck doesn't matter: it's a post-hoc background call after the agent response has already been surfaced. No ETL spikes.-->
 
 
-#### 📝 A note on truth
+#### 💭 On LLM judges and truth
 
 I want to address the elephant in the room here:
 
 - I'm proposing you use one LLM, fallible as it may be, to output whether an answer from _another_ LLM is correct or not,
 - without any labels, or human review, or interpretability beyond our prompt and the LLM's street cred,
-- and I _dare_ to call this _truth_?
+- **and I _dare_ to call this _truth_?!**
 
 
 This is a fair point, but more of a critique of LLM-as-a-Judge rather than the end goal of Truth.
@@ -663,7 +672,7 @@ Below is a table of considerations for each group:
     <tr>
       <td><strong>Text</strong></td>
       <td>"Does the agent respond clearly and appropriately in natural language?"</td>
-      <td><ul><li>Keyword coverage</li><li>BLEU</li><li>ROUGE</li><li>Embedding-based semantic similarity</li></ul></td>
+      <td><ul><li>Keyword coverage</li><li><a href="https://en.wikipedia.org/wiki/BLEU">BLEU</a></li><li><a href="https://en.wikipedia.org/wiki/ROUGE_(metric)">ROUGE</a></li><li>Embedding-based semantic similarity</li></ul></td>
       <td><ul><li>Hallucinations</li><li>Generic responses</li><li>Poor query intent</li><li>High verbosity / repetitiveness / bad style</li><li>Bad formatting</li></ul></td>
       <td>
         ✅ Fast<br>
@@ -707,7 +716,7 @@ Below is a table of considerations for each group:
     <tr>
       <td><strong>Truth</strong></td>
       <td>"Is the final output aligned with the real state of the world or system?"</td>
-      <td><ul><li>LLM-as-a-Judge</li><li>Human annotations</li></ul></td>
+      <td><ul><li><a href="https://en.wikipedia.org/wiki/LLM-as-a-Judge">LLM-as-a-Judge</a></li><li>Human annotations</li></ul></td>
       <td><ul><li>Outdated information</li><li>Contextual drift</li><li>State inconsistency</li><li>Bad reasoning</li></ul></td>
       <td>
         ✅ Holistic notion of agent correctness<br>
@@ -739,7 +748,7 @@ But once they are in place, the fun doesn't need to stop there!
 
 You're now in a place to pursue more sophisticated eval categories, promoting your agent from production-ready to showstopper.
 
-Here I quickly walk through 2 more T's -- Taste and Trust -- that are potential focus areas once your 3Ts are in a happy place.
+Here I quickly walk through 2 more T's -- Taste and Trust -- to demonstrate how to continue towards the stars after the 3Ts give you lift-off.
 
 ### T4: Taste, or How the Agent Sounds
 
@@ -758,13 +767,14 @@ Some evaluators to consider here:
 - **Toxicity**: Did the agent output any sensitive, biased, or otherwise undesirable outputs?
 
 Note that while some aspects of Taste may overlap with Text, the emphasis here is more on UX feel and aesthetic sensibility than functional correctness.
+I personally feel that Taste is a good candidate for LLM judgements rather than text checks, although this is not a hard rule one way or the other.
 
 
 For example, we want our `bugfixer` agent to sound like a cool, calm, and collected Senior Engineer.
 
 More Bob Ross, and less Courage the Cowardly Dog.
 
-Exuding zen levels only someone who’s really seen some stuff out in the prod battlegrounds — and made it back alive to refactor the whole stack — can exude.
+Exuding the zen of someone who’s survived prod wars — and returned to refactor the entire stack.
 
 
 ### T5: Trust, or Whether the Agent Is Reliable
