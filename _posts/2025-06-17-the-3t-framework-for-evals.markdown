@@ -562,22 +562,23 @@ Some popular sub-categories are:
 - **Helpfulness**: Did the agent provide an _ultimately helpful_ response to address the user's needs?
 - **Faithfulness** (AKA **Hallucination detection**): Did the agent avoid providing _false information_, especially given the _context_ (tool calls, RAG results, user / session info, etc.)?
 
+You can think of Text and Tool evaluators as "supervised evals", and Truth evaluators as "unsupervised evals".
+
+
 Truth failures can come from many directions. Common causes include:
 
 - Missing or irrelevant context (e.g., broken RAG pipeline, stale docs)
 - Model or embedding upgrades that quietly change agent behavior
-- Prompt / instruction drift after recent edits
+- Prompt or instruction drift after recent edits
 - Missing but necessary tool calls (which aren’t flagged by Tool evals, because the “expected” call wasn’t known ahead of time)
 - Weak or incorrect reasoning (perhaps due to limitations of your LLM)
 - Timeouts or transient API errors
 - Ambiguous queries or unclear user intent, leading to overly generic responses
-- Auth or permissioning issues
+- Authentication or permissioning issues
 
 These often won’t show up in Text or Tool evals, but will emerge when you check the agent’s overall response.
 
-You can think of Text and Tool evaluators as "supervised evals", and Truth evaluators as "unsupervised evals".
-
-And you might find that your Truth scores tend to fall in between the Text and Tool scores.
+In general, you might find that your Truth scores tend to fall in between the Text and Tool scores.
 
 I think this happens because text evaluators are very precise and easy to get working and high-scoring, whereas tool calls, while powerful, can be difficult to master.
 
