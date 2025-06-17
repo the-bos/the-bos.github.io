@@ -192,6 +192,9 @@ Wait a minute.
 
 It didn't even _mention_ bugs, or triaging, or really anything that should distinguish it from any other run-of-the-mill AI.
 
+...Oh no. We upgraded the LLM but forgot to point it to our custom system prompt... 😅
+
+This is exactly the kind of regression a Text eval can catch.
 
 You decide to add an example in your evals that makes sure the agent responds to this particular query with the right sort of **keywords**.
 
@@ -557,8 +560,20 @@ Some popular sub-categories are:
 - **Correctness**: Did the agent give a _generally correct_ response based on the user query?
 - **Completeness**: Did the agent give a _thorough_ answer to _everything_ the user asked for?
 - **Helpfulness**: Did the agent provide an _ultimately helpful_ response to address the user's needs?
-- **Faithfulness** (AKA **Hallunication detection**): Did the agent avoid providing _false information_, especially given the _context_ (tool calls, RAG results, user / session info, etc.)?
+- **Faithfulness** (AKA **Hallucination detection**): Did the agent avoid providing _false information_, especially given the _context_ (tool calls, RAG results, user / session info, etc.)?
 
+Truth failures can come from many directions. Common causes include:
+
+- Missing or irrelevant context (e.g., broken RAG pipeline, stale docs)
+- Model or embedding upgrades that quietly change agent behavior
+- Prompt / instruction drift after recent edits
+- Missing but necessary tool calls (which aren’t flagged by Tool evals, because the “expected” call wasn’t known ahead of time)
+- Weak or incorrect reasoning (perhaps due to limitations of your LLM)
+- Timeouts or transient API errors
+- Ambiguous queries or unclear user intent, leading to overly generic responses
+- Auth or permissioning issues
+
+These often won’t show up in Text or Tool evals, but will emerge when you check the agent’s overall response.
 
 You can think of Text and Tool evaluators as "supervised evals", and Truth evaluators as "unsupervised evals".
 
@@ -845,7 +860,7 @@ The clarity you gain will be immediate, and the momentum will carry you to the f
 Of course, there are a whole lot more to evals than I've covered here.
 
 Getting a genuinely good example dataset, though seemingly straightforward on the surface, might be your biggest bottleneck.
-Treat it as a creative challenge: crowdsource diverse examples from teammates, polish real queries from production, and annotate them with care.
+Treat it as a creative challenge: crowdsource diverse examples from teammates and early customers who helped shape the product, polish real queries from prod, and annotate them with care.
 
 You'll probably also want many more evaluators beyond 3T (+ Taste + Trust), to really capture the context, domain knowledge, or subject matter expertise that makes _your_ agent a real specialist, and gives your organization a real upper hand.
 
