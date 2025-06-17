@@ -1,7 +1,7 @@
 ---
 layout: post
-title:  "The 3T Framework for Agent Evals: Text, Tools, and Truth"
-date:   2025-06-06 8:00:00 -0600
+title:  "The 3Ts of Agent Evals"
+date:   2025-06-17 7:00:00 -0600
 ---
 
 {% raw %}
@@ -12,8 +12,8 @@ date:   2025-06-06 8:00:00 -0600
 {% endraw %}
 
 
-> **TL;DR:** Agent evals are essential — but too often vague and brittle.
-The 3T framework (Text, Tools, Truth) offers a concrete yet flexible foundation for evaluating agents, whether in offline tests or live monitoring.
+> **TL;DR:** Agent evals are essential — yet too often vague and unstable in practice.
+The 3T agent evaluation framework (Text, Tools, Truth) offers a concrete yet flexible foundation for evaluating agents, whether in offline tests or live monitoring.
 This post shows how to evaluate agent responses, actions, and real-world correctness, with relatable examples that move you from guesswork to grounded, scalable evals and a UX your agents can be proud of.
 
 ## 🎤 "Agent evals are your most precious IP."
@@ -29,7 +29,7 @@ But now, we felt it in our _bones_.
 Not just as best practice, but as _survival instinct_ — the difference between shipping something magical and unleashing chaos to our users.
 
 
-### 👷 Building a Good Agent is Hard
+### 👷 Building a Good Agent™ is Hard
 
 Anyone can spin up an AI agent in minutes.
 
@@ -117,7 +117,7 @@ You need **evals**, and they need to capture this structured, clear view with si
     <!-- Centered multi-line text -->
     <text text-anchor="middle" font-size="18" font-weight="500" fill="currentColor">
       <tspan x="150" y="130">Good</tspan>
-      <tspan x="150" y="160">Agent</tspan>
+      <tspan x="150" y="160">Agent™</tspan>
       <tspan x="150" y="190">Experience</tspan>
     </text>
 
@@ -236,7 +236,7 @@ But it gives you a quick and easy guardrail against regressions, and is very tun
 
 Note that there are quite a few existing text similarity metrics out there that you can plug and play into your text evaluators.
 
-Often, they are tailored towards specific NLP tasks you might want your agent to handle, such as BLEU for translation scoring, and ROGUE to assess summarization quality.
+Often, they are tailored towards specific NLP tasks you might want your agent to handle, such as BLEU for translation scoring, and ROUGE to assess summarization quality.
 
 The world is your oyster here.
 
@@ -508,7 +508,7 @@ All you need is:
 
 1. the user query
 2. the agent's response
-3. an good evaluation prompt<sup>1</sup>
+3. a good evaluation prompt<sup>1</sup>
 
 and the LLM has what it needs to compute a best guess of whether the agent correctly addressed the user query.
 
@@ -666,7 +666,9 @@ Humans usually [don't even agree with each other](https://en.wikipedia.org/wiki/
 If you're still skeptical, I suggest creating a **meta-eval pipeline** that runs human-annotated examples through your LLM judge, which generates its own set of annotations.
 You can assess the results and iterate on the prompt / config as needed, until you achieve sufficiently high alignment to address your concerns.
 
-Overall, LLM-as-a-Judge is an increasingly popular, state-of-the-art evaluation paradigm, producing generally robust metrics especially when aggregated, and gives us automated, principled insight into agent performance that would otherwise be difficult to capture.
+Overall, LLM-as-a-Judge is an increasingly popular, state-of-the-art evaluation paradigm.
+It tends to yield robust metrics — especially when scores are aggregated across examples or cross-checked with multiple judges — and provides automated, principled insight into agent performance that would be hard to capture otherwise.
+
 
 I'll leave it at that for now.
 
@@ -675,7 +677,7 @@ I'll leave it at that for now.
 
 The 3Ts of Good Evals form a triforce of utility, and work best as a complete set.
 
-To wrap up the core framework, here's how the 3Ts compare across dimensions (in lovingly excruciating detail):
+To wrap up the core framework, here's a detailed comparison of the 3Ts across dimensions — lovingly exhaustive, not (too) excruciating.
 
 <div style="overflow-x: auto; margin: 2rem 0; -webkit-overflow-scrolling: touch;">
   <table style="min-width: 900px; width: 100%; table-layout: fixed; border-collapse: collapse;">
@@ -843,14 +845,14 @@ The clarity you gain will be immediate, and the momentum will carry you to the f
 Of course, there are a whole lot more to evals than I've covered here.
 
 Getting a genuinely good example dataset, though seemingly straightforward on the surface, might be your biggest bottleneck.
-Treat this as a chance to get creative, whether it's crowdsourcing diverse examples from your colleagues, or polishing and annotating the production examples from your online evals.
+Treat it as a creative challenge: crowdsource diverse examples from teammates, polish real queries from production, and annotate them with care.
 
-You also will probably want many more evaluators beyond 3T (+ Taste + Trust), to really capture the context, domain knowledge, or subject matter expertise that makes _your_ agent a real specialist, and gives your organization a real upper hand.
+You'll probably also want many more evaluators beyond 3T (+ Taste + Trust), to really capture the context, domain knowledge, or subject matter expertise that makes _your_ agent a real specialist, and gives your organization a real upper hand.
 
-And I didn't even _mention_ the trials and tribulations of doing actual, hardcore Eval-Driven Development, an evals-oriented extension of Test-Driven Development.
-(I might touch on this in a following post, but please read up on it if you haven't already!)
+And then there’s Eval-Driven Development: the eval-oriented cousin of Test-Driven Development.
+It’s a powerful practice that deserves a post of its own. Let me know if you'd like a deep dive, but in the meantime, it's absolutely worth reading up on.
 
-But, if you can get to a place where your agent nails the 3T framework on a rich, representative set of examples, your agent will be in great shape.
+If you can get to a place where your agent nails the 3T framework on a rich, representative set of examples, your agent will be in great shape.
 
 And your users will _love_ it.
 
