@@ -1,36 +1,51 @@
 ---
 layout: post
-title:  "How to Actually Get Hired as an AI / ML Engineer (in 2025)"
+title:  "How to Get Hired as an AI / ML Engineer: Lessons from Getting Laid Off and Bouncing Back Stronger"
 date:   2025-07-22 7:00:00 -0600
 ---
 
 
-> **TL;DR:** In this post I discuss themes I navigated during my recent job search for a new AI / ML role, strategies on what to expect from interviews and real problems companies are dealing with, and targeted advice how to demonstrate your value in an intense job market.
+> **TL;DR:** In this post I discuss themes I navigated during my recent AI / ML job search, strategies for interview expectations / real problems companies are dealing with, and targeted advice how to demonstrate your value and land your next role.
+
+> Who this post is for: This post is for AI/ML engineers navigating the current job market — whether you’re actively looking, passively curious, or just wondering what companies actually care about when hiring in 2025.
 
 
-For years I thought my job security was strong.
+## 😱 The bad news: I was laid off earlier this month.
 
-I'm blessed to be working in not only the trendiest field today, but in many cases the highest priority as companies race to capitalize on the promises that AI will change everything about modern business.
+As someone who hates relinquishing control, I spent a day being shaken, confused, and existential.
 
-And yet, lay offs can happen to anyone.
+Shaken because I was suddenly detached from the work I was obsessed with, the stability I was accustomed to, and most importantly, the people at work I'd grown close to.
 
-I was recently let go along with the entire AI team. 
+Confused because, well, isn't AI supposed to be _so hot right now_?
+In fact, for many companies, AI is _the_ highest priority as they race to capitalize on the promises that AI will positively reform modern business — a promise I believe in wholeheartedly.
 
-I can safely say this was the biggest right turn of my career.
+And existential because, to be honest, being laid off makes you question your value, your accomplishments, and your future.
+Plus, what the heck was I going to do next?
+And never mind the fact that the clock was ticking!
 
+Yet, layoffs can happen to anyone.
 
-But, this isn't a layoff post.
-This is a reflection on the current AI / ML market, my experiences with it, and lessons learned that might help others navigate similar situations.
-
-This is a "how can I turn lemons into AI lemonade" if the time ever comes.
-
-And while job searches are never easy, I truly enjoyed getting a glimpse of what many AI teams are working on.
-And I'm here to share the common themes to help you understand what the market needs, and how you can deliver.
+This marked the most unexpected, pivotal turn in my career.
 
 
-## 
+### But, this isn't a layoff post.
 
-As someone who hates relinquishing control, I spent a day being shaken, confused, and 
+I knew layoffs were the name of the tech game, and I knew that my short-term doubts were just noise in my grand career trajectory.
+
+And so, by the next day I was strangely eager to dust off my resume, put myself back out there, and see what sort of awesome AI / ML things other companies were working on.
+What were the juicy problems companies faced that needed strong technical leadership to help them succeed?
+
+**Spoiler: I wasn't let down.**
+
+Not only did I get a glimpse into these things, but I made a realization:
+There are some strong commonalities across the industry in terms of what companies need, how they assess a candidate's ability to solve those needs, and how candidates can demonstrate that they're the puzzle piece the company is looking for.
+
+
+So, this post is a reflection on the current AI / ML market, my experiences with it, and lessons learned that might help others navigate similar situations.
+
+### 🍋🥤 This is a lemonade post. 
+
+#### For myself, but more importantly, for anyone looking to land their next AI / ML role.
 
 
 ## 📈 What the market demands (and why it's changing)
@@ -42,8 +57,15 @@ From what I gather, the market wants an AI / ML engineer who can:
 - Translate those needs to a highly effective AI / ML stack
 - Give stakeholders (especially yourself) confidence in what you built
 - Understand how your AI / ML features solve business problems (+ drive profit!)
+- Act as a generalist equally comfy spiking out messy EDA notebooks as they are debugging AI services in Prod
 
 These requirements are highly similar to what they've been for the last decade or so, but the emphasis really seems to be on agents, RAG, and evals.
+
+In particular, providing holistic workflows for users to define, organize, execute, and analyze tasks seems to be the north star for many companies.
+
+It is very exciting watching AI finally upgrade from "ML can make good predictions" to "agents can convert a simple query into a 10+ step workflow".
+
+
 I touch on themes in greater depth in the next section.
 
 
@@ -110,7 +132,7 @@ If you can focus on personability, relationship-building, and genuine interest i
   - This was genuinely a thrilling experience, so much so that I found myself building on the code well after the interviewer was over :lol:
 - Specific expectations per interview round
   - Interviewers, please try your best to convey what a given interview round is assessing at the very beginning
-  - E.g., if you're looking for specifics on how to solve agentic tool-routing, don't label it as a "Systems Design" interview.
+  - E.g., if you're looking for specifics on how to solve agentic tool-routing, please don't label it as a "Architectural Design" interview, or at least make the goal crystal clear.
   - Otherwise, your candidate will waste both of your time talking about service architecture when really you want to discuss agent-internal logic
 - Greater efficiency
   - I know recruiting is difficult, especially when you juggle multiple candidates with the schedules of multiple busy stakeholders
@@ -119,3 +141,19 @@ If you can focus on personability, relationship-building, and genuine interest i
   - More panel interviews might be a good thing here.
   - And recruiters: if a candidate informs you of another offer, please communicate that with the relevant folks ASAP.
   - That way, you give both parties a shot at landing a deal, rather than leading to surprise, confusion, and disappointment.
+
+
+## 🥳 The good news: I secured a fantastic offer within 2 weeks!
+
+And yes, it happened to be a 🪃 offer back to my old home at Workday. 😉
+
+I was thrilled to see my old team was tackling agentic problems similar to what I've been obsessed with.
+And I had the opportunity to return, pop back in like I'd never left, and pretend that the previous half-year was but a fever dream.
+
+My old boss called it destiny, and it's hard to argue against that.
+
+BUT, boomerang aside,  what I want to focus on here is the full experience across multiple pipelines for drastically different companies that ultimately led to this offer and my decision to accept it.
+
+## Conclusion
+
+TODO
