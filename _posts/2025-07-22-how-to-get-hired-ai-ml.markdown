@@ -84,16 +84,45 @@ These themes surfaced in more than one interview, for AI initiatives in highly d
 
 Treat these as areas where you're likely to be grilled.
 
-- AI systems
-  - From ETL, to training, to evaluation, be ready to analyze a problem and propose a sick solution
-  - Understand global vs federated learning, and the deep tension of "how do I tailor things per customer?" vs "how do I ensure data privacy + security is completely respected?"
-- Embeddings as the secret sauce, especially for retrieval but also for data synthesis, etc.
-- Agent evals to verify it works as expected
-  - I was able to lean on the 3T framework for every. single. interview. Regardless of problem domain or agentic application.
-- Error handling
-  - How do you handle error situations? Can you use existing knowledge or context to retry intelligently? When should you call it and just return an error?
-- Model selection / tradeoffs
-  - Be prepared to give a verbal thesis on simplicity vs accuracy, and especially specific considerations regarding quality, latency, interpretability, cost, etc.
+### AI systems
+From ETL, to training, to evaluation, be ready to analyze a problem and propose a sick solution
+Understand global vs federated learning, and the deep tension of "how do I tailor things per customer?" vs "how do I ensure data privacy + security is completely respected?"
+
+### Embeddings and retrieval
+
+Retrieval is the core of good agentic systems.
+
+I find it interesting that ML-based retrieval has been around for quite some time.
+I've been building retrieval methods for semantic search, etc for the better part of the last decade.
+
+But generative LLMs have given us a way to surface retrieved results in a clean natural language interface.
+
+All in all, embeddings are the secret sauce of modern AI.
+
+This is especially the case for agentic retrieval, but also for clustering, recommendation, fine-tuning, context compression, and so many other applications.
+
+You should prioritize understanding why embeddings are powerful at a very deep level.
+You should be able to rely on embeddings as a representation of data, allowing you to use distance and similarity to solve real-world problems in a shockingly clean mathematical formulation.
+
+The most interesting problems I encountered during my job search involved leveraging embeddings for problems involving multi-layer, not-necessarily-tabular data relationships. 
+I challenge you to pursue this topic with curiosity, as I think it can be a real game-changer for many companies facing these deep, messy problems, and can be handled with surprising elegance.
+
+### Evals
+
+(Shameless self-promotion warning!)
+
+Evaluating AI features, especially agentic ones, was a topic brought up in every single interview. 
+
+You might be familiar with my pre-existing thoughts here, and so I won't get too into the weeds here.
+
+But I will say I was able to lean on the 3T framework for every. single. interview.
+Regardless of problem domain or agentic application.
+
+### Error handling
+How do you handle error situations? Can you use existing knowledge or context to retry intelligently? When should you call it and just return an error?
+
+### Model selection / tradeoffs
+Be prepared to give a verbal thesis on simplicity vs accuracy, and especially specific considerations regarding quality, latency, interpretability, cost, etc.
 
 ## 🧩 Don't sleep on the fundamentals
 
