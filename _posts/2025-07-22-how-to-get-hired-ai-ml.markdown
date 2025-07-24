@@ -12,14 +12,14 @@ date:   2025-07-22 7:00:00 -0600
 
 ## 😱 The bad news: I was laid off earlier this month.
 
-As someone who hates relinquishing control, I spent a day being shaken, confused, and existential.
+As someone who hates relinquishing control, I spent a full day being shaken, confused, and existential.
 
-Shaken because I was suddenly detached from the work I was obsessed with, the stability I was accustomed to, and most importantly, the people at work I'd grown close to.
+Shaken because I was suddenly detached from the work I was obsessed with, the stability my family and I were accustomed to, and the people at work I'd grown close to.
 
 Confused because, well, isn't AI supposed to be _so hot right now_?
-In fact, for many companies, AI is _the_ highest priority as they race to capitalize on the promises that AI will positively reform modern business — a promise I believe in wholeheartedly.
+It seems like, for many companies, AI is _the_ highest priority as they race to capitalize on the promises that it will positively reform modern business — a promise I believe in wholeheartedly.
 
-And existential because, to be honest, being laid off makes you question your value, your accomplishments, and your future.
+And existential because, to be honest, being laid off made me question my value, my accomplishments, and my future.
 Plus, what the heck was I going to do next?
 And never mind the fact that the clock was ticking!
 
@@ -32,13 +32,13 @@ This marked the most unexpected, pivotal turn in my career.
 
 I knew layoffs were the name of the tech game, and I knew that my short-term doubts were just noise in my grand career trajectory.
 
-And so, by the next day I was strangely eager to dust off my resume, put myself back out there, and see what sort of awesome AI / ML things other companies were working on.
-What were the juicy problems companies faced that needed strong technical leadership to help them succeed?
+And so, by the next day I was strangely eager to dust off my resume, put myself back out there, and see what sort of awesome AI / ML things other teams were working on.
+What were the juicy problems companies faced that required strong technical leadership to drive success?
 
 **Spoiler: I wasn't let down.**
 
-Not only did I get a glimpse into these things, but I made a realization:
-There are some strong commonalities across the industry in terms of what companies need, how they assess a candidate's ability to solve those needs, and how candidates can demonstrate that they're the puzzle piece the company is looking for.
+Not only did I get a front row seat to these challenges, but I made a realization:
+There are some strong commonalities across the industry in terms of AI / ML solutions companies need, how they assess a candidate's ability to solve those needs, and how candidates can demonstrate that _they_ can solve these problems.
 
 
 So, this post is a reflection on the current AI / ML market, my experiences with it, and lessons learned that might help others navigate similar situations.
@@ -53,25 +53,34 @@ So, this post is a reflection on the current AI / ML market, my experiences with
 
 From what I gather, the market wants an AI / ML engineer who can:
 
-- Empathize with user needs
+- Understand and empathize with customer needs
 - Translate those needs to a highly effective AI / ML stack
-- Give stakeholders (especially yourself) confidence in what you built
-- Understand how your AI / ML features solve business problems (+ drive profit!)
-- Act as a generalist equally comfy spiking out messy EDA notebooks as they are debugging AI services in Prod
+- Perform as an AI / ML generalist — equally comfy spiking out messy EDA notebooks as they are debugging AI services in Prod
+- Give stakeholders (including yourself!) confidence in what you built
+- Demonstrate how your AI / ML features help your business win
 
-These requirements are highly similar to what they've been for the last decade or so, but the emphasis really seems to be on agents, RAG, and evals.
+If you've been active in AI / ML over the last decade, these requirements should look very familiar.
 
-In particular, providing holistic workflows for users to define, organize, execute, and analyze tasks seems to be the north star for many companies.
+But my key takeaway was that, to really stand out, you should further have a track record of building:
+- Full-stack, production-ready agents, equipped with auth, memory, human-in-the-loop, user feedback, etc.
+- Intricate RAG systems, often with a robust knowledge base component
+- Strong evaluation frameworks on both offline and online data
+- Holistic workflows for users to define, organize, execute, and analyze tasks 
 
-It is very exciting watching AI finally upgrade from "ML can make good predictions" to "agents can convert a simple query into a 10+ step workflow".
+Clearly, there is industry-wide enthusiasm of watching AI finally graduate from "ML can make good predictions" to "agents can _actually_ convert simple natural language into dozen-step workflows".
 
+We knew this day would come, but how did it get here so _fast_?
+And how are things still speeding along?
+And how is anyone supposed to keep up with all of it?
 
-I touch on themes in greater depth in the next section.
+Nonetheless, there is a lot to know and master to be the top candidate these companies demand.
+
+To help cut through the noise, I discuss specific themes that surfaced across companies and roles, to help you understand what to focus on mastering if you want to land your next role.
 
 
 ## 🧠 Technical themes you'll be grilled on
 
-These themes surfaced in more than one interview, for totally unrelated AI products.
+These themes surfaced in more than one interview, for AI initiatives in highly diverse, essentially unrelated fields.
 
 Treat these as areas where you're likely to be grilled.
 
