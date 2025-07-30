@@ -82,7 +82,7 @@ To help cut through the noise, I discuss specific themes that surfaced across co
 
 But first, how do you even land interviews in the first place?
 
-## 🤝 What ultimately led to interviews
+## 🤝 How I _Actually_ Got Interviews
 
 It's relatively easy to submit applications you see on LinkedIn, etc., as many as you come across that fit what you're looking for.
 
@@ -94,7 +94,7 @@ If you can focus on personability, relationship-building, and genuine interest i
 
 
 
-## 🧠 Technical themes you'll be grilled on
+## 🧠 What you'll be grilled on
 
 These themes surfaced in more than one interview, for AI initiatives in highly diverse, essentially unrelated fields.
 
@@ -198,11 +198,11 @@ Understand transformers and attention, and be able to ELI5 and why they're a big
 Even better, understand its technical and theoretical details (yes, I'm talking queries, keys, and values), as well as modern techniques to make it even better
 
 
-## 🦉 Miscellaneous tips and advice
+## 🦉 Underrated Tips That Helped Me Stand Out
 
+- Always start with the user / customer. Empathize with UX, make it magical, and show why this will lead to happy customers (and profit!)
 - Document your architectural decisions, especially tradeoffs. Keep track of your wins and losses (and demonstrate what your losses taught you the hard way). This is great material to leverage during interviews. Turns out, many other companies are hitting the same hurdles you've hit yourself.
-- Don't just work on tasks, but really understand the systems you're building at a high and low level. Be curious about how things work. Challenge assumptions. Poke at things until they break, then make things unbreakable. 
-
+- Don't just work on tasks, but really understand the systems you're building at a high and low level. Be curious about how things work. Challenge assumptions. Poke at things until they break, then make things unbreakable.
 
 ## Bonus: What I loved, and would love to see more of, from hiring pipelines
 
