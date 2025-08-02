@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "How To Get Hired as an AI / ML Engineer in 2025"
+title:  "How To Get Hired as an AI / ML Engineer (in 2025"
 date:   2025-07-22 7:00:00 -0600
 ---
 
@@ -50,7 +50,7 @@ So, this post is a reflection on the current AI / ML market, my experiences with
 #### For myself, but more importantly, for anyone looking to land their next AI / ML role.
 
 
-## 📈 What Hiring Managers Actually Want in 2025
+## 📈 What Hiring Managers _Actually_ Want in 2025
 
 
 
@@ -98,11 +98,39 @@ If you can focus on personability, relationship-building, and genuine interest i
 
 These themes surfaced in more than one interview, for AI initiatives in highly diverse, essentially unrelated fields.
 
-Treat these as areas where you're likely to be grilled.
+Treat these as areas on which you're likely to be grilled.
+
+You almost surely won't hit every point below, but I'm aiming for completeness, so treat this as a study guide rather than an answer key.
 
 ### AI systems
-From ETL, to training, to evaluation, be ready to analyze a problem and propose a sick solution
+
+There are many components and pipelines involved in a legit, end-to-end AI / ML feature: ETL, model training, evaluation, model serving, monitoring, feedback, etc.
+
+Be ready to analyze a business problem and break it down into the required systems.
+And then be ready to deep dive into each system component.
+
 Understand global vs federated learning, and the deep tension of "how do I tailor things per customer?" vs "how do I ensure data privacy + security is completely respected?"
+Auxiliary to this is how to intelligently partition and serve per-customer models.
+
+The focus is still quite prominently on **GenAI**, so understand RAG, LLM fine-tuning, prompting best practices, hallucination mitigation.
+Understand the very basics like tokenization, embeddings (more on this below), and hyperparameter tuning.
+I suggest reading up on specific, more cutting edge techniques like RLHF, LoRA, and whatever paper came out last week making its rounds in the AI-verse.
+
+Understand how quantization, distillation, model pruning, and other tricks help you 
+
+### Error handling
+How can you handle error situations?
+How _should_ you handle them?
+
+What are the types of errors you might obtain for an AI agent?
+Can you cleanly break them down into logic errors, modeling errors, and potentially other categories?
+
+Can you use existing knowledge or context to retry intelligently?
+
+At what point should you just call it and return a generic error?
+
+While not the sexiest questions to tackle, I assure you they are critical, and your interviewers probably agree.
+
 
 ### Embeddings and retrieval
 
@@ -123,22 +151,27 @@ You should be able to rely on embeddings as a representation of data, allowing y
 The most interesting problems I encountered during my job search involved leveraging embeddings for problems involving multi-layer, not-necessarily-tabular data relationships. 
 I challenge you to pursue this topic with curiosity, as I think it can be a real game-changer for many companies facing these deep, messy problems, and can be handled with surprising elegance.
 
-### Evals
+### Evaluation
 
 (Shameless self-promotion warning!)
 
 Evaluating AI features, especially agentic ones, was a topic brought up in every single interview. 
 
-You might be familiar with my pre-existing thoughts here, and so I won't get too into the weeds here.
+You might be familiar with my [pre-existing thoughts]({% post_url 2025-06-17-the-3t-framework-for-evals %}) here, and so I won't get too into the weeds here.
 
-But I will say I was able to lean on the 3T framework for every. single. interview.
-Regardless of problem domain or agentic application.
+But I will say I was able to lean on the **3T framework** for every. single. interview.
+Regardless of problem domain or agentic application. (And yes, agents were discussed for every interview, even if the role wasn't totally agent-focused per se.)
 
-### Error handling
-How do you handle error situations? Can you use existing knowledge or context to retry intelligently? When should you call it and just return an error?
+As for more traditional ML evaluation, basically just know your metrics, from [classification](https://en.wikipedia.org/wiki/Evaluation_of_binary_classifiers) to [retrieval](https://en.wikipedia.org/wiki/Evaluation_measures_(information_retrieval)). 
 
 ### Model selection / tradeoffs
+
+Thinking through model selection and the corresponding tradeoffs is classic ML Engineering.
+In fact, it is one of my favorite areas to discuss when conducting an interview myself, and I was heartened to see others leaning on it (and quite heavily).
+
 Be prepared to give a verbal thesis on simplicity vs accuracy, and especially specific considerations regarding quality, latency, interpretability, cost, etc.
+
+This is especially nuanced in the age of generative LLMs which come with their own slew of considerations.
 
 ## 🧩 Don't sleep on the fundamentals
 
@@ -146,7 +179,7 @@ Be prepared to give a verbal thesis on simplicity vs accuracy, and especially sp
 
 To be honest, I thought AI killed the leetcode interview, but I was mistaken.
 
-Leetcode, at least in my experience mid-2025, is very much alive, and was a component of roughly half of my interview pipelines.
+At least in my experience as of 2025, **Leetcode is very much alive**, and was a component of roughly half of my interview pipelines.
 
 I was worried being off the "LC grind" for so many years would be my demise
 
@@ -200,9 +233,21 @@ Even better, understand its technical and theoretical details (yes, I'm talking 
 
 ## 🦉 Underrated Tips That Helped Me Stand Out
 
-- Always start with the user / customer. Empathize with UX, make it magical, and show why this will lead to happy customers (and profit!)
-- Document your architectural decisions, especially tradeoffs. Keep track of your wins and losses (and demonstrate what your losses taught you the hard way). This is great material to leverage during interviews. Turns out, many other companies are hitting the same hurdles you've hit yourself.
-- Don't just work on tasks, but really understand the systems you're building at a high and low level. Be curious about how things work. Challenge assumptions. Poke at things until they break, then make things unbreakable.
+**Always start with the user / customer**. Empathize with UX, make it magical, and show why this will lead to happy customers (and profit!)
+
+**Document your architectural decisions**, especially tradeoffs. 
+You'll be asked why you made certain choices and whether they were correct.
+Be ready to answer both of these accurately and honestly.
+
+**Keep track of your wins and losses**, and demonstrate what your losses taught you.
+This is _great_ material to leverage during interviews.
+Turns out, many other companies are hitting the same hurdles you've hit yourself.
+
+Don't just work on tasks, but **really understand the systems you're building** at a high and low level.
+I know this is easier said than done, but my advice is to give yourself capacity to be able to chase down questions yourself, and write up your learnings.
+Be curious about how things work, especially the weird ones.
+Challenge assumptions.
+Poke at things until they break, then make things unbreakable.
 
 ## Bonus: What I loved, and would love to see more of, from hiring pipelines
 
