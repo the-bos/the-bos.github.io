@@ -13,15 +13,16 @@ date:   2025-07-22 7:00:00 -0600
 > Who this post is for: This post is for AI/ML engineers navigating the current job market — whether you’re actively looking, passively curious, or just wondering what companies actually care about when hiring in 2025.
 
 
-## 😱 The bad news: I was laid off last month
+## 😱 The bad news: I was laid off last month.
 
-As someone who hates relinquishing control, I spent a full day being shaken, confused, and existential.
+I'm not gonna lie: it shook me.
 
-Shaken because I was suddenly detached from the work I was obsessed with, the stability my family and I were accustomed to, and the people at work I'd grown close to.
+I spent a full day being confused and existential.
 
-Confused because my team and I were building truly great AI features, and shipping to customers that loved our AI products and clamored for more.
+I was suddenly detached from the work I was obsessed with, the stability my family and I were accustomed to, and the people at work I'd grown close to.
 
-And existential because, to be honest, being laid off made me question my value, my accomplishments, and my future.
+I found myself questioning my value, my accomplishments, and my future.
+
 Plus, I had no idea what to do next — and the clock was already ticking.
 
 **Yet, layoffs can happen to anyone.**
@@ -39,7 +40,7 @@ And so, by the next day I was surprisingly eager to dust off my resume, put myse
 
 AI was still at the forefront of innovation, and that wouldn't change anytime soon.
 
-What were the _juicy_ problems companies faced that required strong technical leadership to drive success?
+So, I began to wonder: what were the _juicy_ problems companies faced that required strong technical leadership to drive success?
 
 **Spoiler: I wasn't let down.**
 
@@ -52,18 +53,18 @@ So, this post is a reflection on the current AI / ML market, my experiences with
 
 ### 🍋🥤 This is a lemonade post. 
 
-For not only myself, but **anyone looking to land their next AI / ML role.**
+For not only myself, but anyone looking to **land their next AI / ML role**.
 
 
 ## 📈 What Hiring Managers _Actually_ Want in 2025
 
 Companies want an AI / ML engineer who can:
 
-- Understand and empathize with customer needs
-- Translate those needs to a highly effective AI / ML stack
-- Perform as a generalist — equally comfy spiking out messy EDA notebooks as they are debugging AI services in Prod
-- Give stakeholders (including yourself!) confidence in what you built
-- Demonstrate how your AI / ML features will help their business win
+- Understand and empathize with **customer needs**
+- Translate those needs to a **highly effective AI/ML stack**
+- Perform as a **generalist** — equally comfy spiking out messy EDA notebooks as they are debugging AI services in Prod
+- Give stakeholders (including yourself!) **confidence** in what you built
+- Demonstrate how your AI / ML features will **help their business win**
 
 If you've been active in AI / ML over the last decade, these requirements should look very familiar.
 
@@ -103,7 +104,7 @@ Still, it's never been more important to build a rich network, and critically, t
 It can feel difficult to stand out in a sea of others equally interested in networking and growing their career.
 
 I'm no social media expert or psychologist, but here's my advice:
-if you can focus on personability, relationship-building, and genuine interest in others, you'll find yourself surrounded my connections who you care about, and who care about you.
+focus on personability, relationship-building, and genuine interest in others, and you'll find yourself surrounded by connections who you care about, and who care about you.
 And the rest will follow naturally.
 
 
@@ -123,9 +124,11 @@ There are many components and pipelines involved in a legit, end-to-end AI / ML 
 Be ready to analyze a business problem and break it down into the required systems.
 And then be ready to deep dive into each system component.
 
-The focus is still quite prominently on **GenAI**, so understand LLMs, RAG, prompting best practices, and hallucination mitigation, guardrails, and evaluation.
-Understand the basics of how text gets processed, from tokenization, to embeddings (more on this below), to context windows.
-Know what **context engineering** means, why it's _so hot right now_, and how to do it well.
+The focus is still quite prominently on **GenAI**, so understand:
+- LLMs, RAG, prompting best practices, and hallucination mitigation, guardrails, and evaluation.
+- the basics of how text gets processed, from tokenization, to embeddings (more on this below), to context windows.
+- **context engineering**, why it's _so hot right now_, and how to do it well.
+
 I further suggest reading up on specific, more cutting edge techniques like RLHF, LoRA, and whatever paper came out last week making its rounds in the AI-verse.
 
 Understand global vs local (per-customer / tenant-specific / federated) learning, and the deep tension of "how do I tailor things per customer?" vs "how do I keep things simple, and ensure data privacy + security is completely respected?"
@@ -149,16 +152,27 @@ All in all, **embeddings are the secret sauce of modern AI**.
 
 This not agentic retrieval (which gets the spotlight these days), but also for clustering, recommendation, fine-tuning, context compression, and so many other applications.
 
-You should prioritize understanding why embeddings are powerful at a very deep level.
-You should be able to rely on embeddings as a representation of data, allowing you to use distance and similarity to solve real-world problems in a shockingly clean mathematical formulation.
-And know how to put this into practice with robust embedding creation pipelines and performant vector databases.
+You should:
+- prioritize understanding why embeddings are powerful at a very deep level
+- understand embeddings as a representation of data, allowing you to use distance and similarity to solve real-world problems in a shockingly clean mathematical formulation.
+- know how to put this into practice with robust embedding creation pipelines and performant vector databases.
 
 The most interesting problems I encountered during my job search involved leveraging embeddings for problems involving multi-layer, not-necessarily-tabular data relationships. 
 I challenge you to pursue this topic with curiosity, as I think it can be a real game-changer for many companies facing these deep, messy problems, and can be handled with surprising elegance.
 
 ### Agent Architecture
 
-TODO
+If AI agents are in the job description, you'll want to know how to design, build, and productionize them.
+
+Here are some topics: 
+
+- **Perception**: How your agent obtains / processes input to understand its objectives
+- **Planning**: How your agent (powered by one or more LLMs) reasons about its objective, decomposes it into tasks, and decides on actions
+- **Tools**: What they are, how your agent selects / calls them, API / auth considerations, HitL guardrails
+- **Memory**: Short-term (conversation) vs long-term (knowledge base) 
+- **Learning**: How your agent adapts to new information, from self-evaluation to RLHF
+- **Multi-agent architectures**, and tradeoffs compared to single-agent
+- How agents differ from **workflows**
 
 ### Evaluation
 
@@ -203,7 +217,7 @@ To be honest, I thought AI killed the leetcode interview, but I was mistaken.
 
 At least in my experience as of 2025, **Leetcode is very much alive**, and was a component of roughly half of my interview pipelines.
 
-I was slighlty worried being off the "LC grind" for so many years could be my demise.
+I was slightly worried being off the "LC grind" for so many years could be my demise.
 
 But thankfully, I passed each round!
 And I had quite a bit of fun with the problems.
@@ -275,7 +289,7 @@ Challenge assumptions.
 Poke at things until they break, then make them unbreakable.
 
 Finally, **sharpen your soft skills**.
-I touched on this earlier, but it bears more emphasis.
+I touched on this earlier, but it deserves emphasis.
 Ultimately, teams want to hire people they actually want to work with, and this is a huge factor in your interviews.
 I think EQ can be just as important as IQ for an AI/ML Engineering role, so practice being a friendly, empathetic, and curious colleague.
 
@@ -318,7 +332,9 @@ And recruiters: if a candidate informs you of another offer, _please_ communicat
 That way, you give both parties a shot at closing the deal, rather than leading to surprise, confusion, and mutual disappointment.
 
 
-## 🥳 The good news: I secured 3 fantastic offers within 10 days!
+## 🥳 The good news: I landed a new role!
+
+After 10 intense days of interviews, I was lucky to have a few great options to choose from.
 
 And as it turns out, I ultimately accepted a 🪃 offer back to my old home at Workday. 😉
 
@@ -348,5 +364,11 @@ There's no shortage of interesting work out there, and exciting teams eager to w
 I hope this post gives you a more complete picture of what real teams are looking for in their next AI / ML hire.
 And while I can't give you all the answers (not that either of us would want that, right?), I can do my best to share my experience, highlight relevant focus areas, and guide you towards mastering the right things.
 
-So, happy hunting.
+So, remember:
+- Build systems, not just models.
+- Embeddings are the secret sauce of AI.
+- EQ matters as much as IQ.
+- And your past challenges? They’re someone else’s roadmap, and you can steer the ship.
+
+Happy hunting.
 You got this! 🙌
