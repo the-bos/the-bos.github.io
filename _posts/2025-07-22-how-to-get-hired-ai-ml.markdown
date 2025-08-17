@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "How To Land Your Next AI / ML Role"
+title:  "How To Land Your Next AI/ML Role in 2025"
 date:   2025-07-22 7:00:00 -0600
 ---
 
@@ -36,11 +36,11 @@ Even when you're doing your best work, the bigger picture can move in a sudden n
 
 I knew layoffs were the name of the tech game, and I knew that my short-term doubts were just noise in my grand career trajectory.
 
-And so, by the next day I was surprisingly eager to dust off my resume, put myself back out there, and see what sort of awesome AI / ML things other teams were working on.
+So, after my brief one-day self-pity party, I was surprisingly eager to dust off my resume the next day, put myself back out there, and see what sort of awesome AI/ML things other teams were working on.
 
 AI was still at the forefront of innovation, and that wouldn't change anytime soon.
 
-So, I began to wonder: what were the _juicy_ problems companies faced that required strong technical leadership to drive success?
+What were the _juicy_ problems companies faced that required strong technical leadership to drive success?
 
 **Spoiler: I wasn't let down.**
 
@@ -49,7 +49,7 @@ There are some strong commonalities across the industry in terms of AI / ML solu
 
 And I have some thoughts on what you can do as the candidate to demonstrate that _you're_ the person to lead their AI ambitions and convert them to business value.
 
-So, this post is a reflection on the current AI / ML market, my experiences with it, and lessons learned that might help others navigate similar situations.
+This post is a reflection on the current AI / ML market, my experiences with it, and lessons learned that might help others navigate similar situations.
 
 ### 🍋🥤 This is a lemonade post. 
 
@@ -150,7 +150,7 @@ Modern generative LLMs let us turbo-charge how retrieved results are used and su
 
 All in all, **embeddings are the secret sauce of modern AI**.
 
-This not agentic retrieval (which gets the spotlight these days), but also for clustering, recommendation, fine-tuning, context compression, and so many other applications.
+This is true not only for agentic retrieval (which gets the spotlight these days), but also for clustering, recommendation, fine-tuning, context compression, and so many other applications.
 
 You should:
 - prioritize understanding why embeddings are powerful at a very deep level
@@ -168,7 +168,7 @@ Here are some topics:
 
 - **Perception**: How your agent obtains / processes input to understand its objectives
 - **Planning**: How your agent (powered by one or more LLMs) reasons about its objective, decomposes it into tasks, and decides on actions
-- **Tools**: What they are, how your agent selects / calls them, API / auth considerations, HitL guardrails
+- **Tools**: What they are, how your agent selects / calls them, API / auth considerations, human-in-the-loop guardrails
 - **Memory**: Short-term (conversation) vs long-term (knowledge base) 
 - **Learning**: How your agent adapts to new information, from self-evaluation to RLHF
 - **Multi-agent architectures**, and tradeoffs compared to single-agent
@@ -227,7 +227,7 @@ My take here: grinding out leetcode problems is a great way to prepare for these
 
 But if you can't commit to the grind, I think as long as you're spending good time solving meaningful AI / ML problems, you'll naturally have this mindset front and center.
 
-My personal experience with ETL and evaluation pipelines were particularly useful for this, since they force you to reason though similar flavors of correct, efficient logic, data structures, and edge-case handling.
+My personal experience with ETL and evaluation pipelines were particularly useful for this, since they force you to reason through similar flavors of correct, efficient logic, data structures, and edge-case handling.
 
 Nonetheless, I suggest you resist the urge to vibe code everything.
 
@@ -295,7 +295,7 @@ I think EQ can be just as important as IQ for an AI/ML Engineering role, so prac
 
 ## 🧪 What Interviewers Got Right (And Improvement Ideas)
 
-### Hands-on coding tasks
+### Sneak peeks
 My favorite interviews gave me some small amount of "heads up" to gather context and quickly plan my approach before the actual meeting began.
 
 For example, for one interview, I was emailed a doc describing the general ML problem to be solved, giving me time to brainstorm before live coding in front of an audience with a ticking clock.
@@ -336,17 +336,19 @@ That way, you give both parties a shot at closing the deal, rather than leading 
 
 After 10 intense days of interviews, I was lucky to have a few great options to choose from.
 
-And as it turns out, I ultimately accepted a 🪃 offer back to my old home at Workday. 😉
+Having multiple offers provided negotiation leverage, the luxury of choice, and a clear finish line.
+
+But what struck me the most about this position was the amount of **clarity** it gave me.
+
+I was able to carefully consider each opportunity and make an honest decision about what I wanted out of the role, and where I would make the greatest impact.
+
+And so, as it turns out, I ultimately accepted a "boomerang" offer, returning to my old home at Workday. 🪃
 
 I was thrilled to learn my old team was tackling agentic problems similar to what I've been obsessed with this year.
-And luck turns out I had the opportunity to pop back in like I'd never left, and pretend that the previous half-year was but a fever dream.
+And I had the opportunity to pop back in like I'd never left, and pretend that the previous half-year was but a wild roller coaster of a dream.
 
-My manager-again called it destiny, and it's hard to argue against that.
-
-But, boomerang aside, I've enjoyed reflecting on the full experience across multiple serious interview pipelines that led me to accepting my new role.
+Regardless of the boomerang conclusion, I've enjoyed reflecting on the full experience across multiple serious interview pipelines that led me to accepting my new role with clarity and conviction.
 And I hope I illustrated this experience in a way that can benefit others navigating similar waters.
-
-It was a thrill of a ride (especially the late-stage negotiation phase), and a blessing to have landed on my feet in an environment that I love and thrive in.
 
 ## Conclusion
 
