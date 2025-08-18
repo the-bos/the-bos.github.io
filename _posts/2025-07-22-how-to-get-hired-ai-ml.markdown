@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "How To Land Your Next AI/ML Role in 2025"
+title:  "How To Actually Land Your Next AI/ML Role in 2025"
 date:   2025-07-22 7:00:00 -0600
 ---
 
@@ -17,34 +17,30 @@ date:   2025-07-22 7:00:00 -0600
 
 I'm not gonna lie: it shook me.
 
-I spent a full day being confused and existential.
-
-I was suddenly detached from the work I was obsessed with, the stability my family and I were accustomed to, and the people at work I'd grown close to.
+I spent a full day being confused and existential — suddenly cut off from the work I loved, the stability my family relied on, and teammates I was close to.
 
 I found myself questioning my value, my accomplishments, and my future.
 
 Plus, I had no idea what to do next — and the clock was already ticking.
 
-**Yet, layoffs can happen to anyone.**
+
+#### But, this isn't a layoff post.
 
 Priorities shift.
 Plans change.
 Even when you're doing your best work, the bigger picture can move in a sudden new direction that leaves you behind.
 
-
-### But, this isn't a layoff post.
-
 I knew layoffs were the name of the tech game, and I knew that my short-term doubts were just noise in my grand career trajectory.
 
-So, after my brief one-day self-pity party, I was surprisingly eager to dust off my resume the next day, put myself back out there, and see what sort of awesome AI/ML things other teams were working on.
+So, after a brief self-pity-party, I was surprisingly eager to dust off my resume and see what cool AI/ML problems other teams were tackling. 
 
 AI was still at the forefront of innovation, and that wouldn't change anytime soon.
 
 What were the _juicy_ problems companies faced that required strong technical leadership to drive success?
 
-**Spoiler: I wasn't let down.**
+#### Spoiler: I wasn't let down.
 
-Not only did I enjoy a front row seat to these challenges, but I made a realization:
+Handed the opportunity to engage directly with teams facing these challenges, I made a realization:
 There are some strong commonalities across the industry in terms of AI / ML solutions companies need, as well as how they assess a candidate's ability to solve those needs.
 
 And I have some thoughts on what you can do as the candidate to demonstrate that _you're_ the person to lead their AI ambitions and convert them to business value.
@@ -53,59 +49,63 @@ This post is a reflection on the current AI / ML market, my experiences with it,
 
 ### 🍋🥤 This is a lemonade post. 
 
-For not only myself, but anyone looking to **land their next AI / ML role**.
+Not just for me, but anyone looking to **land their next AI / ML role**.
 
 
 ## 📈 What Hiring Managers _Actually_ Want in 2025
 
-Companies want an AI / ML engineer who can:
+Companies want an AI/ML engineer who can:
 
-- Understand and empathize with **customer needs**
-- Translate those needs to a **highly effective AI/ML stack**
-- Perform as a **generalist** — equally comfy spiking out messy EDA notebooks as they are debugging AI services in Prod
-- Give stakeholders (including yourself!) **confidence** in what you built
+- Start with the customer, and build with **empathy**
+- Design **highly effective AI/ML stacks** to meet real-world needs
+- Operate as a **generalist** — equally comfy spiking out messy EDA notebooks as they are debugging in Prod
+- Inspire **confidence** in what you build to stakeholders (including yourself!)
 - Demonstrate how your AI / ML features will **help their business win**
 
-If you've been active in AI / ML over the last decade, these requirements should look very familiar.
+If you’ve worked in AI/ML in the last decade, none of this should surprise you.
 
 But, my key takeaway was that, to really stand out, you should further have a track record of building:
-- End-to-end GenAI features that leverage LLMs in a smart, effective, and efficient way
-- State-of-the-art retrieval systems (e.g. RAG), often with a robust knowledge base component
-- Full-stack, production-ready agents, equipped with auth, memory, human-in-the-loop, user feedback, etc.
-- Strong evaluation frameworks on both offline and online data
+- End-to-end GenAI features that make smart use of LLMs
+- Powerful RAG pipelines grounded in thoughtful knowledge management
+- Full-stack, production-ready agents, equipped with memory, tools, auth, feedback — the whole package
+- Strong evaluation frameworks for offline and online data
 - Holistic workflows for users to define, organize, execute, and analyze tasks 
 
-Clearly, there is industry-wide enthusiasm of watching AI finally graduate from "ML can make good predictions" to "agents can _actually_ convert simple natural language into dozen-step workflows".
+Clearly, there's industry-wide excitement as AI graduates from "ML can make good predictions" to "agents can _actually_ convert natural language into dozen-step workflows".
 
 We knew this day would come, but how did it get here so _fast_?
 And how are things still speeding along?
 And how is anyone supposed to keep up with all of it?
 
-Nonetheless, there is a lot to know and master to show why you're the top candidate these companies demand.
+There is a lot to know and master to show why you're the top candidate these companies demand.
 
-And to make things even more difficult, a lot of the required technology has only been around for a very short while — mere months, in some cases.
+Much of the tooling is barely a year old, sometimes months.
+It’s moving fast.
 
-**But don't worry. I'm here to help!**
-
-To cut through the noise, I discuss specific themes that surfaced across companies and roles, to help you understand what to focus on mastering if you want to land your next role.
+That’s why I’ve put together this post: to help you focus on the right things, cut through the noise, and show teams why _you’re_ the person to build the future with.
 
 But first, how do you even land interviews in the first place?
 
 ## 🤝 How I _Actually_ Got Interviews
 
-It's surprisingly easy (borderline addicting) to continually submit applications for roles you come across on LinkedIn, etc. — as many as you can find that match what you're looking for.
+It's easy, tempting, and even addicting to shotgun out applications, especially with features like LinkedIn's Easy Apply.
+I've been there.
 
 But in reality, my strongest leads were **relationship-driven**, whether it was direct outreach, high-signal referrals, or recruiter pings.
 
-I won't repeat that one platitude, but it seems to still hold water.
+Build a rich network.
+Nurture it.
+Engage with it meaningfully and often.
 
-Still, it's never been more important to build a rich network, and critically, to engage with it meaningfully and often.
+You have a lot of great ideas.
+Don't be afraid to write about them.
+Posting to LinkedIn is intimidating at first, but try adventuring outside your comfort zone.
+What might seem obvious to you could be an insightful blog post for someone else.
 
 It can feel difficult to stand out in a sea of others equally interested in networking and growing their career.
 
-I'm no social media expert or psychologist, but here's my advice:
-focus on personability, relationship-building, and genuine interest in others, and you'll find yourself surrounded by connections who you care about, and who care about you.
-And the rest will follow naturally.
+Besides writing, my best advice here is to be curious and express genuine interest in others.
+Build real relationships, and the rest will follow.
 
 
 
@@ -113,63 +113,70 @@ And the rest will follow naturally.
 
 All themes in this section surfaced in more than one interview, for AI initiatives in highly diverse, essentially unrelated fields.
 
-Treat these as areas on which you're likely to be grilled.
-
-You surely won't hit every point below exactly as I did, but I'm aiming for completeness here, so treat this as a **study guide** rather than an answer key.
+Think of this as a **study guide**, not an answer key — these are areas you’ll likely be grilled on.
 
 ### AI systems
 
-There are many components and pipelines involved in a legit, end-to-end AI / ML feature: ETL, model training, evaluation, model serving, monitoring, feedback, etc.
+Building AI features involves many layers: 
+- ETL pipelines
+- Model training and evaluation
+- Model serving, monitoring, and ops
+- Feedback and iteration
 
 Be ready to analyze a business problem and break it down into the required systems.
 And then be ready to deep dive into each system component.
 
 The focus is still quite prominently on **GenAI**, so understand:
 - LLMs, RAG, prompting best practices, and hallucination mitigation, guardrails, and evaluation.
-- the basics of how text gets processed, from tokenization, to embeddings (more on this below), to context windows.
-- **context engineering**, why it's _so hot right now_, and how to do it well.
+- Text-processing basics, from tokenization, to embeddings (more on this below), to context windows.
+- **context engineering** (e.g. smart chunking, strategic structuring, window budgeting), why it's _so hot right now_, and how to do it well.
 
-I further suggest reading up on specific, more cutting edge techniques like RLHF, LoRA, and whatever paper came out last week making its rounds in the AI-verse.
+Stay well-read on specific, more cutting edge techniques like RLHF, LoRA, and whatever paper came out last week making its rounds in the AI-verse.
 
 Understand global vs local (per-customer / tenant-specific / federated) learning, and the deep tension of "how do I tailor things per customer?" vs "how do I keep things simple, and ensure data privacy + security is completely respected?"
-Auxiliary to this is how to intelligently partition and serve per-customer models.
+Related to this is how to intelligently partition and serve per-customer models.
 
 Understand how quantization, distillation, model pruning, and other tricks help you obtain **production-ready models**.
 And know how to work with your production models, whether it's upgrading to new versions, [QA-ing the results]({% post_url 2025-05-19-the-case-for-qa-endpoints %}), or monitoring for issues like drift.
 
 ### Embeddings and retrieval
 
-Effective retrieval drives the core of good AI / agentic systems, from tool selection to knowledge lookup to really any decision-making that requires more than if-statements.
+Effective retrieval drives the core of good AI / agentic systems: tool selection, knowledge lookup, memory, and any decision-making that requires more than if-statements.
 
-And make no mistake: this isn't a new paradigm.
+This isn't a new paradigm.
+
 In fact, ML-based retrieval has been around for quite some time.
 
-I've been building retrieval methods for semantic search and adjacent techniques for the better part of the last decade, and many others have been doing so for a lot longer.
+I've been building retrieval methods for semantic search and adjacent techniques for the better part of the last decade.
+Many others have been doing so for a lot longer.
 
 Modern generative LLMs let us turbo-charge how retrieved results are used and surfaced, but without good retrieval, you don't have good AI.
 
-All in all, **embeddings are the secret sauce of modern AI**.
+This is why **embeddings are the secret sauce of modern AI**.
 
-This is true not only for agentic retrieval (which gets the spotlight these days), but also for clustering, recommendation, fine-tuning, context compression, and so many other applications.
+They let us transform messy, multidimensional relationships into crisp similarity problems.
+
+This isn't just useful for agentic RAG: embeddings power recommendations, clustering, context compression, and more.
+
+The most interesting problems I encountered during my job search involved leveraging embeddings for problems involving multi-layer, not-necessarily-tabular data relationships.
+Think matching customer support tickets to knowledge base articles across different product lines, user types, and contexts - exactly the kind of messy problem that embeddings are well-equipped to solve.
 
 You should:
-- prioritize understanding why embeddings are powerful at a very deep level
-- understand embeddings as a representation of data, allowing you to use distance and similarity to solve real-world problems in a shockingly clean mathematical formulation.
-- know how to put this into practice with robust embedding creation pipelines and performant vector databases.
+- understand why embeddings are powerful at a very deep level (and be able to ELI5)
+- appreciate how embeddings represent data, allowing for distance and similarity to solve real-world problems
+- know how to put this into practice with robust pipelines and performant vector databases
 
-The most interesting problems I encountered during my job search involved leveraging embeddings for problems involving multi-layer, not-necessarily-tabular data relationships. 
-I challenge you to pursue this topic with curiosity, as I think it can be a real game-changer for many companies facing these deep, messy problems, and can be handled with surprising elegance.
 
-### Agent Architecture
+### Agent architecture
 
-If AI agents are in the job description, you'll want to know how to design, build, and productionize them.
+If agents are in the job description, know how to design and ship them.
 
 Here are some topics: 
 
 - **Perception**: How your agent obtains / processes input to understand its objectives
 - **Planning**: How your agent (powered by one or more LLMs) reasons about its objective, decomposes it into tasks, and decides on actions
 - **Tools**: What they are, how your agent selects / calls them, API / auth considerations, human-in-the-loop guardrails
-- **Memory**: Short-term (conversation) vs long-term (knowledge base) 
+- **Memory**: Short-term vs long-term, knowledge base basics
 - **Learning**: How your agent adapts to new information, from self-evaluation to RLHF
 - **Multi-agent architectures**, and tradeoffs compared to single-agent
 - How agents differ from **workflows**
@@ -180,8 +187,8 @@ Evaluating AI features, especially agentic ones, was a topic brought up in every
 
 You might be familiar with my [pre-existing thoughts]({% post_url 2025-06-17-the-3t-framework-for-evals %}) here, and so I won't repeat myself too much.
 
-But I will say I was able to lean on the **3T framework** for _every single_ interview.
-Regardless of problem domain or agentic application. (And yes, agents were discussed for every interview, even if the role wasn't totally agent-focused, per se.)
+I will say I was able to lean on the **3T framework** for _every single_ interview, regardless of problem domain or agentic application.
+(And yes, agents were discussed for every interview, even if the role wasn't totally agent-focused, per se.)
 
 As for more traditional ML evaluation, be sure to know your metrics, from [classification](https://en.wikipedia.org/wiki/Evaluation_of_binary_classifiers) to [retrieval](https://en.wikipedia.org/wiki/Evaluation_measures_(information_retrieval)). 
 
@@ -220,32 +227,30 @@ At least in my experience as of 2025, **Leetcode is very much alive**, and was a
 I was slightly worried being off the "LC grind" for so many years could be my demise.
 
 But thankfully, I passed each round!
-And I had quite a bit of fun with the problems.
-They made me feel like a young, starry-eyed student again, mesmerized by algorithmic beauty and addicted to big-O flash cards.
+And I had quite a bit of fun with the problems, being addicted to big-O flash cards in a past life.
 
-My take here: grinding out leetcode problems is a great way to prepare for these interviews, if you have the time, patience, and pain tolerance. 
+Leetcode grinding works, if you have the time, patience, and pain tolerance. 
 
-But if you can't commit to the grind, I think as long as you're spending good time solving meaningful AI / ML problems, you'll naturally have this mindset front and center.
+If grinding isn't realistic, don't panic.
+As long as you're spending good time solving meaningful AI / ML problems, you'll naturally have this mindset front and center.
 
 My personal experience with ETL and evaluation pipelines were particularly useful for this, since they force you to reason through similar flavors of correct, efficient logic, data structures, and edge-case handling.
 
-Nonetheless, I suggest you resist the urge to vibe code everything.
+Nonetheless, I suggest you resist the urge to vibe code everything (i.e., writing code without a clear plan)
 
 Understanding your core business logic is non-negotiable, and while vibe coding can be useful, holding on to a **computational state of mind** will continue to pay dividends in interviews and throughout your career.
 
 ### Classical stats / ML ain't dead
 
-Regardless of the job title I applied for, **fundamental statistical theory and reasoning** showed up in some form or another.
-And I'd be remiss if it didn't.
+Despite all the AI hype, **fundamental statistical theory and reasoning** came up in each interview pipeline.
+And I'm glad it did.
 
 Even though contemporary models have become heavily abstracted, they are still powered by statistical and probabilistic gears, and understanding these gears will let you master the machine.
 
 Think of it this way: when something goes wrong with your AI / ML feature, and you've ruled out basic logic or infra concerns, the next recourse is debugging a nondeterministic system which can be very painful.
 But having a strong handle of your statistical theory will make this a much smoother process, and prove your value to your team.
 
-So, what should you focus on?
-
-While most of us don't have time to brush up on the equivalent of a 4-year Statistics degree, I'll share some concepts that came up for me.
+Here's what actually came up in my interviews:
 
 #### Know your modeling basics.
 
@@ -270,7 +275,8 @@ And how to relate all of this to stakeholders, and business impact.
 
 Here I lay out some thoughts about my day-to-day engineering routine, mindset, and habits that I believe naturally helped me tackle interviews.
 
-**Always start with the user / customer**. Empathize with UX, make it magical, and show why this will lead to happy customers (and profit!)
+**Always start with the user / customer**.
+Empathize with UX, make it magical, and show why this will lead to happy customers and good business.
 
 **Document your architectural decisions**, especially tradeoffs. 
 You'll be asked why you made certain choices and whether they were correct.
@@ -278,15 +284,14 @@ Be ready to answer both of these accurately and honestly.
 Hiring managers want to see that you can navigate uncertainty, make informed decisions, and course correct as needed.
 
 Similarly, **keep track of your wins and losses**, and demonstrate what your losses taught you.
-This is _great_ material to leverage during interviews.
-Turns out, many other companies are hitting the same hurdles you've hit yourself.
-They want you to bring and distill your lessons learned, which ultimately cuts them the cost of learning them manually.
+Turns out, many other companies are hitting the same hurdles you've already faced, and they want someone who's already learned the hard lessons.
 
 Don't just work on tasks, but **really understand the systems you're building** at a high and low level.
-I know this is easier said than done, but my advice is to give yourself capacity to be able to chase down questions yourself, and write up your learnings.
-Be curious about how things work, especially the peculiar or apparently-magical ones.
+Chase down questions yourself, and write up your learnings.
+Be curious about how things work, especially the peculiar or seemingly magical ones.
 Challenge assumptions.
-Poke at things until they break, then make them unbreakable.
+Break things.
+Then make them unbreakable.
 
 Finally, **sharpen your soft skills**.
 I touched on this earlier, but it deserves emphasis.
@@ -295,82 +300,101 @@ I think EQ can be just as important as IQ for an AI/ML Engineering role, so prac
 
 ## 🧪 What Interviewers Got Right (And Improvement Ideas)
 
-### Sneak peeks
-My favorite interviews gave me some small amount of "heads up" to gather context and quickly plan my approach before the actual meeting began.
+### Use sneak peeks to elevate the conversation
+My favorite interviews gave me context ahead of time, allowing me to quickly plan my approach before the actual meeting.
 
 For example, for one interview, I was emailed a doc describing the general ML problem to be solved, giving me time to brainstorm before live coding in front of an audience with a ticking clock.
 
-This was genuinely a thrilling experience, so much so that I found myself extending the code well after the interviewer was over! 😆
+This was a genuinely enjoyable experience, so much so that I kept coding well after the interview ended.
 
-### Specific expectations per interview round
+I'd love to see this interview style gain more traction.
 
-Interviewers, please try your best to convey what a given interview round aims to assess at the _very_ beginning.
+### Clarify interview goals
+
+Interviewers, please try your best to convey what your round aims to assess at the _very_ beginning.
 The earlier and clearer the better.
 Heck, drop a clarifying line or two in the calendar invite.
 
-You don't need to be so specific as to give the candidate an unfair advantage, but why not set them up for success when otherwise they'll just be studying and preparing for the wrong type of content?
+You're not giving the candidate an unfair advantage here.
+You're setting them up for success so they don't study and prep for the wrong type of content.
 
-For example, if you're looking for specifics on how to solve agentic knowledge lookup, please make the goal crystal clear at the very beginning (and avoid tagging it with vague titles like "Architecture Design Interview").
-Otherwise, your candidate will waste both of your time talking through unnecessarily high-level arch diagrams, sequence flow, etc. when really you want to discuss agent-specific internal logic.
+For example, “Architecture Interview” can mean a dozen different things.
+Be explicit about what you’re looking for.
 
-### Greater efficiency
+If it’s how to do agentic tool routing, say so!
+
+ML Microservices?
+Great!
+
+No point in making candidates guess on the spot, and losing valuable time aligning on objectives.
+
+Instead, set the tone and contextualized the conversation.
+
+### Move fast!
 
 I had to pass up some otherwise very interesting roles simply because time ran out.
 
-I know recruiting is difficult, especially when you're juggling multiple candidates with the schedules of multiple busy stakeholders.
+I know that hiring is _tough_: you're juggling multiple candidates, various stakeholders, and fragmented schedules.
 
-But it seems odd to me that speed is still an issue here, in a world that has never moved faster.
-
-I'm curious how we could accelerate things so that time isn't what kills your offer.
-
-How can we maximize the collective bang-for-buck from a smaller set of interviews rather than relying on separate signals from the many various stakeholders across a fragmented schedule?
+Still, I'm curious how we could accelerate things, and maximize the collective bang-for-buck.
 
 **Panel interviews** seem to work wonders here.
 Maybe we can lean on more of these.
 
-And recruiters: if a candidate informs you of another offer, _please_ communicate that with the relevant folks ASAP, especially if the offer is time-sensitive. 
-That way, you give both parties a shot at closing the deal, rather than leading to surprise, confusion, and mutual disappointment.
+Moreover, tight coordination and fast communication are non-negotiable — especially when a candidate is juggling multiple offers.
+
+If someone tells you they’re on a deadline, move.
+Or you might miss your chance.
 
 
 ## 🥳 The good news: I landed a new role!
 
 After 10 intense days of interviews, I was lucky to have a few great options to choose from.
 
-Having multiple offers provided negotiation leverage, the luxury of choice, and a clear finish line.
+And with them, something even more valuable: clarity.
 
-But what struck me the most about this position was the amount of **clarity** it gave me.
+I was able to carefully consider each opportunity and make an honest decision about my best path forward.
 
-I was able to carefully consider each opportunity and make an honest decision about what I wanted out of the role, and where I would make the greatest impact.
+I knew what I wanted out of my next role.
+I knew where I would make the greatest impact.
 
-And so, as it turns out, I ultimately accepted a "boomerang" offer, returning to my old home at Workday. 🪃
+So I said yes to a "boomerang" offer, returning to my old home at Workday. 🪃
 
 I was thrilled to learn my old team was tackling agentic problems similar to what I've been obsessed with this year.
-And I had the opportunity to pop back in like I'd never left, and pretend that the previous half-year was but a wild roller coaster of a dream.
+And the challenges they faced were exactly what I was looking for.
 
-Regardless of the boomerang conclusion, I've enjoyed reflecting on the full experience across multiple serious interview pipelines that led me to accepting my new role with clarity and conviction.
-And I hope I illustrated this experience in a way that can benefit others navigating similar waters.
+A little ironic, maybe, but a fitting and satisfying ending to my job search journey nonetheless!
+
+Regardless of the boomerang conclusion, I've enjoyed reflecting on the full, transformative experience across the various interview pipelines that led me to accepting my new role with conviction.
+I hope I illustrated this experience in a way that can benefit others navigating similar waters.
 
 ## Conclusion
 
-Unemployment is stressful.
-Interviews are stressful.
-Uncertain futures are stressful.
+Unemployment.
+Interviews.
+Uncertain futures.
 
-But I encourage you to approach your job search with curiosity, enthusiasm, and confidence.
 
-Not only does it lock in a powerful mindset, but it makes the experience less _work_ and more _fun_.
+All of it is stressful and overwhelming.
+
+But you're not alone.
+
+Approach your job search with curiosity, confidence, and a builder's mindset.
+
+Not only will it energize you, but it will make the experience less _work_ and more _fun_.
 
 And there is a lot of fun to be had.
-There's no shortage of interesting work out there, and exciting teams eager to welcome talented folks like yourself on board.
+There's no shortage of interesting work out there, and fantastic teams eager to welcome talented folks like you on board.
 
 I hope this post gives you a more complete picture of what real teams are looking for in their next AI / ML hire.
 And while I can't give you all the answers (not that either of us would want that, right?), I can do my best to share my experience, highlight relevant focus areas, and guide you towards mastering the right things.
+If you found this helpful — or have your own tips or interview stories — I’d love to hear them.
 
-So, remember:
-- Build systems, not just models.
-- Embeddings are the secret sauce of AI.
-- EQ matters as much as IQ.
-- And your past challenges? They’re someone else’s roadmap, and you can steer the ship.
+TL;DR for the road:
+- **Build systems**, not just models.
+- **Master embeddings** — the secret sauce of AI.
+- **Hone your soft skills**: EQ matters as much as IQ.
+- **Your past hurdles are your greatest asset**. Share your hard-won lessons.
 
 Happy hunting.
 You got this! 🙌
