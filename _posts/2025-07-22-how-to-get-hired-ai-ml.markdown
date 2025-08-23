@@ -8,9 +8,9 @@ date:   2025-07-22 7:00:00 -0600
 > **TL;DR:** In this post, I:
 > - discuss themes I navigated during my recent AI / ML job search
 > - share strategies for interview expectations / real problems companies are dealing with
-> - provide targeted advice for how to demonstrate your value and land your next role.
-
-> Who this post is for: This post is for AI/ML engineers navigating the current job market — whether you’re actively looking, passively curious, or just wondering what companies actually care about when hiring in 2025.
+> - provide targeted advice for how to demonstrate your value and land your next role
+>
+> **Who this post is for**: AI/ML engineers navigating the current job market — whether you’re actively looking, passively curious, or just wondering what companies actually care about when hiring in 2025.
 
 
 ## 😱 The bad news: I was laid off last month.
@@ -24,7 +24,7 @@ I found myself questioning my value, my accomplishments, and my future.
 Plus, I had no idea what to do next — and the clock was already ticking.
 
 
-#### But, this isn't a layoff post.
+### But, this isn't a layoff post.
 
 Priorities shift.
 Plans change.
@@ -262,7 +262,7 @@ And how to relate all of this to stakeholders, and business impact.
   
 #### Know your machine learning fundamentals
 
-- Understand loss functions (the more, the merrier), and how they can be tailored to address specific modeling problems.
+- Understand loss functions (squared loss, absolute loss, cross entropy — the more, the merrier!), and how they can be tailored to address specific modeling problems.
 - Understand regularization, why it works intuitively, and when / how to actually apply it (theoretically and numerically).
 
 #### Understand modern deep learning, deeply
@@ -300,7 +300,7 @@ I think EQ can be just as important as IQ for an AI/ML Engineering role, so prac
 
 ## 🧪 What Interviewers Got Right (And Improvement Ideas)
 
-### Use sneak peeks to elevate the conversation
+### Sneak peeks to elevate the conversation
 My favorite interviews gave me context ahead of time, allowing me to quickly plan my approach before the actual meeting.
 
 For example, for one interview, I was emailed a doc describing the general ML problem to be solved, giving me time to brainstorm before live coding in front of an audience with a ticking clock.
@@ -308,6 +308,24 @@ For example, for one interview, I was emailed a doc describing the general ML pr
 This was a genuinely enjoyable experience, so much so that I kept coding well after the interview ended.
 
 I'd love to see this interview style gain more traction.
+
+### AI Usage
+
+Several interviews explicitly allowed the use of additional tools, including Google, Stack Overflow, and — you guessed it — AI.
+
+At first, it felt like cheating.
+
+But once I leaned in, it nicely mirrored how I actually work: using AI to turn well-defined goals and proper context into working code, fast.
+
+In one interview, I was asked to design and implement a solution involving clustering and generative AI.
+Rusty on my `sklearn`, I grabbed the API doc for `KMeans`, piped that into a ChatGPT prompt along with my dataset description and clear end goal, and had a working model ready to build on.
+
+This saved me (and the interviewer!) precious minutes I’d otherwise spend squinting at syntax.
+
+Of course, there's a time and place for AI in interviews.
+For example, don't expect it for a Leetcode round.
+
+But it’s encouraging to see interviews evolving to reflect how engineers actually solve problems: quickly, contextually, and with modern tools at their side.
 
 ### Clarify interview goals
 
@@ -390,11 +408,11 @@ I hope this post gives you a more complete picture of what real teams are lookin
 And while I can't give you all the answers (not that either of us would want that, right?), I can do my best to share my experience, highlight relevant focus areas, and guide you towards mastering the right things.
 If you found this helpful — or have your own tips or interview stories — I’d love to hear them.
 
-TL;DR for the road:
+#### TL;DR for the road:
 - **Build systems**, not just models.
 - **Master embeddings** — the secret sauce of AI.
 - **Hone your soft skills**: EQ matters as much as IQ.
-- **Your past hurdles are your greatest asset**. Share your hard-won lessons.
+- **Your past hurdles are your greatest asset**. Share the hard-won lessons.
 
 Happy hunting.
 You got this! 🙌
