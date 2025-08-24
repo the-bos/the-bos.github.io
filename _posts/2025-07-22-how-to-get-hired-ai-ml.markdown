@@ -8,9 +8,9 @@ date:   2025-07-22 7:00:00 -0600
 > **TL;DR**
 > 
 > In this post, I:
-> - discusses themes I navigated during my recent AI / ML job search
-> - shares strategies for interview expectations / real problems companies are dealing with
-> - provides targeted advice for how to demonstrate your value and land your next role
+> - discuss themes I navigated during my recent AI / ML job search
+> - share strategies for interview expectations / real problems companies are dealing with
+> - provide targeted advice for how to demonstrate your value and land your next role
 >
 > **Who this post is for**
 > 
@@ -30,9 +30,9 @@ Plus, I had no idea what to do next — and the clock was already ticking.
 
 ### But, this isn't a layoff post.
 
-Priorities shift.
-Plans change.
-Even when you're doing your best work, the bigger picture can move in a sudden new direction that leaves you behind.
+Priorities change.
+Plans go awry.
+Even when you're doing your best work, the bigger picture can suddenly shift directions and leave you behind.
 
 I knew layoffs were the name of the tech game, and I knew that my short-term doubts were just noise in my grand career trajectory.
 
@@ -44,8 +44,9 @@ What were the _juicy_ problems companies faced that required strong technical le
 
 #### Spoiler: I wasn't let down.
 
-Handed the opportunity to engage directly with teams facing these challenges, I made a realization:
-There are some strong commonalities across the industry in terms of AI / ML solutions companies need, as well as how they assess a candidate's ability to solve those needs.
+Talking with teams actively tackling these challenges, I realized something:
+
+There are **strong patterns** across the industry — both in the AI/ML problems companies face, and how they assess candidates to solve them.
 
 And I have some thoughts on what you can do as the candidate to demonstrate that _you're_ the person to lead their AI ambitions and convert them to business value.
 
@@ -86,7 +87,7 @@ There is a lot to know and master to show why you're the top candidate these com
 Much of the tooling is barely a year old, sometimes months.
 It’s moving fast.
 
-That’s why I’ve put together this post: to help you focus on the right things, cut through the noise, and show teams why _you’re_ the person to build the future with.
+That's why I wrote this: to highlight the right things, cut through the noise, and help you show teams why _you’re_ the person to build the future with.
 
 But first, how do you even land interviews in the first place?
 
@@ -95,7 +96,7 @@ But first, how do you even land interviews in the first place?
 It's easy, tempting, and even addicting to shotgun out applications, especially with features like LinkedIn's Easy Apply.
 I've been there.
 
-But in reality, my strongest leads were **relationship-driven**, whether it was direct outreach, high-signal referrals, or recruiter pings.
+But in reality, my strongest leads were **relationship-driven**, whether it was direct outreach, strong referrals, or recruiter pings.
 
 Build a rich network.
 Nurture it.
@@ -137,8 +138,8 @@ The focus is still quite prominently on **GenAI**, so understand:
 
 Stay well-read on specific, more cutting edge techniques like RLHF, LoRA, and whatever paper came out last week making its rounds in the AI-verse.
 
-Understand global vs local (per-customer / tenant-specific / federated) learning, and the deep tension of "how do I tailor things per customer?" vs "how do I keep things simple, and ensure data privacy + security is completely respected?"
-Related to this is how to intelligently partition and serve per-customer models.
+Understand global vs local (per-customer / tenant-specific / federated) learning — and the tension between tailoring intelligently vs keeping things simple and privacy-safe.
+Related to this is how to skillfully partition and serve per-customer models.
 
 Understand how quantization, distillation, model pruning, and other tricks help you obtain **production-ready models**.
 And know how to work with your production models, whether it's upgrading to new versions, [QA-ing the results]({% post_url 2025-05-19-the-case-for-qa-endpoints %}), or monitoring for issues like drift.
@@ -194,7 +195,7 @@ Evaluating AI features, especially agentic ones, was a topic brought up in every
 You might be familiar with my [pre-existing thoughts]({% post_url 2025-06-17-the-3t-framework-for-evals %}) here, and so I won't repeat myself too much.
 
 I will say I was able to lean on the **3T framework** for _every single_ interview, regardless of problem domain or agentic application.
-(And yes, agents were discussed for every interview, even if the role wasn't totally agent-focused, per se.)
+(And yes, agents came up in every interview, even when the role wasn't strictly agent-focused.)
 
 As for more traditional ML evaluation, be sure to know your metrics, from [classification](https://en.wikipedia.org/wiki/Evaluation_of_binary_classifiers) to [retrieval](https://en.wikipedia.org/wiki/Evaluation_measures_(information_retrieval)). 
 
@@ -248,7 +249,7 @@ Understanding your core business logic is non-negotiable, and while vibe coding 
 ### Classical stats / ML ain't dead
 
 Despite all the AI hype, **fundamental statistical theory and reasoning** came up in each interview pipeline.
-And I'm glad it did.
+And as a stats purist at heart, I'm glad it did.
 
 Even though contemporary models have become heavily abstracted, they are still powered by statistical and probabilistic gears, and understanding these gears will let you master the machine.
 
@@ -321,7 +322,7 @@ Several interviews explicitly allowed the use of additional tools, including Goo
 
 At first, it felt like cheating.
 
-But once I leaned in, it nicely mirrored how I actually work: using AI to turn well-defined goals and proper context into working code, fast.
+But once I leaned in, I realized it nicely mirrored how I actually work: using AI to turn well-defined goals and proper context into working code, fast.
 
 In one interview, I was asked to design and implement a solution involving clustering and generative AI.
 Rusty on my `sklearn`, I grabbed the API doc for `KMeans`, piped that into a ChatGPT prompt along with my dataset description and clear end goal, and had a working model ready to build on.
@@ -405,7 +406,7 @@ But you're not alone.
 
 Approach your job search with **curiosity, confidence, and a builder's mindset**.
 
-Not only will it energize you, but it will make the experience less _work_ and more _fun_.
+It'll energize you, making the whole process less _work_ and more _fun_.
 
 And there is a lot of fun to be had.
 There's no shortage of interesting work out there, and fantastic teams eager to welcome talented folks like you on board.
