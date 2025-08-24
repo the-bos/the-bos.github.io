@@ -5,12 +5,16 @@ date:   2025-07-22 7:00:00 -0600
 ---
 
 
-> **TL;DR:** In this post, I:
-> - discuss themes I navigated during my recent AI / ML job search
-> - share strategies for interview expectations / real problems companies are dealing with
-> - provide targeted advice for how to demonstrate your value and land your next role
+> **TL;DR**
+> 
+> In this post, I:
+> - discusses themes I navigated during my recent AI / ML job search
+> - shares strategies for interview expectations / real problems companies are dealing with
+> - provides targeted advice for how to demonstrate your value and land your next role
 >
-> **Who this post is for**: AI/ML engineers navigating the current job market — whether you’re actively looking, passively curious, or just wondering what companies actually care about when hiring in 2025.
+> **Who this post is for**
+> 
+> - AI/ML engineers navigating the current job market — whether you’re actively hunting, passively curious, or just wondering what companies actually care about in 2025.
 
 
 ## 😱 The bad news: I was laid off last month.
@@ -65,11 +69,11 @@ Companies want an AI/ML engineer who can:
 If you’ve worked in AI/ML in the last decade, none of this should surprise you.
 
 But, my key takeaway was that, to really stand out, you should further have a track record of building:
-- End-to-end GenAI features that make smart use of LLMs
-- Powerful RAG pipelines grounded in thoughtful knowledge management
-- Full-stack, production-ready agents, equipped with memory, tools, auth, feedback — the whole package
-- Strong evaluation frameworks for offline and online data
-- Holistic workflows for users to define, organize, execute, and analyze tasks 
+- End-to-end **GenAI features** that make smart use of LLMs
+- Powerful **RAG pipelines** grounded in thoughtful knowledge management
+- Full-stack, production-ready **AI agents**, equipped with memory, tools, auth, feedback — the whole package
+- Strong **evaluation frameworks** for offline and online data
+- **Holistic workspaces** for users to define, organize, execute, and analyze tasks 
 
 Clearly, there's industry-wide excitement as AI graduates from "ML can make good predictions" to "agents can _actually_ convert natural language into dozen-step workflows".
 
@@ -100,7 +104,7 @@ Engage with it meaningfully and often.
 You have a lot of great ideas.
 Don't be afraid to write about them.
 Posting to LinkedIn is intimidating at first, but try adventuring outside your comfort zone.
-What might seem obvious to you could be an insightful blog post for someone else.
+What might seem obvious to you could be an insightful story for someone else.
 
 It can feel difficult to stand out in a sea of others equally interested in networking and growing their career.
 
@@ -148,18 +152,18 @@ This isn't a new paradigm.
 In fact, ML-based retrieval has been around for quite some time.
 
 I've been building retrieval methods for semantic search and adjacent techniques for the better part of the last decade.
-Many others have been doing so for a lot longer.
+Many others have been building similar things for a lot longer.
 
 Modern generative LLMs let us turbo-charge how retrieved results are used and surfaced, but without good retrieval, you don't have good AI.
 
 This is why **embeddings are the secret sauce of modern AI**.
 
-They let us transform messy, multidimensional relationships into crisp similarity problems.
+They let us transform messy, multidimensional relationships into crisp similarity problems, and hence powerful retrieval methods.
 
 This isn't just useful for agentic RAG: embeddings power recommendations, clustering, context compression, and more.
 
 The most interesting problems I encountered during my job search involved leveraging embeddings for problems involving multi-layer, not-necessarily-tabular data relationships.
-Think matching customer support tickets to knowledge base articles across different product lines, user types, and contexts - exactly the kind of messy problem that embeddings are well-equipped to solve.
+Think matching customer support tickets to knowledge base articles across different product lines, user types, and contexts — exactly the kind of messy problem that embeddings are well-equipped to solve.
 
 You should:
 - understand why embeddings are powerful at a very deep level (and be able to ELI5)
@@ -171,7 +175,7 @@ You should:
 
 If agents are in the job description, know how to design and ship them.
 
-Here are some topics: 
+Here are some common topics to master for this:
 
 - **Perception**: How your agent obtains / processes input to understand its objectives
 - **Planning**: How your agent (powered by one or more LLMs) reasons about its objective, decomposes it into tasks, and decides on actions
@@ -180,6 +184,8 @@ Here are some topics:
 - **Learning**: How your agent adapts to new information, from self-evaluation to RLHF
 - **Multi-agent architectures**, and tradeoffs compared to single-agent
 - How agents differ from **workflows**
+
+This merely scratches the surface of this new and exciting field, but having a solid handle here will put you in good shape.
 
 ### Evaluation
 
@@ -218,27 +224,26 @@ While not the sexiest questions to tackle, I assure you they are critical, and y
 
 ## 🧩 Don't sleep on the fundamentals
 
-### Leetcode ain't dead
+### LeetCode ain't dead
 
-To be honest, I thought AI killed the leetcode interview, but I was mistaken.
+To be honest, I thought AI killed the LeetCode interview, but I was mistaken.
 
-At least in my experience as of 2025, **Leetcode is very much alive**, and was a component of roughly half of my interview pipelines.
+Even in 2025, **LeetCode is very much alive**, and was a component of roughly half of my interview pipelines.
 
 I was slightly worried being off the "LC grind" for so many years could be my demise.
+Turns out, my personal experience building ETL and evaluation pipelines were particularly useful here, since such pipelines force you to reason through similar flavors of correct (and efficient) logic, data structures, and edge-case handling.
 
-But thankfully, I passed each round!
-And I had quite a bit of fun with the problems, being addicted to big-O flash cards in a past life.
+I even had quite a bit of fun with the problems, having been addicted to big-O flash cards in a past life.
 
-Leetcode grinding works, if you have the time, patience, and pain tolerance. 
+LeetCode grinding works, provided you have the time, patience, and pain tolerance.
 
 If grinding isn't realistic, don't panic.
 As long as you're spending good time solving meaningful AI / ML problems, you'll naturally have this mindset front and center.
 
-My personal experience with ETL and evaluation pipelines were particularly useful for this, since they force you to reason through similar flavors of correct, efficient logic, data structures, and edge-case handling.
-
-Nonetheless, I suggest you resist the urge to vibe code everything (i.e., writing code without a clear plan)
+Nonetheless, I suggest you resist the urge to [vibe code](https://en.wikipedia.org/wiki/Vibe_coding) everything.
 
 Understanding your core business logic is non-negotiable, and while vibe coding can be useful, holding on to a **computational state of mind** will continue to pay dividends in interviews and throughout your career.
+
 
 ### Classical stats / ML ain't dead
 
@@ -252,7 +257,7 @@ But having a strong handle of your statistical theory will make this a much smoo
 
 Here's what actually came up in my interviews:
 
-#### Know your modeling basics.
+#### Know your modeling basics
 
 - Regression and classification should be two of your dearest friends.
 - Understand data sampling implications, statistical distributions, unbiasedness, and even experimental design.
@@ -263,7 +268,7 @@ And how to relate all of this to stakeholders, and business impact.
 #### Know your machine learning fundamentals
 
 - Understand loss functions (squared loss, absolute loss, cross entropy — the more, the merrier!), and how they can be tailored to address specific modeling problems.
-- Understand regularization, why it works intuitively, and when / how to actually apply it (theoretically and numerically).
+- Understand regularization, why it works intuitively (hint: think bias-variance tradeoff), and when / how to actually apply it.
 
 #### Understand modern deep learning, deeply
 
@@ -271,7 +276,7 @@ And how to relate all of this to stakeholders, and business impact.
 - Even better, understand its technical and theoretical details (yes, I'm talking queries, keys, and values), as well as modern techniques to make it even better
 
 
-## 🦉 How You Can Stand Out
+## 🌟 How You Can Stand Out
 
 Here I lay out some thoughts about my day-to-day engineering routine, mindset, and habits that I believe naturally helped me tackle interviews.
 
@@ -279,6 +284,7 @@ Here I lay out some thoughts about my day-to-day engineering routine, mindset, a
 Empathize with UX, make it magical, and show why this will lead to happy customers and good business.
 
 **Document your architectural decisions**, especially tradeoffs. 
+And regularly review these docs.
 You'll be asked why you made certain choices and whether they were correct.
 Be ready to answer both of these accurately and honestly.
 Hiring managers want to see that you can navigate uncertainty, make informed decisions, and course correct as needed.
@@ -301,7 +307,7 @@ I think EQ can be just as important as IQ for an AI/ML Engineering role, so prac
 ## 🧪 What Interviewers Got Right (And Improvement Ideas)
 
 ### Sneak peeks to elevate the conversation
-My favorite interviews gave me context ahead of time, allowing me to quickly plan my approach before the actual meeting.
+My favorite interviews gave me **context ahead of time**, allowing me to quickly plan my approach before the actual meeting.
 
 For example, for one interview, I was emailed a doc describing the general ML problem to be solved, giving me time to brainstorm before live coding in front of an audience with a ticking clock.
 
@@ -309,7 +315,7 @@ This was a genuinely enjoyable experience, so much so that I kept coding well af
 
 I'd love to see this interview style gain more traction.
 
-### AI Usage
+### AI usage
 
 Several interviews explicitly allowed the use of additional tools, including Google, Stack Overflow, and — you guessed it — AI.
 
@@ -323,7 +329,7 @@ Rusty on my `sklearn`, I grabbed the API doc for `KMeans`, piped that into a Cha
 This saved me (and the interviewer!) precious minutes I’d otherwise spend squinting at syntax.
 
 Of course, there's a time and place for AI in interviews.
-For example, don't expect it for a Leetcode round.
+For example, don't expect it for a LeetCode round.
 
 But it’s encouraging to see interviews evolving to reflect how engineers actually solve problems: quickly, contextually, and with modern tools at their side.
 
@@ -341,12 +347,12 @@ Be explicit about what you’re looking for.
 
 If it’s how to do agentic tool routing, say so!
 
-ML Microservices?
+ML microservices?
 Great!
 
 No point in making candidates guess on the spot, and losing valuable time aligning on objectives.
 
-Instead, set the tone and contextualized the conversation.
+Instead, set the tone and contextualize the conversation.
 
 ### Move fast!
 
@@ -369,7 +375,7 @@ Or you might miss your chance.
 
 After 10 intense days of interviews, I was lucky to have a few great options to choose from.
 
-And with them, something even more valuable: clarity.
+And with them, something incredibly valuable: **clarity**.
 
 I was able to carefully consider each opportunity and make an honest decision about my best path forward.
 
@@ -384,9 +390,9 @@ And the challenges they faced were exactly what I was looking for.
 A little ironic, maybe, but a fitting and satisfying ending to my job search journey nonetheless!
 
 Regardless of the boomerang conclusion, I've enjoyed reflecting on the full, transformative experience across the various interview pipelines that led me to accepting my new role with conviction.
-I hope I illustrated this experience in a way that can benefit others navigating similar waters.
+I hope I illustrated this experience in a way that can benefit others navigating their own unique job searches.
 
-## Conclusion
+## 🏁 Conclusion
 
 Unemployment.
 Interviews.
@@ -397,7 +403,7 @@ All of it is stressful and overwhelming.
 
 But you're not alone.
 
-Approach your job search with curiosity, confidence, and a builder's mindset.
+Approach your job search with **curiosity, confidence, and a builder's mindset**.
 
 Not only will it energize you, but it will make the experience less _work_ and more _fun_.
 
@@ -410,6 +416,7 @@ If you found this helpful — or have your own tips or interview stories — I�
 
 #### TL;DR for the road:
 - **Build systems**, not just models.
+- **Focus on how you think**, not just what you’ve built.
 - **Master embeddings** — the secret sauce of AI.
 - **Hone your soft skills**: EQ matters as much as IQ.
 - **Your past hurdles are your greatest asset**. Share the hard-won lessons.
