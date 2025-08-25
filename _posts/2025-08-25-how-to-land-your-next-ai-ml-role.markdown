@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "How To Actually Land Your Next AI/ML Role in 2025"
-date:   2025-07-22 7:00:00 -0600
+date:   2025-08-25 7:00:00 -0600
 ---
 
 
